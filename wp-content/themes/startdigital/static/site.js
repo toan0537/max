@@ -38288,7 +38288,7 @@ void main() {
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
       const textureLoader = new TextureLoader();
-      const basePath = "/wp-content/themes/startdigital/static/scratched-metal-bl/";
+      const basePath = "/solais-local/wp-content/themes/startdigital/static/scratched-metal-bl/";
       const roughnessMap = textureLoader.load(
         basePath + "scratched-metal_roughness.webp"
       );
@@ -38305,7 +38305,7 @@ void main() {
         color: 11493991
       });
       loader.load(
-        "/wp-content/themes/startdigital/static/models/solias.glb",
+        "/solais-local/wp-content/themes/startdigital/static/models/solias.glb",
         (gltf) => {
           this.model = gltf.scene;
           this.model.traverse((child) => {
@@ -38334,7 +38334,7 @@ void main() {
         }
       );
       loader.load(
-        "/wp-content/themes/startdigital/static/models/solias_button_2.glb",
+        "/solais-local/wp-content/themes/startdigital/static/models/solias_button_2.glb",
         (gltf) => {
           this.buttonModel = gltf.scene;
           this.tokenMeshes = [];
@@ -38751,7 +38751,7 @@ void main() {
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
       loader.load(
-        "/wp-content/themes/startdigital/static/models/tile.glb",
+        "/solais-local/wp-content/themes/startdigital/static/models/tile.glb",
         (gltf) => {
           const model = gltf.scene.children[0];
           const geometry = model.geometry.clone();
@@ -38967,7 +38967,7 @@ void main() {
       });
     }
     loadEnv() {
-      const hdrPath = "/wp-content/themes/startdigital/static/models/environment.exr";
+      const hdrPath = "/solais-local/wp-content/themes/startdigital/static/models/environment.exr";
       new EXRLoader().load(hdrPath, (texture) => {
         texture.mapping = EquirectangularReflectionMapping;
         texture.minFilter = LinearFilter;
