@@ -3837,8 +3837,10 @@ body,
 .footer-text .is-h1 {
   max-width: 8.4ch;
   font-size: clamp(2.9rem, 7vw, 5.2rem);
-  line-height: 0.94;
+  line-height: 1.04;
   letter-spacing: -0.045em;
+  padding-top: 0.08em;
+  overflow: visible;
 }
 
 .footer-text .vi-word-fix {
@@ -4063,7 +4065,7 @@ body,
   .footer-text .is-h1 {
     max-width: 8.1ch;
     font-size: clamp(2.45rem, 9.5vw, 4rem);
-    line-height: 0.98;
+    line-height: 1.06;
   }
 
   .footer-counter-kicker__label {
@@ -4583,7 +4585,7 @@ body,
   .footer-text .is-h1 {
     max-width: 7.6ch;
     font-size: clamp(2.1rem, 10vw, 3.2rem);
-    line-height: 1.02;
+    line-height: 1.08;
   }
 
   .footer-counter-kicker {

@@ -208,7 +208,7 @@ window.__maxFigmaLabCodeState = {
       "text": "ĐỊNH DANH"
     },
     "section#hero-top/div:1/div:1/h1:1/span:2/span:2/span:1": {
-      "text": "ĐỊNH DANH"
+      "text": "BẢN SẮC"
     },
     "div#industries/div:1/div:1/p:1/div:1/div:1": {},
     "div#industries/div:1/div:1/p:1/div:1/div:2": {},
