@@ -3834,6 +3834,13 @@ body,
   line-height: 1.72;
 }
 
+.footer-text .is-h1 {
+  max-width: 8.4ch;
+  font-size: clamp(2.9rem, 7vw, 5.2rem);
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+}
+
 .footer-sellpoints > div {
   min-height: 100%;
   padding: 1.2rem 1.4rem;
@@ -4023,6 +4030,12 @@ body,
   .footer-cta-grid {
     padding: 1.1rem 1rem;
     border-radius: 26px;
+  }
+
+  .footer-text .is-h1 {
+    max-width: 8.1ch;
+    font-size: clamp(2.45rem, 9.5vw, 4rem);
+    line-height: 0.98;
   }
 
   .footer-sellpoints > div {
@@ -4533,6 +4546,12 @@ body,
   .footer-cta-grid {
     padding: 1rem 0.92rem;
     border-radius: 24px;
+  }
+
+  .footer-text .is-h1 {
+    max-width: 7.6ch;
+    font-size: clamp(2.1rem, 10vw, 3.2rem);
+    line-height: 1.02;
   }
 }
 .hero-title-block {
