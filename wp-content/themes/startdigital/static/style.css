@@ -3851,6 +3851,10 @@ body,
   transform: translateY(-0.01em);
 }
 
+.footer-text > .flex {
+  margin-top: clamp(0.9rem, 2.2vw, 1.6rem);
+}
+
 .footer-counter-kicker {
   align-items: center;
   flex-wrap: nowrap;
@@ -4066,6 +4070,10 @@ body,
     max-width: 8.1ch;
     font-size: clamp(2.45rem, 9.5vw, 4rem);
     line-height: 1.06;
+  }
+
+  .footer-text > .flex {
+    margin-top: 1.1rem;
   }
 
   .footer-counter-kicker__label {
@@ -4586,6 +4594,10 @@ body,
     max-width: 7.6ch;
     font-size: clamp(2.1rem, 10vw, 3.2rem);
     line-height: 1.08;
+  }
+
+  .footer-text > .flex {
+    margin-top: 1.3rem;
   }
 
   .footer-counter-kicker {
