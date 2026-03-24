@@ -38085,6 +38085,18 @@ void main() {
     const parsedValues = normalizedValue.split(",").map((part) => Number.parseInt(part.trim(), 10)).filter((part) => Number.isFinite(part) && part >= 0);
     return parsedValues.length ? parsedValues : fallback;
   }
+  function resolveSolaisStaticAssetUrl(relativePath) {
+    const sanitizedPath = String(relativePath || "").replace(/^\.?\//, "");
+    if (!sanitizedPath)
+      return sanitizedPath;
+    const scriptEl = document.getElementById("startdigital-js");
+    const scriptSrc = scriptEl?.src || document.currentScript?.src || "";
+    if (scriptSrc) {
+      return new URL(sanitizedPath, scriptSrc).toString();
+    }
+    const baseUrl = new URL("./wp-content/themes/startdigital/static/", window.location.href);
+    return new URL(sanitizedPath, baseUrl).toString();
+  }
   function createDefaultSolaisSceneConfig() {
     return {
       cameraX: 0,
@@ -39230,7 +39242,7 @@ void main() {
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
       const textureLoader = new TextureLoader();
-      const basePath = "/wp-content/themes/startdigital/static/scratched-metal-bl/";
+      const basePath = resolveSolaisStaticAssetUrl("scratched-metal-bl/");
       const roughnessMap = textureLoader.load(
         basePath + "scratched-metal_roughness.webp"
       );
@@ -39247,7 +39259,7 @@ void main() {
         color: 11493991
       });
       loader.load(
-        "/wp-content/themes/startdigital/static/models/solias.glb",
+        resolveSolaisStaticAssetUrl("models/solias.glb"),
         (gltf) => {
           this.model = gltf.scene;
           this.model.traverse((child) => {
@@ -39276,7 +39288,7 @@ void main() {
         }
       );
       loader.load(
-        "/wp-content/themes/startdigital/static/models/solias_button_2.glb",
+        resolveSolaisStaticAssetUrl("models/solias_button_2.glb"),
         (gltf) => {
           this.buttonModel = gltf.scene;
           this.tokenMeshes = [];
@@ -39582,7 +39594,7 @@ void main() {
             checkComplete();
           };
           loader.load(
-            "/wp-content/themes/startdigital/static/models/MEOMEO.glb",
+            resolveSolaisStaticAssetUrl("models/MEOMEO.glb"),
             (whiteGltf) => {
               const whiteModel = whiteGltf.scene;
               if (whiteModel) {
@@ -39832,7 +39844,7 @@ void main() {
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
       loader.load(
-        "/wp-content/themes/startdigital/static/models/tile.glb",
+        resolveSolaisStaticAssetUrl("models/tile.glb"),
         (gltf) => {
           const model = gltf.scene.children[0];
           const geometry = model.geometry.clone();
@@ -40051,7 +40063,7 @@ void main() {
       this.floatingTokenTimelines = [];
     }
     loadEnv() {
-      const hdrPath = "/wp-content/themes/startdigital/static/models/environment.exr";
+      const hdrPath = resolveSolaisStaticAssetUrl("models/environment.exr");
       new EXRLoader().load(hdrPath, (texture) => {
         texture.mapping = EquirectangularReflectionMapping;
         texture.minFilter = LinearFilter;
