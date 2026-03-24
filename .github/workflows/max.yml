@@ -1,8 +1,9 @@
-name: Deploy to GitHub Pages
+name: MAX Deploy
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -10,11 +11,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: "max-pages"
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  max-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -22,12 +23,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Upload artifact
+
+      - name: Upload MAX artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
-      - name: Deploy to GitHub Pages
+          path: "."
+
+      - name: Deploy MAX site
         id: deployment
         uses: actions/deploy-pages@v4
