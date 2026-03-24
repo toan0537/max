@@ -3841,6 +3841,26 @@ body,
   letter-spacing: -0.045em;
 }
 
+.footer-counter-kicker {
+  align-items: center;
+  flex-wrap: nowrap;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.footer-counter-kicker__label {
+  min-height: 2.75rem;
+  padding-inline: 1rem;
+  white-space: nowrap;
+  line-height: 1;
+  font-size: clamp(1rem, 1.55vw, 1.45rem);
+  letter-spacing: -0.03em;
+}
+
+.footer-counter-kicker__bar {
+  min-height: 2.75rem;
+}
+
 .footer-sellpoints > div {
   min-height: 100%;
   padding: 1.2rem 1.4rem;
@@ -4036,6 +4056,10 @@ body,
     max-width: 8.1ch;
     font-size: clamp(2.45rem, 9.5vw, 4rem);
     line-height: 0.98;
+  }
+
+  .footer-counter-kicker__label {
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
   }
 
   .footer-sellpoints > div {
@@ -4552,6 +4576,15 @@ body,
     max-width: 7.6ch;
     font-size: clamp(2.1rem, 10vw, 3.2rem);
     line-height: 1.02;
+  }
+
+  .footer-counter-kicker {
+    gap: 0.2rem;
+  }
+
+  .footer-counter-kicker__label {
+    padding-inline: 0.72rem;
+    font-size: clamp(0.82rem, 3.8vw, 1rem);
   }
 }
 .hero-title-block {
