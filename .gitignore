@@ -1,0 +1,13 @@
+.playwright-cli/
+output/
+backups/
+solais-local.pid
+solais-local.stdout.log
+solais-local.stderr.log
+diff.txt
+debug-assets/
+*.bak
+*.bak-*
+.theme-lab-state.json
+wp-content/themes/startdigital/static/theme-lab.js
+old_site.js

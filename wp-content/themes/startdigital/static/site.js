@@ -59,7 +59,7 @@
   var _isFuncOrString = function _isFuncOrString2(value) {
     return _isFunction(value) || _isString(value);
   };
-  var _isTypedArray = typeof ArrayBuffer === "function" && ArrayBuffer.isView || function() {
+  var _isTypedArray = typeof ArrayBuffer === "function" && ArrayBuffer.isView || function () {
   };
   var _isArray = Array.isArray;
   var _strictNumExp = /(?:-?\.?\d|\.)+/gi;
@@ -149,7 +149,7 @@
   };
   var _arrayContainsAny = function _arrayContainsAny2(toSearch, toFind) {
     var l = toFind.length, i = 0;
-    for (; toSearch.indexOf(toFind[i]) < 0 && ++i < l; ) {
+    for (; toSearch.indexOf(toFind[i]) < 0 && ++i < l;) {
     }
     return i < l;
   };
@@ -181,7 +181,7 @@
     return obj;
   };
   var _setKeyframeDefaults = function _setKeyframeDefaults2(excludeDuration) {
-    return function(obj, defaults3) {
+    return function (obj, defaults3) {
       for (var p in defaults3) {
         p in obj || p === "duration" && excludeDuration || p === "ease" || (obj[p] = defaults3[p]);
       }
@@ -501,7 +501,7 @@
     return !_isString(value) || !(v = _unitExp.exec(value)) ? "" : v[1];
   };
   var clamp = function clamp2(min, max2, value) {
-    return _conditionalReturn(value, function(v) {
+    return _conditionalReturn(value, function (v) {
       return _clamp(min, max2, v);
     });
   };
@@ -513,7 +513,7 @@
     if (accumulator === void 0) {
       accumulator = [];
     }
-    return ar.forEach(function(value) {
+    return ar.forEach(function (value) {
       var _accumulator;
       return _isString(value) && !leaveStrings || _isArrayLike(value, 1) ? (_accumulator = accumulator).push.apply(_accumulator, toArray(value)) : accumulator.push(value);
     }) || accumulator;
@@ -523,13 +523,13 @@
   };
   var selector = function selector2(value) {
     value = toArray(value)[0] || _warn("Invalid scope") || {};
-    return function(v) {
+    return function (v) {
       var el = value.current || value.nativeElement || value;
       return toArray(v, el.querySelectorAll ? el : el === value ? _warn("Invalid scope") || _doc.createElement("div") : value);
     };
   };
   var shuffle = function shuffle2(a) {
-    return a.sort(function() {
+    return a.sort(function () {
       return 0.5 - Math.random();
     });
   };
@@ -550,7 +550,7 @@
       ratioX = from[0];
       ratioY = from[1];
     }
-    return function(i, target, a) {
+    return function (i, target, a) {
       var l = (a || vars).length, distances = cache[l], originX, originY, x, y, d, j, max2, min, wrapAt;
       if (!distances) {
         wrapAt = vars.grid === "auto" ? 0 : (vars.grid || [1, _bigNum])[1];
@@ -586,7 +586,7 @@
   };
   var _roundModifier = function _roundModifier2(v) {
     var p = Math.pow(10, ((v + "").split(".")[1] || "").length);
-    return function(raw) {
+    return function (raw) {
       var n = _roundPrecise(Math.round(parseFloat(raw) / v) * v * p);
       return (n - n % 1) / p + (_isNumber(raw) ? 0 : getUnit(raw));
     };
@@ -604,10 +604,10 @@
         snapTo = _roundModifier(snapTo.increment);
       }
     }
-    return _conditionalReturn(value, !isArray ? _roundModifier(snapTo) : _isFunction(snapTo) ? function(raw) {
+    return _conditionalReturn(value, !isArray ? _roundModifier(snapTo) : _isFunction(snapTo) ? function (raw) {
       is2D = snapTo(raw);
       return Math.abs(is2D - raw) <= radius ? is2D : raw;
-    } : function(raw) {
+    } : function (raw) {
       var x = parseFloat(is2D ? raw.x : raw), y = parseFloat(is2D ? raw.y : 0), min = _bigNum, closest = 0, i = snapTo.length, dx, dy;
       while (i--) {
         if (is2D) {
@@ -627,7 +627,7 @@
     });
   };
   var random = function random2(min, max2, roundingIncrement, returnFunction) {
-    return _conditionalReturn(_isArray(min) ? !max2 : roundingIncrement === true ? !!(roundingIncrement = 0) : !returnFunction, function() {
+    return _conditionalReturn(_isArray(min) ? !max2 : roundingIncrement === true ? !!(roundingIncrement = 0) : !returnFunction, function () {
       return _isArray(min) ? min[~~(Math.random() * min.length)] : (roundingIncrement = roundingIncrement || 1e-5) && (returnFunction = roundingIncrement < 1 ? Math.pow(10, (roundingIncrement + "").length - 2) : 1) && Math.floor(Math.round((min - roundingIncrement / 2 + Math.random() * (max2 - min + roundingIncrement * 0.99)) / roundingIncrement) * roundingIncrement * returnFunction) / returnFunction;
     });
   };
@@ -635,14 +635,14 @@
     for (var _len = arguments.length, functions = new Array(_len), _key = 0; _key < _len; _key++) {
       functions[_key] = arguments[_key];
     }
-    return function(value) {
-      return functions.reduce(function(v, f) {
+    return function (value) {
+      return functions.reduce(function (v, f) {
         return f(v);
       }, value);
     };
   };
   var unitize = function unitize2(func, unit) {
-    return function(value) {
+    return function (value) {
       return func(parseFloat(value)) + (unit || getUnit(value));
     };
   };
@@ -650,19 +650,19 @@
     return mapRange(min, max2, 0, 1, value);
   };
   var _wrapArray = function _wrapArray2(a, wrapper, value) {
-    return _conditionalReturn(value, function(index) {
+    return _conditionalReturn(value, function (index) {
       return a[~~wrapper(index)];
     });
   };
   var wrap = function wrap2(min, max2, value) {
     var range = max2 - min;
-    return _isArray(min) ? _wrapArray(min, wrap2(0, min.length), max2) : _conditionalReturn(value, function(value2) {
+    return _isArray(min) ? _wrapArray(min, wrap2(0, min.length), max2) : _conditionalReturn(value, function (value2) {
       return (range + (value2 - min) % range) % range + min;
     });
   };
   var wrapYoyo = function wrapYoyo2(min, max2, value) {
     var range = max2 - min, total = range * 2;
-    return _isArray(min) ? _wrapArray(min, wrapYoyo2(0, min.length - 1), max2) : _conditionalReturn(value, function(value2) {
+    return _isArray(min) ? _wrapArray(min, wrapYoyo2(0, min.length - 1), max2) : _conditionalReturn(value, function (value2) {
       value2 = (total + (value2 - min) % total) % total || 0;
       return min + (value2 > range ? total - value2 : value2);
     });
@@ -680,12 +680,12 @@
   };
   var mapRange = function mapRange2(inMin, inMax, outMin, outMax, value) {
     var inRange = inMax - inMin, outRange = outMax - outMin;
-    return _conditionalReturn(value, function(value2) {
+    return _conditionalReturn(value, function (value2) {
       return outMin + ((value2 - inMin) / inRange * outRange || 0);
     });
   };
   var interpolate = function interpolate2(start, end, progress, mutate) {
-    var func = isNaN(start + end) ? 0 : function(p2) {
+    var func = isNaN(start + end) ? 0 : function (p2) {
       return (1 - p2) * start + p2 * end;
     };
     if (!func) {
@@ -763,7 +763,7 @@
       return;
     config3 = !config3.name && config3["default"] || config3;
     if (_windowExists() || config3.headless) {
-      var name = config3.name, isFunc = _isFunction(config3), Plugin = name && !isFunc && config3.init ? function() {
+      var name = config3.name, isFunc = _isFunction(config3), Plugin = name && !isFunc && config3.init ? function () {
         this._props = [];
       } : config3, instanceDefaults = {
         init: _emptyFunc,
@@ -892,7 +892,7 @@
   };
   var _colorOrderData = function _colorOrderData2(v) {
     var values = [], c = [], i = -1;
-    v.split(_colorExp).forEach(function(v2) {
+    v.split(_colorExp).forEach(function (v2) {
       var a = v2.match(_numWithUnitExp) || [];
       values.push.apply(values, a);
       c.push(i += a.length + 1);
@@ -905,7 +905,7 @@
     if (!colors) {
       return s;
     }
-    colors = colors.map(function(color) {
+    colors = colors.map(function (color) {
       return (color = splitColor(color, toHSL, 1)) && type + (toHSL ? color[0] + "," + color[1] + "%," + color[2] + "%," + color[3] : color.join(",")) + ")";
     });
     if (orderMatchData) {
@@ -928,7 +928,7 @@
     }
     return result + shell[l];
   };
-  var _colorExp = function() {
+  var _colorExp = function () {
     var s = "(?:\\b(?:(?:rgb|rgba|hsl|hsla)\\(.+?\\))|\\B#(?:[0-9a-f]{3,4}){1,2}\\b", p;
     for (p in _colorLookup) {
       s += "|" + p + "\\b";
@@ -947,7 +947,7 @@
     }
   };
   var _tickerActive;
-  var _ticker = function() {
+  var _ticker = function () {
     var _getTime3 = Date.now, _lagThreshold = 500, _adjustedLag = 33, _startTime = _getTime3(), _lastUpdate = _startTime, _gap = 1e3 / 240, _nextTime = _gap, _listeners3 = [], _id2, _req, _raf, _self, _delta, _i2, _tick = function _tick2(v) {
       var elapsed = _getTime3() - _lastUpdate, manual = v === true, overlap, dispatch, time, frame;
       (elapsed > _lagThreshold || elapsed < 0) && (_startTime += elapsed - _adjustedLag);
@@ -989,7 +989,7 @@
           }
           _raf = typeof requestAnimationFrame !== "undefined" && requestAnimationFrame;
           _id2 && _self.sleep();
-          _req = _raf || function(f) {
+          _req = _raf || function (f) {
             return setTimeout(f, _nextTime - _self.time * 1e3 + 1 | 0);
           };
           _tickerActive = 1;
@@ -1010,7 +1010,7 @@
         _nextTime = _self.time * 1e3 + _gap;
       },
       add: function add(callback, once, prioritize) {
-        var func = once ? function(t, d, f, v) {
+        var func = once ? function (t, d, f, v) {
           callback(t, d, f, v);
           _self.remove(func);
         } : callback;
@@ -1052,7 +1052,7 @@
     return ease && split.length > 1 && ease.config ? ease.config.apply(null, ~name.indexOf("{") ? [_parseObjectInString(split[1])] : _valueInParentheses(name).split(",").map(_numericIfPossible)) : _easeMap._CE && _customEaseExp.test(name) ? _easeMap._CE("", name) : ease;
   };
   var _invertEase = function _invertEase2(ease) {
-    return function(p) {
+    return function (p) {
       return 1 - ease(1 - p);
     };
   };
@@ -1093,7 +1093,7 @@
       easeOut,
       easeInOut
     }, lowercaseName;
-    _forEachName(names, function(name) {
+    _forEachName(names, function (name) {
       _easeMap[name] = _globals[name] = ease;
       _easeMap[lowercaseName = name.toLowerCase()] = easeOut;
       for (var p in ease) {
@@ -1103,18 +1103,18 @@
     return ease;
   };
   var _easeInOutFromOut = function _easeInOutFromOut2(easeOut) {
-    return function(p) {
+    return function (p) {
       return p < 0.5 ? (1 - easeOut(1 - p * 2)) / 2 : 0.5 + easeOut((p - 0.5) * 2) / 2;
     };
   };
   var _configElastic = function _configElastic2(type, amplitude, period) {
     var p1 = amplitude >= 1 ? amplitude : 1, p2 = (period || (type ? 0.3 : 0.45)) / (amplitude < 1 ? amplitude : 1), p3 = p2 / _2PI * (Math.asin(1 / p1) || 0), easeOut = function easeOut2(p) {
       return p === 1 ? 1 : p1 * Math.pow(2, -10 * p) * _sin((p - p3) * p2) + 1;
-    }, ease = type === "out" ? easeOut : type === "in" ? function(p) {
+    }, ease = type === "out" ? easeOut : type === "in" ? function (p) {
       return 1 - easeOut(1 - p);
     } : _easeInOutFromOut(easeOut);
     p2 = _2PI / p2;
-    ease.config = function(amplitude2, period2) {
+    ease.config = function (amplitude2, period2) {
       return _configElastic2(type, amplitude2, period2);
     };
     return ease;
@@ -1125,43 +1125,43 @@
     }
     var easeOut = function easeOut2(p) {
       return p ? --p * p * ((overshoot + 1) * p + overshoot) + 1 : 0;
-    }, ease = type === "out" ? easeOut : type === "in" ? function(p) {
+    }, ease = type === "out" ? easeOut : type === "in" ? function (p) {
       return 1 - easeOut(1 - p);
     } : _easeInOutFromOut(easeOut);
-    ease.config = function(overshoot2) {
+    ease.config = function (overshoot2) {
       return _configBack2(type, overshoot2);
     };
     return ease;
   };
-  _forEachName("Linear,Quad,Cubic,Quart,Quint,Strong", function(name, i) {
+  _forEachName("Linear,Quad,Cubic,Quart,Quint,Strong", function (name, i) {
     var power = i < 5 ? i + 1 : i;
-    _insertEase(name + ",Power" + (power - 1), i ? function(p) {
+    _insertEase(name + ",Power" + (power - 1), i ? function (p) {
       return Math.pow(p, power);
-    } : function(p) {
+    } : function (p) {
       return p;
-    }, function(p) {
+    }, function (p) {
       return 1 - Math.pow(1 - p, power);
-    }, function(p) {
+    }, function (p) {
       return p < 0.5 ? Math.pow(p * 2, power) / 2 : 1 - Math.pow((1 - p) * 2, power) / 2;
     });
   });
   _easeMap.Linear.easeNone = _easeMap.none = _easeMap.Linear.easeIn;
   _insertEase("Elastic", _configElastic("in"), _configElastic("out"), _configElastic());
-  (function(n, c) {
+  (function (n, c) {
     var n1 = 1 / c, n2 = 2 * n1, n3 = 2.5 * n1, easeOut = function easeOut2(p) {
       return p < n1 ? n * p * p : p < n2 ? n * Math.pow(p - 1.5 / c, 2) + 0.75 : p < n3 ? n * (p -= 2.25 / c) * p + 0.9375 : n * Math.pow(p - 2.625 / c, 2) + 0.984375;
     };
-    _insertEase("Bounce", function(p) {
+    _insertEase("Bounce", function (p) {
       return 1 - easeOut(1 - p);
     }, easeOut);
   })(7.5625, 2.75);
-  _insertEase("Expo", function(p) {
+  _insertEase("Expo", function (p) {
     return p ? Math.pow(2, 10 * (p - 1)) : 0;
   });
-  _insertEase("Circ", function(p) {
+  _insertEase("Circ", function (p) {
     return -(_sqrt(1 - p * p) - 1);
   });
-  _insertEase("Sine", function(p) {
+  _insertEase("Sine", function (p) {
     return p === 1 ? 1 : -_cos(p * _HALF_PI) + 1;
   });
   _insertEase("Back", _configBack("in"), _configBack("out"), _configBack());
@@ -1171,13 +1171,13 @@
         steps = 1;
       }
       var p1 = 1 / steps, p2 = steps + (immediateStart ? 0 : 1), p3 = immediateStart ? 1 : 0, max2 = 1 - _tinyNum;
-      return function(p) {
+      return function (p) {
         return ((p2 * _clamp(0, max2, p) | 0) + p3) * p1;
       };
     }
   };
   _defaults.ease = _easeMap["quad.out"];
-  _forEachName("onComplete,onUpdate,onStart,onRepeat,onReverseComplete,onInterrupt", function(name) {
+  _forEachName("onComplete,onUpdate,onStart,onRepeat,onReverseComplete,onInterrupt", function (name) {
     return _callbackNames += name + "," + name + "Params,";
   });
   var GSCache = function GSCache2(target, harness) {
@@ -1188,7 +1188,7 @@
     this.get = harness ? harness.get : _getProperty;
     this.set = harness ? harness.getSetter : _getSetter;
   };
-  var Animation = /* @__PURE__ */ function() {
+  var Animation = /* @__PURE__ */ function () {
     function Animation2(vars) {
       this.vars = vars;
       this._delay = +vars.delay || 0;
@@ -1407,7 +1407,7 @@
     };
     _proto.then = function then(onFulfilled) {
       var self2 = this;
-      return new Promise(function(resolve) {
+      return new Promise(function (resolve) {
         var f = _isFunction(onFulfilled) ? onFulfilled : _passThrough, _resolve = function _resolve2() {
           var _then = self2.then;
           self2.then = null;
@@ -1447,7 +1447,7 @@
     _ps: false,
     _rts: 1
   });
-  var Timeline = /* @__PURE__ */ function(_Animation) {
+  var Timeline = /* @__PURE__ */ function (_Animation) {
     _inheritsLoose(Timeline2, _Animation);
     function Timeline2(vars, position) {
       var _this;
@@ -1661,7 +1661,7 @@
       _isNumber(position) || (position = _parsePosition(this, position, child));
       if (!(child instanceof Animation)) {
         if (_isArray(child)) {
-          child.forEach(function(obj) {
+          child.forEach(function (obj) {
             return _this2.add(obj, position);
           });
           return this;
@@ -2057,7 +2057,7 @@
           lazy: !prevStartAt && _isNotFalse(lazy),
           startAt: null,
           delay: 0,
-          onUpdate: onUpdate && function() {
+          onUpdate: onUpdate && function () {
             return _callback(tween, "onUpdate");
           },
           stagger: 0
@@ -2105,7 +2105,7 @@
         index = fullTargets === targets ? i : fullTargets.indexOf(target);
         if (harness && (plugin = new harness()).init(target, harnessVars || cleanVars, tween, index, fullTargets) !== false) {
           tween._pt = pt = new PropTween(tween._pt, target, plugin.name, 0, 1, plugin.render, plugin, 0, plugin.priority);
-          plugin._props.forEach(function(name) {
+          plugin._props.forEach(function (name) {
             ptLookup[name] = pt;
           });
           plugin.priority && (hasPriority = 1);
@@ -2190,7 +2190,7 @@
     var ease = obj.ease || easeEach || "power1.inOut", p, a;
     if (_isArray(obj)) {
       a = allProps[prop] || (allProps[prop] = []);
-      obj.forEach(function(value, i) {
+      obj.forEach(function (value, i) {
         return a.push({
           t: i / (obj.length - 1) * 100,
           v: value,
@@ -2213,10 +2213,10 @@
   };
   var _staggerTweenProps = _callbackNames + "repeat,repeatDelay,yoyo,repeatRefresh,yoyoEase,autoRevert";
   var _staggerPropsToSkip = {};
-  _forEachName(_staggerTweenProps + ",id,stagger,delay,duration,paused,scrollTrigger", function(name) {
+  _forEachName(_staggerTweenProps + ",id,stagger,delay,duration,paused,scrollTrigger", function (name) {
     return _staggerPropsToSkip[name] = 1;
   });
-  var Tween = /* @__PURE__ */ function(_Animation2) {
+  var Tween = /* @__PURE__ */ function (_Animation2) {
     _inheritsLoose(Tween2, _Animation2);
     function Tween2(targets, vars, position, skipInherit) {
       var _this3;
@@ -2275,7 +2275,7 @@
           tl._ease = _parseEase(keyframes.ease || vars.ease || "none");
           var time = 0, a, kf, v;
           if (_isArray(keyframes)) {
-            keyframes.forEach(function(frame) {
+            keyframes.forEach(function (frame) {
               return tl.to(parsedTargets, frame, ">");
             });
             tl.duration();
@@ -2285,7 +2285,7 @@
               p === "ease" || p === "easeEach" || _parseKeyframe(p, keyframes[p], copy, keyframes.easeEach);
             }
             for (p in copy) {
-              a = copy[p].sort(function(a2, b) {
+              a = copy[p].sort(function (a2, b) {
                 return a2.t - b.t;
               });
               time = 0;
@@ -2463,7 +2463,7 @@
       if (vars !== "all") {
         if (_isString(vars)) {
           p = {};
-          _forEachName(vars, function(name) {
+          _forEachName(vars, function (name) {
             return p[name] = 1;
           });
           vars = p;
@@ -2538,8 +2538,8 @@
     _op: 0,
     _onInit: 0
   });
-  _forEachName("staggerTo,staggerFrom,staggerFromTo", function(name) {
-    Tween[name] = function() {
+  _forEachName("staggerTo,staggerFrom,staggerFromTo", function (name) {
+    Tween[name] = function () {
       var tl = new Timeline(), params = _slice.call(arguments, 0);
       params.splice(name === "staggerFromTo" ? 5 : 4, 0, 0);
       return tl[name].apply(tl, params);
@@ -2634,7 +2634,7 @@
     }
     parent._pt = first;
   };
-  var PropTween = /* @__PURE__ */ function() {
+  var PropTween = /* @__PURE__ */ function () {
     function PropTween2(next, target, prop, start, change, renderer, data, setter, priority) {
       this.t = target;
       this.s = start;
@@ -2659,7 +2659,7 @@
     };
     return PropTween2;
   }();
-  _forEachName(_callbackNames + "parent,duration,ease,delay,overwrite,runBackwards,startAt,yoyo,immediateRender,repeat,repeatDelay,data,paused,reversed,lazy,callbackScope,stringFilter,id,yoyoEase,stagger,inherit,repeatRefresh,keyframes,autoRevert,scrollTrigger", function(name) {
+  _forEachName(_callbackNames + "parent,duration,ease,delay,overwrite,runBackwards,startAt,yoyo,immediateRender,repeat,repeatDelay,data,paused,reversed,lazy,callbackScope,stringFilter,id,yoyoEase,stagger,inherit,repeatRefresh,keyframes,autoRevert,scrollTrigger", function (name) {
     return _reservedProps[name] = 1;
   });
   _globals.TweenMax = _globals.TweenLite = Tween;
@@ -2678,7 +2678,7 @@
   var _lastMediaTime = 0;
   var _contextID = 0;
   var _dispatch = function _dispatch2(type) {
-    return (_listeners[type] || _emptyArray).map(function(f) {
+    return (_listeners[type] || _emptyArray).map(function (f) {
       return f();
     });
   };
@@ -2686,7 +2686,7 @@
     var time = Date.now(), matches = [];
     if (time - _lastMediaTime > 2) {
       _dispatch("matchMediaInit");
-      _media.forEach(function(c) {
+      _media.forEach(function (c) {
         var queries = c.queries, conditions = c.conditions, match, p, anyMatch, toggled;
         for (p in queries) {
           match = _win.matchMedia(queries[p]).matches;
@@ -2702,8 +2702,8 @@
         }
       });
       _dispatch("matchMediaRevert");
-      matches.forEach(function(c) {
-        return c.onMatch(c, function(func) {
+      matches.forEach(function (c) {
+        return c.onMatch(c, function (func) {
           return c.add(null, func);
         });
       });
@@ -2711,7 +2711,7 @@
       _dispatch("matchMedia");
     }
   };
-  var Context = /* @__PURE__ */ function() {
+  var Context = /* @__PURE__ */ function () {
     function Context2(func, scope) {
       this.selector = scope && selector(scope);
       this.data = [];
@@ -2740,7 +2740,7 @@
         return result;
       };
       self2.last = f;
-      return name === _isFunction ? f(self2, function(func2) {
+      return name === _isFunction ? f(self2, function (func2) {
         return self2.add(null, func2);
       }) : name ? self2[name] = f : f;
     };
@@ -2752,7 +2752,7 @@
     };
     _proto5.getTweens = function getTweens() {
       var a = [];
-      this.data.forEach(function(e) {
+      this.data.forEach(function (e) {
         return e instanceof Context2 ? a.push.apply(a, e.getTweens()) : e instanceof Tween && !(e.parent && e.parent.data === "nested") && a.push(e);
       });
       return a;
@@ -2763,25 +2763,25 @@
     _proto5.kill = function kill2(revert, matchMedia2) {
       var _this4 = this;
       if (revert) {
-        (function() {
+        (function () {
           var tweens = _this4.getTweens(), i2 = _this4.data.length, t;
           while (i2--) {
             t = _this4.data[i2];
             if (t.data === "isFlip") {
               t.revert();
-              t.getChildren(true, true, false).forEach(function(tween) {
+              t.getChildren(true, true, false).forEach(function (tween) {
                 return tweens.splice(tweens.indexOf(tween), 1);
               });
             }
           }
-          tweens.map(function(t2) {
+          tweens.map(function (t2) {
             return {
               g: t2._dur || t2._delay || t2._sat && !t2._sat.vars.immediateRender ? t2.globalTime(0) : -Infinity,
               t: t2
             };
-          }).sort(function(a, b) {
+          }).sort(function (a, b) {
             return b.g - a.g || -Infinity;
-          }).forEach(function(o) {
+          }).forEach(function (o) {
             return o.t.revert(revert);
           });
           i2 = _this4.data.length;
@@ -2796,13 +2796,13 @@
               !(t instanceof Tween) && t.revert && t.revert(revert);
             }
           }
-          _this4._r.forEach(function(f) {
+          _this4._r.forEach(function (f) {
             return f(revert, _this4);
           });
           _this4.isReverted = true;
         })();
       } else {
-        this.data.forEach(function(e) {
+        this.data.forEach(function (e) {
           return e.kill && e.kill();
         });
       }
@@ -2819,7 +2819,7 @@
     };
     return Context2;
   }();
-  var MatchMedia = /* @__PURE__ */ function() {
+  var MatchMedia = /* @__PURE__ */ function () {
     function MatchMedia2(scope) {
       this.contexts = [];
       this.scope = scope;
@@ -2847,7 +2847,7 @@
           }
         }
       }
-      active && func(context3, function(f) {
+      active && func(context3, function (f) {
         return context3.add(null, f);
       });
       return this;
@@ -2856,7 +2856,7 @@
       this.kill(config3 || {});
     };
     _proto6.kill = function kill2(revert) {
-      this.contexts.forEach(function(c) {
+      this.contexts.forEach(function (c) {
         return c.kill(revert, true);
       });
     };
@@ -2867,7 +2867,7 @@
       for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
         args[_key2] = arguments[_key2];
       }
-      args.forEach(function(config3) {
+      args.forEach(function (config3) {
         return _createPlugin(config3);
       });
     },
@@ -2881,17 +2881,17 @@
       _isString(target) && (target = toArray(target)[0]);
       var getter = _getCache(target || {}).get, format = unit ? _passThrough : _numericIfPossible;
       unit === "native" && (unit = "");
-      return !target ? target : !property ? function(property2, unit2, uncache2) {
+      return !target ? target : !property ? function (property2, unit2, uncache2) {
         return format((_plugins[property2] && _plugins[property2].get || getter)(target, property2, unit2, uncache2));
       } : format((_plugins[property] && _plugins[property].get || getter)(target, property, unit, uncache));
     },
     quickSetter: function quickSetter(target, property, unit) {
       target = toArray(target);
       if (target.length > 1) {
-        var setters = target.map(function(t) {
+        var setters = target.map(function (t) {
           return gsap.quickSetter(t, property, unit);
         }), l = setters.length;
-        return function(value) {
+        return function (value) {
           var i = l;
           while (i--) {
             setters[i](value);
@@ -2899,14 +2899,14 @@
         };
       }
       target = target[0] || {};
-      var Plugin = _plugins[property], cache = _getCache(target), p = cache.harness && (cache.harness.aliases || {})[property] || property, setter = Plugin ? function(value) {
+      var Plugin = _plugins[property], cache = _getCache(target), p = cache.harness && (cache.harness.aliases || {})[property] || property, setter = Plugin ? function (value) {
         var p2 = new Plugin();
         _quickTween._pt = 0;
         p2.init(target, unit ? value + unit : value, _quickTween, 0, [target]);
         p2.render(1, p2);
         _quickTween._pt && _renderPropTweens(1, _quickTween);
       } : cache.set(target, p);
-      return Plugin ? setter : function(value) {
+      return Plugin ? setter : function (value) {
         return setter(target, p, unit ? value + unit : value, cache, 1);
       };
     },
@@ -2930,14 +2930,14 @@
     },
     registerEffect: function registerEffect(_ref3) {
       var name = _ref3.name, effect = _ref3.effect, plugins = _ref3.plugins, defaults3 = _ref3.defaults, extendTimeline = _ref3.extendTimeline;
-      (plugins || "").split(",").forEach(function(pluginName) {
+      (plugins || "").split(",").forEach(function (pluginName) {
         return pluginName && !_plugins[pluginName] && !_globals[pluginName] && _warn(name + " effect requires " + pluginName + " plugin.");
       });
-      _effects[name] = function(targets, vars, tl) {
+      _effects[name] = function (targets, vars, tl) {
         return effect(toArray(targets), _setDefaults(vars || {}, defaults3), tl);
       };
       if (extendTimeline) {
-        Timeline.prototype[name] = function(targets, vars, position) {
+        Timeline.prototype[name] = function (targets, vars, position) {
           return this.add(_effects[name](targets, _isObject(vars) ? vars : (position = vars) && {}, this), position);
         };
       }
@@ -2978,7 +2978,7 @@
       return new MatchMedia(scope);
     },
     matchMediaRefresh: function matchMediaRefresh() {
-      return _media.forEach(function(c) {
+      return _media.forEach(function (c) {
         var cond = c.conditions, found, p;
         for (p in cond) {
           if (cond[p]) {
@@ -3044,7 +3044,7 @@
       }
     }
   };
-  _forEachName("to,from,fromTo,delayedCall,set,killTweensOf", function(name) {
+  _forEachName("to,from,fromTo,delayedCall,set,killTweensOf", function (name) {
     return _gsap[name] = Tween[name];
   });
   _ticker.add(Timeline.updateRoot);
@@ -3078,11 +3078,11 @@
       name,
       rawVars: 1,
       init: function init6(target, vars, tween) {
-        tween._onInit = function(tween2) {
+        tween._onInit = function (tween2) {
           var temp, p;
           if (_isString(vars)) {
             temp = {};
-            _forEachName(vars, function(name2) {
+            _forEachName(vars, function (name2) {
               return temp[name2] = 1;
             });
             vars = temp;
@@ -3225,12 +3225,12 @@
       this.tfm = this.tfm || {};
       if (property !== "transform") {
         property = _propertyAliases[property] || property;
-        ~property.indexOf(",") ? property.split(",").forEach(function(a) {
+        ~property.indexOf(",") ? property.split(",").forEach(function (a) {
           return _this.tfm[a] = _get(target, a);
         }) : this.tfm[property] = cache.x ? cache[property] : _get(target, property);
         property === _transformOriginProp && (this.tfm.zOrigin = cache.zOrigin);
       } else {
-        return _propertyAliases.transform.split(",").forEach(function(p) {
+        return _propertyAliases.transform.split(",").forEach(function (p) {
           return _saveStyle2.call(_this, p, isNotCSS);
         });
       }
@@ -3285,7 +3285,7 @@
       save: _saveStyle
     };
     target._gsap || gsap.core.getCache(target);
-    properties && properties.split(",").forEach(function(p) {
+    properties && properties.split(",").forEach(function (p) {
       return saver.save(p);
     });
     return saver;
@@ -3981,14 +3981,14 @@
     }
     _assign(endCache, startCache);
   };
-  _forEachName("padding,margin,Width,Radius", function(name, index) {
-    var t = "Top", r = "Right", b = "Bottom", l = "Left", props = (index < 3 ? [t, r, b, l] : [t + l, t + r, b + r, b + l]).map(function(side) {
+  _forEachName("padding,margin,Width,Radius", function (name, index) {
+    var t = "Top", r = "Right", b = "Bottom", l = "Left", props = (index < 3 ? [t, r, b, l] : [t + l, t + r, b + r, b + l]).map(function (side) {
       return index < 2 ? name + side : "border" + side + name;
     });
-    _specialProps[index > 1 ? "border" + name : name] = function(plugin, target, property, endValue, tween) {
+    _specialProps[index > 1 ? "border" + name : name] = function (plugin, target, property, endValue, tween) {
       var a, vars;
       if (arguments.length < 4) {
-        a = props.map(function(prop) {
+        a = props.map(function (prop) {
           return _get(plugin, prop, property);
         });
         vars = a.join(" ");
@@ -3996,7 +3996,7 @@
       }
       a = (endValue + "").split(" ");
       vars = {};
-      props.forEach(function(prop, i) {
+      props.forEach(function (prop, i) {
         return vars[prop] = a[i] = a[i] || a[(i - 1) / 2 | 0];
       });
       plugin.init(target, vars, tween);
@@ -4168,21 +4168,21 @@
   };
   gsap.utils.checkPrefix = _checkPropPrefix;
   gsap.core.getStyleSaver = _getStyleSaver;
-  (function(positionAndScale, rotation, others, aliases) {
-    var all = _forEachName(positionAndScale + "," + rotation + "," + others, function(name) {
+  (function (positionAndScale, rotation, others, aliases) {
+    var all = _forEachName(positionAndScale + "," + rotation + "," + others, function (name) {
       _transformProps[name] = 1;
     });
-    _forEachName(rotation, function(name) {
+    _forEachName(rotation, function (name) {
       _config.units[name] = "deg";
       _rotationalProperties[name] = 1;
     });
     _propertyAliases[all[13]] = positionAndScale + "," + rotation;
-    _forEachName(aliases, function(name) {
+    _forEachName(aliases, function (name) {
       var split = name.split(":");
       _propertyAliases[split[1]] = all[split[0]];
     });
   })("x,y,z,scale,scaleX,scaleY,xPercent,yPercent", "rotation,rotationX,rotationY,skewX,skewY", "transform,transformOrigin,svgOrigin,force3D,smoothOrigin,transformPerspective", "0:translateX,1:translateY,2:translateZ,8:rotate,8:rotationZ,8:rotateZ,9:rotateX,10:rotateY");
-  _forEachName("x,y,z,top,right,bottom,left,width,height,fontSize,padding,margin,perspective", function(name) {
+  _forEachName("x,y,z,top,right,bottom,left,width,height,fontSize,padding,margin,perspective", function (name) {
     _config.units[name] = "px";
   });
   gsap.registerPlugin(CSSPlugin);
@@ -4346,7 +4346,7 @@
     d: "width",
     d2: "Width",
     a: "x",
-    sc: _scrollCacheFunc(function(value) {
+    sc: _scrollCacheFunc(function (value) {
       return arguments.length ? _win3.scrollTo(value, _vertical.sc()) : _win3.pageXOffset || _doc3[_scrollLeft] || _docEl[_scrollLeft] || _body[_scrollLeft] || 0;
     })
   };
@@ -4360,7 +4360,7 @@
     d2: "Height",
     a: "y",
     op: _horizontal,
-    sc: _scrollCacheFunc(function(value) {
+    sc: _scrollCacheFunc(function (value) {
       return arguments.length ? _win3.scrollTo(_horizontal.sc(), value) : _win3.pageYOffset || _doc3[_scrollTop] || _docEl[_scrollTop] || _body[_scrollTop] || 0;
     })
   };
@@ -4373,7 +4373,7 @@
     var i = _scrollers.indexOf(element), offset = sc === _vertical.sc ? 1 : 2;
     !~i && (i = _scrollers.push(element) - 1);
     _scrollers[i + offset] || _addListener(element, "scroll", _onScroll);
-    var prev = _scrollers[i + offset], func = prev || (_scrollers[i + offset] = _scrollCacheFunc(_getProxyProp(element, s), true) || (_isViewport(element) ? sc : _scrollCacheFunc(function(value) {
+    var prev = _scrollers[i + offset], func = prev || (_scrollers[i + offset] = _scrollCacheFunc(_getProxyProp(element, s), true) || (_isViewport(element) ? sc : _scrollCacheFunc(function (value) {
       return arguments.length ? element[s] = value : element[s];
     })));
     func.target = element;
@@ -4428,12 +4428,12 @@
       _body = _doc3.body;
       _root = [_win3, _doc3, _docEl, _body];
       _clamp3 = gsap2.utils.clamp;
-      _context2 = gsap2.core.context || function() {
+      _context2 = gsap2.core.context || function () {
       };
       _pointerType = "onpointerenter" in _body ? "pointer" : "mouse";
       _isTouch = Observer.isTouch = _win3.matchMedia && _win3.matchMedia("(hover: none), (pointer: coarse)").matches ? 1 : "ontouchstart" in _win3 || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0 ? 2 : 0;
       _eventTypes = Observer.eventTypes = ("ontouchstart" in _docEl ? "touchstart,touchmove,touchcancel,touchend" : !("onpointerdown" in _docEl) ? "mousedown,mousemove,mouseup,mouseup" : "pointerdown,pointermove,pointercancel,pointerup").split(",");
-      setTimeout(function() {
+      setTimeout(function () {
         return _startup = 0;
       }, 500);
       _setScrollTrigger();
@@ -4443,7 +4443,7 @@
   };
   _horizontal.op = _vertical;
   _scrollers.cache = 0;
-  var Observer = /* @__PURE__ */ function() {
+  var Observer = /* @__PURE__ */ function () {
     function Observer3(vars) {
       this.init(vars);
     }
@@ -4538,7 +4538,7 @@
           onTouchOrPointerDelta(dx, dy);
           isDragging || onDragStart && onDragStart(self2);
         }
-      }, _onPress = self2.onPress = function(e) {
+      }, _onPress = self2.onPress = function (e) {
         if (_ignoreCheck(e, 1) || e && e.button) {
           return;
         }
@@ -4554,7 +4554,7 @@
         _addListener(isNormalizer ? target : ownerDoc, _eventTypes[1], _onDrag, passive, true);
         self2.deltaX = self2.deltaY = 0;
         onPress && onPress(self2);
-      }, _onRelease = self2.onRelease = function(e) {
+      }, _onRelease = self2.onRelease = function (e) {
         if (_ignoreCheck(e, 1)) {
           return;
         }
@@ -4564,7 +4564,7 @@
           self2._vx.reset();
           self2._vy.reset();
           if (preventDefault && allowClicks) {
-            gsap2.delayedCall(0.08, function() {
+            gsap2.delayedCall(0.08, function () {
               if (_getTime() - onClickTime > 300 && !e.defaultPrevented) {
                 if (e.target.click) {
                   e.target.click();
@@ -4630,7 +4630,7 @@
       self2.scrollY = scrollFuncY;
       self2.isDragging = self2.isGesturing = self2.isPressed = false;
       _context2(this);
-      self2.enable = function(e) {
+      self2.enable = function (e) {
         if (!self2.isEnabled) {
           _addListener(isViewport ? ownerDoc : target, "scroll", _onScroll);
           type.indexOf("scroll") >= 0 && _addListener(isViewport ? ownerDoc : target, "scroll", onScroll2, passive, capture);
@@ -4653,9 +4653,9 @@
         }
         return self2;
       };
-      self2.disable = function() {
+      self2.disable = function () {
         if (self2.isEnabled) {
-          _observers.filter(function(o) {
+          _observers.filter(function (o) {
             return o !== self2 && _isViewport(o.target);
           }).length || _removeListener(isViewport ? ownerDoc : target, "scroll", _onScroll);
           if (self2.isPressed) {
@@ -4679,7 +4679,7 @@
           onDisable && onDisable(self2);
         }
       };
-      self2.kill = self2.revert = function() {
+      self2.kill = self2.revert = function () {
         self2.disable();
         var i = _observers.indexOf(self2);
         i >= 0 && _observers.splice(i, 1);
@@ -4703,15 +4703,15 @@
     return Observer3;
   }();
   Observer.version = "3.12.5";
-  Observer.create = function(vars) {
+  Observer.create = function (vars) {
     return new Observer(vars);
   };
   Observer.register = _initCore3;
-  Observer.getAll = function() {
+  Observer.getAll = function () {
     return _observers.slice();
   };
-  Observer.getById = function(id) {
-    return _observers.filter(function(o) {
+  Observer.getById = function (id) {
+    return _observers.filter(function (o) {
       return o.vars.id === id;
     })[0];
   };
@@ -4793,24 +4793,24 @@
     return (dimensionProperty === "Height" ? _100vh : _win4["inner" + dimensionProperty]) || _docEl2["client" + dimensionProperty] || _body2["client" + dimensionProperty];
   };
   var _getBoundsFunc = function _getBoundsFunc2(element) {
-    return _getProxyProp(element, "getBoundingClientRect") || (_isViewport3(element) ? function() {
+    return _getProxyProp(element, "getBoundingClientRect") || (_isViewport3(element) ? function () {
       _winOffsets.width = _win4.innerWidth;
       _winOffsets.height = _100vh;
       return _winOffsets;
-    } : function() {
+    } : function () {
       return _getBounds(element);
     });
   };
   var _getSizeFunc = function _getSizeFunc2(scroller, isViewport, _ref) {
     var d = _ref.d, d2 = _ref.d2, a = _ref.a;
-    return (a = _getProxyProp(scroller, "getBoundingClientRect")) ? function() {
+    return (a = _getProxyProp(scroller, "getBoundingClientRect")) ? function () {
       return a()[d];
-    } : function() {
+    } : function () {
       return (isViewport ? _getViewportDimension(d2) : scroller["client" + d2]) || 0;
     };
   };
   var _getOffsetsFunc = function _getOffsetsFunc2(element, isViewport) {
-    return !isViewport || ~_proxies.indexOf(element) ? _getBoundsFunc(element) : function() {
+    return !isViewport || ~_proxies.indexOf(element) ? _getBoundsFunc(element) : function () {
       return _winOffsets;
     };
   };
@@ -4840,7 +4840,7 @@
   };
   var _callback3 = function _callback4(self2, func) {
     if (self2.enabled) {
-      var result = self2._ctx ? self2._ctx.add(function() {
+      var result = self2._ctx ? self2._ctx.add(function () {
         return func(self2);
       }) : func(self2);
       result && result.totalTime && (self2.callbackAnimation = result);
@@ -4903,15 +4903,15 @@
     return a;
   };
   var _getClosestLabel = function _getClosestLabel2(animation) {
-    return function(value) {
+    return function (value) {
       return gsap3.utils.snap(_getLabelRatioArray(animation), value);
     };
   };
   var _snapDirectional = function _snapDirectional2(snapIncrementOrArray) {
-    var snap3 = gsap3.utils.snap(snapIncrementOrArray), a = Array.isArray(snapIncrementOrArray) && snapIncrementOrArray.slice(0).sort(function(a2, b) {
+    var snap3 = gsap3.utils.snap(snapIncrementOrArray), a = Array.isArray(snapIncrementOrArray) && snapIncrementOrArray.slice(0).sort(function (a2, b) {
       return a2 - b;
     });
-    return a ? function(value, direction, threshold) {
+    return a ? function (value, direction, threshold) {
       if (threshold === void 0) {
         threshold = 1e-3;
       }
@@ -4937,7 +4937,7 @@
         }
       }
       return a[0];
-    } : function(value, direction, threshold) {
+    } : function (value, direction, threshold) {
       if (threshold === void 0) {
         threshold = 1e-3;
       }
@@ -4946,12 +4946,12 @@
     };
   };
   var _getLabelAtDirection = function _getLabelAtDirection2(timeline2) {
-    return function(value, st) {
+    return function (value, st) {
       return _snapDirectional(_getLabelRatioArray(timeline2))(value, st.direction);
     };
   };
   var _multiListener = function _multiListener2(func, element, types, callback) {
-    return types.split(",").forEach(function(type) {
+    return types.split(",").forEach(function (type) {
       return func(element, type, callback);
     });
   };
@@ -5059,7 +5059,7 @@
     return _removeListener3(ScrollTrigger2, "scrollEnd", _softRefresh2) || _refreshAll(true);
   };
   var _dispatch3 = function _dispatch4(type) {
-    return _listeners2[type] && _listeners2[type].map(function(f) {
+    return _listeners2[type] && _listeners2[type].map(function (f) {
       return f();
     }) || _emptyArray2;
   };
@@ -5091,7 +5091,7 @@
   };
   var _clearScrollMemory = function _clearScrollMemory2(scrollRestoration, force) {
     _scrollers.cache++;
-    (force || !_refreshingAll) && _scrollers.forEach(function(obj) {
+    (force || !_refreshingAll) && _scrollers.forEach(function (obj) {
       return _isFunction3(obj) && obj.cacheID++ && (obj.rec = 0);
     });
     _isString3(scrollRestoration) && (_win4.history.scrollRestoration = _scrollRestoration = scrollRestoration);
@@ -5102,7 +5102,7 @@
   var _queueRefreshAll = function _queueRefreshAll2() {
     if (_queueRefreshID !== _refreshID) {
       var id = _queueRefreshID = _refreshID;
-      requestAnimationFrame(function() {
+      requestAnimationFrame(function () {
         return id === _refreshID && _refreshAll(true);
       });
     }
@@ -5113,7 +5113,7 @@
     _body2.removeChild(_div100vh);
   };
   var _hideAllMarkers = function _hideAllMarkers2(hide) {
-    return _toArray(".gsap-marker-start, .gsap-marker-end, .gsap-marker-scroller-start, .gsap-marker-scroller-end").forEach(function(el) {
+    return _toArray(".gsap-marker-start, .gsap-marker-end, .gsap-marker-scroller-start, .gsap-marker-scroller-end").forEach(function (el) {
       return el.style.display = hide ? "none" : "block";
     });
   };
@@ -5124,23 +5124,23 @@
     }
     _refresh100vh();
     _refreshingAll = ScrollTrigger2.isRefreshing = true;
-    _scrollers.forEach(function(obj) {
+    _scrollers.forEach(function (obj) {
       return _isFunction3(obj) && ++obj.cacheID && (obj.rec = obj());
     });
     var refreshInits = _dispatch3("refreshInit");
     _sort && ScrollTrigger2.sort();
     skipRevert || _revertAll();
-    _scrollers.forEach(function(obj) {
+    _scrollers.forEach(function (obj) {
       if (_isFunction3(obj)) {
         obj.smooth && (obj.target.style.scrollBehavior = "auto");
         obj(0);
       }
     });
-    _triggers.slice(0).forEach(function(t) {
+    _triggers.slice(0).forEach(function (t) {
       return t.refresh();
     });
     _isReverted = false;
-    _triggers.forEach(function(t) {
+    _triggers.forEach(function (t) {
       if (t._subPinOffset && t.pin) {
         var prop = t.vars.horizontal ? "offsetWidth" : "offsetHeight", original = t.pin[prop];
         t.revert(true, 1);
@@ -5150,18 +5150,18 @@
     });
     _clampingMax = 1;
     _hideAllMarkers(true);
-    _triggers.forEach(function(t) {
+    _triggers.forEach(function (t) {
       var max2 = _maxScroll(t.scroller, t._dir), endClamp = t.vars.end === "max" || t._endClamp && t.end > max2, startClamp = t._startClamp && t.start >= max2;
       (endClamp || startClamp) && t.setPositions(startClamp ? max2 - 1 : t.start, endClamp ? Math.max(startClamp ? max2 : t.start + 1, max2) : t.end, true);
     });
     _hideAllMarkers(false);
     _clampingMax = 0;
-    refreshInits.forEach(function(result) {
+    refreshInits.forEach(function (result) {
       return result && result.render && result.render(-1);
     });
-    _scrollers.forEach(function(obj) {
+    _scrollers.forEach(function (obj) {
       if (_isFunction3(obj)) {
-        obj.smooth && requestAnimationFrame(function() {
+        obj.smooth && requestAnimationFrame(function () {
           return obj.target.style.scrollBehavior = "smooth";
         });
         obj.rec && obj(obj.rec);
@@ -5172,7 +5172,7 @@
     _refreshID++;
     _refreshingAll = 2;
     _updateAll(2);
-    _triggers.forEach(function(t) {
+    _triggers.forEach(function (t) {
       return _isFunction3(t.vars.onRefresh) && t.vars.onRefresh(t);
     });
     _refreshingAll = ScrollTrigger2.isRefreshing = false;
@@ -5365,7 +5365,7 @@
   };
   var _interruptionTracker = function _interruptionTracker2(getValueFunc, initialValue, onInterrupt) {
     var last1 = initialValue, last2 = last1;
-    return function(value) {
+    return function (value) {
       var current = Math.round(getValueFunc());
       if (current !== last1 && current !== last2 && Math.abs(current - last1) > 3 && Math.abs(current - last2) > 3) {
         value = current;
@@ -5385,7 +5385,7 @@
     var getScroll = _getScrollFunc(scroller, direction), prop = "_scroll" + direction.p2, getTween = function getTween2(scrollTo, vars, initialValue, change1, change2) {
       var tween = getTween2.tween, onComplete = vars.onComplete, modifiers = {};
       initialValue = initialValue || getScroll();
-      var checkForInterruption = _interruptionTracker(getScroll, initialValue, function() {
+      var checkForInterruption = _interruptionTracker(getScroll, initialValue, function () {
         tween.kill();
         getTween2.tween = 0;
       });
@@ -5395,14 +5395,14 @@
       vars[prop] = scrollTo;
       vars.inherit = false;
       vars.modifiers = modifiers;
-      modifiers[prop] = function() {
+      modifiers[prop] = function () {
         return checkForInterruption(initialValue + change1 * tween.ratio + change2 * tween.ratio * tween.ratio);
       };
-      vars.onUpdate = function() {
+      vars.onUpdate = function () {
         _scrollers.cache++;
         getTween2.tween && _updateAll();
       };
-      vars.onComplete = function() {
+      vars.onComplete = function () {
         getTween2.tween = 0;
         onComplete && onComplete.call(tween);
       };
@@ -5410,14 +5410,14 @@
       return tween;
     };
     scroller[prop] = getScroll;
-    getScroll.wheelHandler = function() {
+    getScroll.wheelHandler = function () {
       return getTween.tween && getTween.tween.kill() && (getTween.tween = 0);
     };
     _addListener3(scroller, "wheel", getScroll.wheelHandler);
     ScrollTrigger2.isTouch && _addListener3(scroller, "touchmove", getScroll.wheelHandler);
     return getTween;
   };
-  var ScrollTrigger2 = /* @__PURE__ */ function() {
+  var ScrollTrigger2 = /* @__PURE__ */ function () {
     function ScrollTrigger4(vars, animation) {
       _coreInitted3 || ScrollTrigger4.register(gsap3) || console.warn("Please gsap.registerPlugin(ScrollTrigger)");
       _context3(this);
@@ -5434,7 +5434,7 @@
       vars = _setDefaults3(_isString3(vars) || _isNumber3(vars) || vars.nodeType ? {
         trigger: vars
       } : vars, _defaults2);
-      var _vars = vars, onUpdate = _vars.onUpdate, toggleClass = _vars.toggleClass, id = _vars.id, onToggle = _vars.onToggle, onRefresh = _vars.onRefresh, scrub = _vars.scrub, trigger = _vars.trigger, pin = _vars.pin, pinSpacing = _vars.pinSpacing, invalidateOnRefresh = _vars.invalidateOnRefresh, anticipatePin = _vars.anticipatePin, onScrubComplete = _vars.onScrubComplete, onSnapComplete = _vars.onSnapComplete, once = _vars.once, snap3 = _vars.snap, pinReparent = _vars.pinReparent, pinSpacer = _vars.pinSpacer, containerAnimation = _vars.containerAnimation, fastScrollEnd = _vars.fastScrollEnd, preventOverlaps = _vars.preventOverlaps, direction = vars.horizontal || vars.containerAnimation && vars.horizontal !== false ? _horizontal : _vertical, isToggle = !scrub && scrub !== 0, scroller = _getTarget(vars.scroller || _win4), scrollerCache = gsap3.core.getCache(scroller), isViewport = _isViewport3(scroller), useFixedPosition = ("pinType" in vars ? vars.pinType : _getProxyProp(scroller, "pinType") || isViewport && "fixed") === "fixed", callbacks = [vars.onEnter, vars.onLeave, vars.onEnterBack, vars.onLeaveBack], toggleActions = isToggle && vars.toggleActions.split(" "), markers = "markers" in vars ? vars.markers : _defaults2.markers, borderWidth = isViewport ? 0 : parseFloat(_getComputedStyle(scroller)["border" + direction.p2 + _Width]) || 0, self2 = this, onRefreshInit = vars.onRefreshInit && function() {
+      var _vars = vars, onUpdate = _vars.onUpdate, toggleClass = _vars.toggleClass, id = _vars.id, onToggle = _vars.onToggle, onRefresh = _vars.onRefresh, scrub = _vars.scrub, trigger = _vars.trigger, pin = _vars.pin, pinSpacing = _vars.pinSpacing, invalidateOnRefresh = _vars.invalidateOnRefresh, anticipatePin = _vars.anticipatePin, onScrubComplete = _vars.onScrubComplete, onSnapComplete = _vars.onSnapComplete, once = _vars.once, snap3 = _vars.snap, pinReparent = _vars.pinReparent, pinSpacer = _vars.pinSpacer, containerAnimation = _vars.containerAnimation, fastScrollEnd = _vars.fastScrollEnd, preventOverlaps = _vars.preventOverlaps, direction = vars.horizontal || vars.containerAnimation && vars.horizontal !== false ? _horizontal : _vertical, isToggle = !scrub && scrub !== 0, scroller = _getTarget(vars.scroller || _win4), scrollerCache = gsap3.core.getCache(scroller), isViewport = _isViewport3(scroller), useFixedPosition = ("pinType" in vars ? vars.pinType : _getProxyProp(scroller, "pinType") || isViewport && "fixed") === "fixed", callbacks = [vars.onEnter, vars.onLeave, vars.onEnterBack, vars.onLeaveBack], toggleActions = isToggle && vars.toggleActions.split(" "), markers = "markers" in vars ? vars.markers : _defaults2.markers, borderWidth = isViewport ? 0 : parseFloat(_getComputedStyle(scroller)["border" + direction.p2 + _Width]) || 0, self2 = this, onRefreshInit = vars.onRefreshInit && function () {
         return vars.onRefreshInit(self2);
       }, getScrollerSize = _getSizeFunc(scroller, isViewport, direction), getScrollerOffsets = _getOffsetsFunc(scroller, isViewport), lastSnap = 0, lastRefresh = 0, prevProgress = 0, scrollFunc = _getScrollFunc(scroller, direction), tweenTo, pinCache, snapFunc, scroll1, scroll2, start, end, markerStart, markerEnd, markerStartTrigger, markerEndTrigger, markerVars, executingOnRefresh, change, pinOriginalState, pinActiveState, pinState, spacer, offset, pinGetter, pinSetter, pinStart, pinChange, spacingStart, spacerState, markerStartSetter, pinMoves, markerEndSetter, cs, snap1, snap22, scrubTween, scrubSmooth, snapDurClamp, snapDelayedCall, prevScroll, prevAnimProgress, caMarkerSetter, customRevertReturn;
       self2._startClamp = self2._endClamp = false;
@@ -5454,7 +5454,7 @@
         left: _getTweenCreator(scroller, _horizontal)
       };
       self2.tweenTo = tweenTo = scrollerCache.tweenScroll[direction.p];
-      self2.scrubDuration = function(value) {
+      self2.scrubDuration = function (value) {
         scrubSmooth = _isNumber3(value) && value;
         if (!scrubSmooth) {
           scrubTween && scrubTween.progress(1).kill();
@@ -5490,10 +5490,10 @@
         "scrollBehavior" in _body2.style && gsap3.set(isViewport ? [_body2, _docEl2] : scroller, {
           scrollBehavior: "auto"
         });
-        _scrollers.forEach(function(o) {
+        _scrollers.forEach(function (o) {
           return _isFunction3(o) && o.target === (isViewport ? _doc4.scrollingElement || _docEl2 : scroller) && (o.smooth = false);
         });
-        snapFunc = _isFunction3(snap3.snapTo) ? snap3.snapTo : snap3.snapTo === "labels" ? _getClosestLabel(animation) : snap3.snapTo === "labelsDirectional" ? _getLabelAtDirection(animation) : snap3.directional !== false ? function(value, st) {
+        snapFunc = _isFunction3(snap3.snapTo) ? snap3.snapTo : snap3.snapTo === "labels" ? _getClosestLabel(animation) : snap3.snapTo === "labelsDirectional" ? _getLabelAtDirection(animation) : snap3.directional !== false ? function (value, st) {
           return _snapDirectional(snap3.snapTo)(value, _getTime2() - lastRefresh < 500 ? 0 : st.direction);
         } : gsap3.utils.snap(snap3.snapTo);
         snapDurClamp = snap3.duration || {
@@ -5501,7 +5501,7 @@
           max: 2
         };
         snapDurClamp = _isObject3(snapDurClamp) ? _clamp4(snapDurClamp.min, snapDurClamp.max) : _clamp4(snapDurClamp, snapDurClamp);
-        snapDelayedCall = gsap3.delayedCall(snap3.delay || scrubSmooth / 2 || 0.1, function() {
+        snapDelayedCall = gsap3.delayedCall(snap3.delay || scrubSmooth / 2 || 0.1, function () {
           var scroll = scrollFunc(), refreshedRecently = _getTime2() - lastRefresh < 500, tween = tweenTo.tween;
           if ((refreshedRecently || Math.abs(self2.getVelocity()) < 10) && !tween && !_pointerIsDown && lastSnap !== scroll) {
             var progress = (scroll - start) / change, totalProgress = animation && !isToggle ? animation.totalProgress() : progress, velocity = refreshedRecently ? 0 : (totalProgress - snap22) / (_getTime2() - _time2) * 1e3 || 0, change1 = gsap3.utils.clamp(-progress, 1 - progress, _abs(velocity / 2) * velocity / 0.185), naturalEnd = progress + (snap3.inertia === false ? 0 : change1), endValue, endScroll, _snap = snap3, onStart = _snap.onStart, _onInterrupt = _snap.onInterrupt, _onComplete = _snap.onComplete;
@@ -5598,18 +5598,18 @@
       }
       if (containerAnimation) {
         var oldOnUpdate = containerAnimation.vars.onUpdate, oldParams = containerAnimation.vars.onUpdateParams;
-        containerAnimation.eventCallback("onUpdate", function() {
+        containerAnimation.eventCallback("onUpdate", function () {
           self2.update(0, 0, 1);
           oldOnUpdate && oldOnUpdate.apply(containerAnimation, oldParams || []);
         });
       }
-      self2.previous = function() {
+      self2.previous = function () {
         return _triggers[_triggers.indexOf(self2) - 1];
       };
-      self2.next = function() {
+      self2.next = function () {
         return _triggers[_triggers.indexOf(self2) + 1];
       };
-      self2.revert = function(revert, temp) {
+      self2.revert = function (revert, temp) {
         if (!temp) {
           return self2.kill(true);
         }
@@ -5620,7 +5620,7 @@
             prevProgress = self2.progress;
             prevAnimProgress = animation && animation.progress();
           }
-          markerStart && [markerStart, markerEnd, markerStartTrigger, markerEndTrigger].forEach(function(m) {
+          markerStart && [markerStart, markerEnd, markerStartTrigger, markerEndTrigger].forEach(function (m) {
             return m.style.display = r ? "none" : "block";
           });
           if (r) {
@@ -5639,7 +5639,7 @@
           self2.isReverted = r;
         }
       };
-      self2.refresh = function(soft, force, position, pinOffset) {
+      self2.refresh = function (soft, force, position, pinOffset) {
         if ((_refreshing || !self2.enabled) && !force) {
           return;
         }
@@ -5753,7 +5753,7 @@
             }
             _setState(spacerState);
             if (pinnedContainer) {
-              _triggers.forEach(function(t) {
+              _triggers.forEach(function (t) {
                 if (t.pin === pinnedContainer && t.vars.pinSpacing !== false) {
                   t._subPinOffset = true;
                 }
@@ -5807,7 +5807,7 @@
             bounds = bounds.parentNode;
           }
         }
-        revertedPins && revertedPins.forEach(function(t) {
+        revertedPins && revertedPins.forEach(function (t) {
           return t.revert(false, true);
         });
         self2.start = start;
@@ -5846,27 +5846,27 @@
           executingOnRefresh = false;
         }
       };
-      self2.getVelocity = function() {
+      self2.getVelocity = function () {
         return (scrollFunc() - scroll2) / (_getTime2() - _time2) * 1e3 || 0;
       };
-      self2.endAnimation = function() {
+      self2.endAnimation = function () {
         _endAnimation(self2.callbackAnimation);
         if (animation) {
           scrubTween ? scrubTween.progress(1) : !animation.paused() ? _endAnimation(animation, animation.reversed()) : isToggle || _endAnimation(animation, self2.direction < 0, 1);
         }
       };
-      self2.labelToScroll = function(label) {
+      self2.labelToScroll = function (label) {
         return animation && animation.labels && (start || self2.refresh() || start) + animation.labels[label] / animation.duration() * change || 0;
       };
-      self2.getTrailing = function(name) {
+      self2.getTrailing = function (name) {
         var i = _triggers.indexOf(self2), a = self2.direction > 0 ? _triggers.slice(0, i).reverse() : _triggers.slice(i + 1);
-        return (_isString3(name) ? a.filter(function(t) {
+        return (_isString3(name) ? a.filter(function (t) {
           return t.vars.preventOverlaps === name;
-        }) : a).filter(function(t) {
+        }) : a).filter(function (t) {
           return self2.direction > 0 ? t.end <= start : t.start >= end;
         });
       };
-      self2.update = function(reset, recordVelocity, forceFake) {
+      self2.update = function (reset, recordVelocity, forceFake) {
         if (containerAnimation && !forceFake && !reset) {
           return;
         }
@@ -5900,7 +5900,7 @@
               isTakingAction = animation && (action === "complete" || action === "reset" || action in animation);
             }
           }
-          preventOverlaps && (toggled || isTakingAction) && (isTakingAction || scrub || !animation) && (_isFunction3(preventOverlaps) ? preventOverlaps(self2) : self2.getTrailing(preventOverlaps).forEach(function(t) {
+          preventOverlaps && (toggled || isTakingAction) && (isTakingAction || scrub || !animation) && (_isFunction3(preventOverlaps) ? preventOverlaps(self2) : self2.getTrailing(preventOverlaps).forEach(function (t) {
             return t.endAnimation();
           }));
           if (!isToggle) {
@@ -5935,7 +5935,7 @@
             }
           }
           snap3 && !tweenTo.tween && !_refreshing && !_startup2 && snapDelayedCall.restart(true);
-          toggleClass && (toggled || once && clipped && (clipped < 1 || !_limitCallbacks)) && _toArray(toggleClass.targets).forEach(function(el) {
+          toggleClass && (toggled || once && clipped && (clipped < 1 || !_limitCallbacks)) && _toArray(toggleClass.targets).forEach(function (el) {
             return el.classList[isActive || once ? "add" : "remove"](toggleClass.className);
           });
           onUpdate && !isToggle && !reset && onUpdate(self2);
@@ -5978,7 +5978,7 @@
         }
         caMarkerSetter && caMarkerSetter(-scroll / containerAnimation.duration() * (containerAnimation._caScrollDist || 0));
       };
-      self2.enable = function(reset, refresh) {
+      self2.enable = function (reset, refresh) {
         if (!self2.enabled) {
           self2.enabled = true;
           _addListener3(scroller, "resize", _onResize);
@@ -5991,10 +5991,10 @@
           refresh !== false && self2.refresh();
         }
       };
-      self2.getTween = function(snap4) {
+      self2.getTween = function (snap4) {
         return snap4 && tweenTo ? tweenTo.tween : scrubTween;
       };
-      self2.setPositions = function(newStart, newEnd, keepClamp, pinOffset) {
+      self2.setPositions = function (newStart, newEnd, keepClamp, pinOffset) {
         if (containerAnimation) {
           var st = containerAnimation.scrollTrigger, duration = containerAnimation.duration(), _change = st.end - st.start;
           newStart = st.start + _change * newStart / duration;
@@ -6006,7 +6006,7 @@
         }, pinOffset);
         self2.update();
       };
-      self2.adjustPinSpacing = function(amount) {
+      self2.adjustPinSpacing = function (amount) {
         if (spacerState && amount) {
           var i = spacerState.indexOf(direction.d) + 1;
           spacerState[i] = parseFloat(spacerState[i]) + amount + _px;
@@ -6014,7 +6014,7 @@
           _setState(spacerState);
         }
       };
-      self2.disable = function(reset, allowAnimation) {
+      self2.disable = function (reset, allowAnimation) {
         if (self2.enabled) {
           reset !== false && self2.revert(true, true);
           self2.enabled = self2.isActive = false;
@@ -6038,7 +6038,7 @@
           }
         }
       };
-      self2.kill = function(revert, allowAnimation) {
+      self2.kill = function (revert, allowAnimation) {
         self2.disable(revert, allowAnimation);
         scrubTween && !allowAnimation && scrubTween.kill();
         id && delete _ids[id];
@@ -6046,7 +6046,7 @@
         i >= 0 && _triggers.splice(i, 1);
         i === _i && _direction > 0 && _i--;
         i = 0;
-        _triggers.forEach(function(t) {
+        _triggers.forEach(function (t) {
           return t.scroller === self2.scroller && (i = 1);
         });
         i || _refreshingAll || (self2.scroll.rec = 0);
@@ -6057,14 +6057,14 @@
           });
           allowAnimation || animation.kill();
         }
-        markerStart && [markerStart, markerEnd, markerStartTrigger, markerEndTrigger].forEach(function(m) {
+        markerStart && [markerStart, markerEnd, markerStartTrigger, markerEndTrigger].forEach(function (m) {
           return m.parentNode && m.parentNode.removeChild(m);
         });
         _primary === self2 && (_primary = 0);
         if (pin) {
           pinCache && (pinCache.uncache = 1);
           i = 0;
-          _triggers.forEach(function(t) {
+          _triggers.forEach(function (t) {
             return t.pin === pin && i++;
           });
           i || (pinCache.spacer = 0);
@@ -6076,7 +6076,7 @@
       customRevertReturn && customRevertReturn(self2);
       if (animation && animation.add && !change) {
         var updateFunc = self2.update;
-        self2.update = function() {
+        self2.update = function () {
           self2.update = updateFunc;
           start || end || self2.refresh();
         };
@@ -6106,7 +6106,7 @@
     };
     ScrollTrigger4.disable = function disable(reset, kill2) {
       _enabled = 0;
-      _triggers.forEach(function(trigger) {
+      _triggers.forEach(function (trigger) {
         return trigger[kill2 ? "kill" : "disable"](reset);
       });
       _removeListener3(_win4, "wheel", _onScroll3);
@@ -6150,24 +6150,24 @@
           _addListener3(_win4, "wheel", _onScroll3);
           _root2 = [_win4, _doc4, _docEl2, _body2];
           if (gsap3.matchMedia) {
-            ScrollTrigger4.matchMedia = function(vars) {
+            ScrollTrigger4.matchMedia = function (vars) {
               var mm = gsap3.matchMedia(), p;
               for (p in vars) {
                 mm.add(p, vars[p]);
               }
               return mm;
             };
-            gsap3.addEventListener("matchMediaInit", function() {
+            gsap3.addEventListener("matchMediaInit", function () {
               return _revertAll();
             });
-            gsap3.addEventListener("matchMediaRevert", function() {
+            gsap3.addEventListener("matchMediaRevert", function () {
               return _revertRecorded();
             });
-            gsap3.addEventListener("matchMedia", function() {
+            gsap3.addEventListener("matchMedia", function () {
               _refreshAll(0, 1);
               _dispatch3("matchMedia");
             });
-            gsap3.matchMedia("(orientation: portrait)", function() {
+            gsap3.matchMedia("(orientation: portrait)", function () {
               _setBaseDimensions();
               return _setBaseDimensions;
             });
@@ -6188,7 +6188,7 @@
           _horizontal.m = Math.round(bounds.left + _horizontal.sc()) || 0;
           border ? bodyStyle.borderTopStyle = border : bodyStyle.removeProperty("border-top-style");
           _syncInterval = setInterval(_sync, 250);
-          gsap3.delayedCall(0.5, function() {
+          gsap3.delayedCall(0.5, function () {
             return _startup2 = 0;
           });
           _addListener3(_doc4, "touchcancel", _passThrough3);
@@ -6199,7 +6199,7 @@
           _stateProps.push(_transformProp2);
           _coreInitted3 = _getTime2();
           _resizeDelay = gsap3.delayedCall(0.2, _refreshAll).pause();
-          _autoRefresh = [_doc4, "visibilitychange", function() {
+          _autoRefresh = [_doc4, "visibilitychange", function () {
             var w = _win4.innerWidth, h = _win4.innerHeight;
             if (_doc4.hidden) {
               _prevWidth = w;
@@ -6209,7 +6209,7 @@
             }
           }, _doc4, "DOMContentLoaded", _refreshAll, _win4, "load", _refreshAll, _win4, "resize", _onResize];
           _iterateAutoRefresh(_addListener3);
-          _triggers.forEach(function(trigger) {
+          _triggers.forEach(function (trigger) {
             return trigger.enable(0, 1);
           });
           for (i = 0; i < _scrollers.length; i += 3) {
@@ -6239,7 +6239,7 @@
       }
     };
     ScrollTrigger4.clearMatchMedia = function clearMatchMedia(query) {
-      _triggers.forEach(function(t) {
+      _triggers.forEach(function (t) {
         return t._ctx && t._ctx.query === query && t._ctx.kill(true, true);
       });
     };
@@ -6253,13 +6253,13 @@
       return horizontal ? (bounds.left + offset) / _win4.innerWidth : (bounds.top + offset) / _win4.innerHeight;
     };
     ScrollTrigger4.killAll = function killAll(allowListeners) {
-      _triggers.slice(0).forEach(function(t) {
+      _triggers.slice(0).forEach(function (t) {
         return t.vars.id !== "ScrollSmoother" && t.kill();
       });
       if (allowListeners !== true) {
         var listeners = _listeners2.killAll || [];
         _listeners2 = {};
-        listeners.forEach(function(f) {
+        listeners.forEach(function (f) {
           return f();
         });
       }
@@ -6267,8 +6267,8 @@
     return ScrollTrigger4;
   }();
   ScrollTrigger2.version = "3.12.5";
-  ScrollTrigger2.saveStyles = function(targets) {
-    return targets ? _toArray(targets).forEach(function(target) {
+  ScrollTrigger2.saveStyles = function (targets) {
+    return targets ? _toArray(targets).forEach(function (target) {
       if (target && target.style) {
         var i = _savedStyles.indexOf(target);
         i >= 0 && _savedStyles.splice(i, 5);
@@ -6276,53 +6276,53 @@
       }
     }) : _savedStyles;
   };
-  ScrollTrigger2.revert = function(soft, media) {
+  ScrollTrigger2.revert = function (soft, media) {
     return _revertAll(!soft, media);
   };
-  ScrollTrigger2.create = function(vars, animation) {
+  ScrollTrigger2.create = function (vars, animation) {
     return new ScrollTrigger2(vars, animation);
   };
-  ScrollTrigger2.refresh = function(safe) {
+  ScrollTrigger2.refresh = function (safe) {
     return safe ? _onResize() : (_coreInitted3 || ScrollTrigger2.register()) && _refreshAll(true);
   };
-  ScrollTrigger2.update = function(force) {
+  ScrollTrigger2.update = function (force) {
     return ++_scrollers.cache && _updateAll(force === true ? 2 : 0);
   };
   ScrollTrigger2.clearScrollMemory = _clearScrollMemory;
-  ScrollTrigger2.maxScroll = function(element, horizontal) {
+  ScrollTrigger2.maxScroll = function (element, horizontal) {
     return _maxScroll(element, horizontal ? _horizontal : _vertical);
   };
-  ScrollTrigger2.getScrollFunc = function(element, horizontal) {
+  ScrollTrigger2.getScrollFunc = function (element, horizontal) {
     return _getScrollFunc(_getTarget(element), horizontal ? _horizontal : _vertical);
   };
-  ScrollTrigger2.getById = function(id) {
+  ScrollTrigger2.getById = function (id) {
     return _ids[id];
   };
-  ScrollTrigger2.getAll = function() {
-    return _triggers.filter(function(t) {
+  ScrollTrigger2.getAll = function () {
+    return _triggers.filter(function (t) {
       return t.vars.id !== "ScrollSmoother";
     });
   };
-  ScrollTrigger2.isScrolling = function() {
+  ScrollTrigger2.isScrolling = function () {
     return !!_lastScrollTime;
   };
   ScrollTrigger2.snapDirectional = _snapDirectional;
-  ScrollTrigger2.addEventListener = function(type, callback) {
+  ScrollTrigger2.addEventListener = function (type, callback) {
     var a = _listeners2[type] || (_listeners2[type] = []);
     ~a.indexOf(callback) || a.push(callback);
   };
-  ScrollTrigger2.removeEventListener = function(type, callback) {
+  ScrollTrigger2.removeEventListener = function (type, callback) {
     var a = _listeners2[type], i = a && a.indexOf(callback);
     i >= 0 && a.splice(i, 1);
   };
-  ScrollTrigger2.batch = function(targets, vars) {
+  ScrollTrigger2.batch = function (targets, vars) {
     var result = [], varsCopy = {}, interval = vars.interval || 0.016, batchMax = vars.batchMax || 1e9, proxyCallback = function proxyCallback2(type, callback) {
-      var elements = [], triggers = [], delay = gsap3.delayedCall(interval, function() {
+      var elements = [], triggers = [], delay = gsap3.delayedCall(interval, function () {
         callback(elements, triggers);
         elements = [];
         triggers = [];
       }).pause();
-      return function(self2) {
+      return function (self2) {
         elements.length || delay.restart(true);
         elements.push(self2.trigger);
         triggers.push(self2);
@@ -6334,11 +6334,11 @@
     }
     if (_isFunction3(batchMax)) {
       batchMax = batchMax();
-      _addListener3(ScrollTrigger2, "refresh", function() {
+      _addListener3(ScrollTrigger2, "refresh", function () {
         return batchMax = vars.batchMax();
       });
     }
-    _toArray(targets).forEach(function(target) {
+    _toArray(targets).forEach(function (target) {
       var config3 = {};
       for (p in varsCopy) {
         config3[p] = varsCopy[p];
@@ -6413,9 +6413,9 @@
     vars.type || (vars.type = "wheel,touch");
     vars.debounce = !!vars.debounce;
     vars.id = vars.id || "normalizer";
-    var _vars2 = vars, normalizeScrollX = _vars2.normalizeScrollX, momentum = _vars2.momentum, allowNestedScroll = _vars2.allowNestedScroll, onRelease = _vars2.onRelease, self2, maxY, target = _getTarget(vars.target) || _docEl2, smoother = gsap3.core.globals().ScrollSmoother, smootherInstance = smoother && smoother.get(), content = _fixIOSBug && (vars.content && _getTarget(vars.content) || smootherInstance && vars.content !== false && !smootherInstance.smooth() && smootherInstance.content()), scrollFuncY = _getScrollFunc(target, _vertical), scrollFuncX = _getScrollFunc(target, _horizontal), scale = 1, initialScale = (Observer.isTouch && _win4.visualViewport ? _win4.visualViewport.scale * _win4.visualViewport.width : _win4.outerWidth) / _win4.innerWidth, wheelRefresh = 0, resolveMomentumDuration = _isFunction3(momentum) ? function() {
+    var _vars2 = vars, normalizeScrollX = _vars2.normalizeScrollX, momentum = _vars2.momentum, allowNestedScroll = _vars2.allowNestedScroll, onRelease = _vars2.onRelease, self2, maxY, target = _getTarget(vars.target) || _docEl2, smoother = gsap3.core.globals().ScrollSmoother, smootherInstance = smoother && smoother.get(), content = _fixIOSBug && (vars.content && _getTarget(vars.content) || smootherInstance && vars.content !== false && !smootherInstance.smooth() && smootherInstance.content()), scrollFuncY = _getScrollFunc(target, _vertical), scrollFuncX = _getScrollFunc(target, _horizontal), scale = 1, initialScale = (Observer.isTouch && _win4.visualViewport ? _win4.visualViewport.scale * _win4.visualViewport.width : _win4.outerWidth) / _win4.innerWidth, wheelRefresh = 0, resolveMomentumDuration = _isFunction3(momentum) ? function () {
       return momentum(self2);
-    } : function() {
+    } : function () {
       return momentum || 2.8;
     }, lastRefreshID, skipTouchMove, inputObserver = _inputObserver(target, vars.type, true, allowNestedScroll), resumeTouchMove = function resumeTouchMove2() {
       return skipTouchMove = false;
@@ -6453,10 +6453,10 @@
     content && gsap3.set(content, {
       y: "+=0"
     });
-    vars.ignoreCheck = function(e) {
+    vars.ignoreCheck = function (e) {
       return _fixIOSBug && e.type === "touchmove" && ignoreDrag(e) || scale > 1.05 && e.type !== "touchstart" || self2.isGesturing || e.touches && e.touches.length > 1;
     };
-    vars.onPress = function() {
+    vars.onPress = function () {
       skipTouchMove = false;
       var prevScale = scale;
       scale = _round3((_win4.visualViewport && _win4.visualViewport.scale || 1) / initialScale);
@@ -6467,7 +6467,7 @@
       updateClamps();
       lastRefreshID = _refreshID;
     };
-    vars.onRelease = vars.onGestureStart = function(self3, wasDragging) {
+    vars.onRelease = vars.onGestureStart = function (self3, wasDragging) {
       scrollFuncY.offset && removeContentOffset();
       if (!wasDragging) {
         onStopDelayedCall.restart(true);
@@ -6494,14 +6494,14 @@
       }
       onRelease && onRelease(self3);
     };
-    vars.onWheel = function() {
+    vars.onWheel = function () {
       tween._ts && tween.pause();
       if (_getTime2() - wheelRefresh > 1e3) {
         lastRefreshID = 0;
         wheelRefresh = _getTime2();
       }
     };
-    vars.onChange = function(self3, dx, dy, xArray, yArray) {
+    vars.onChange = function (self3, dx, dy, xArray, yArray) {
       _refreshID !== lastRefreshID && updateClamps();
       dx && normalizeScrollX && scrollFuncX(scrollClampX(xArray[2] === dx ? startScrollX + (self3.startX - self3.x) : scrollFuncX() + dx - xArray[1]));
       if (dy) {
@@ -6512,7 +6512,7 @@
       }
       (dy || dx) && _updateAll();
     };
-    vars.onEnable = function() {
+    vars.onEnable = function () {
       _allowNativePanning(target, normalizeScrollX ? false : "x");
       ScrollTrigger2.addEventListener("refresh", onResize2);
       _addListener3(_win4, "resize", onResize2);
@@ -6522,7 +6522,7 @@
       }
       inputObserver.enable();
     };
-    vars.onDisable = function() {
+    vars.onDisable = function () {
       _allowNativePanning(target, true);
       _removeListener3(_win4, "resize", onResize2);
       ScrollTrigger2.removeEventListener("refresh", onResize2);
@@ -6541,7 +6541,7 @@
       scrollX: normalizeScrollX ? "+=0.1" : "+=0",
       scrollY: "+=0.1",
       modifiers: {
-        scrollY: _interruptionTracker(scrollFuncY, scrollFuncY(), function() {
+        scrollY: _interruptionTracker(scrollFuncY, scrollFuncY(), function () {
           return tween.pause();
         })
       },
@@ -6550,15 +6550,15 @@
     });
     return self2;
   };
-  ScrollTrigger2.sort = function(func) {
-    return _triggers.sort(func || function(a, b) {
+  ScrollTrigger2.sort = function (func) {
+    return _triggers.sort(func || function (a, b) {
       return (a.vars.refreshPriority || 0) * -1e6 + a.start - (b.start + (b.vars.refreshPriority || 0) * -1e6);
     });
   };
-  ScrollTrigger2.observe = function(vars) {
+  ScrollTrigger2.observe = function (vars) {
     return new Observer(vars);
   };
-  ScrollTrigger2.normalizeScroll = function(vars) {
+  ScrollTrigger2.normalizeScroll = function (vars) {
     if (typeof vars === "undefined") {
       return _normalizer2;
     }
@@ -6707,7 +6707,7 @@
   }
 
   // node_modules/gsap/ScrambleTextPlugin.js
-  var CharSet = /* @__PURE__ */ function() {
+  var CharSet = /* @__PURE__ */ function () {
     function CharSet2(chars) {
       this.chars = emojiSafeSplit(chars);
       this.sets = [];
@@ -6883,7 +6883,7 @@
     gsap5 = gsap5 || core || _win5.gsap || console.warn("Please gsap.registerPlugin(SplitText)");
     if (gsap5) {
       _toArray2 = gsap5.utils.toArray;
-      _context4 = gsap5.core.context || function() {
+      _context4 = gsap5.core.context || function () {
       };
       _coreInitted5 = 1;
     }
@@ -6913,7 +6913,7 @@
     if (iterate) {
       cssClass = cssClass.split("++").join("");
     }
-    return function() {
+    return function () {
       return "<" + tag + _divStart + (cssClass ? " class='" + cssClass + (iterate ? num++ : "") + "'>" : ">");
     };
   };
@@ -7220,7 +7220,7 @@
     }
     _splitRawText(element, vars, wordStart, charStart);
   };
-  var SplitText = /* @__PURE__ */ function() {
+  var SplitText = /* @__PURE__ */ function () {
     function SplitText2(element, vars) {
       _coreInitted5 || _initCore7();
       this.elements = _toArray2(element);
@@ -7260,7 +7260,7 @@
       if (!originals) {
         throw "revert() call wasn't scoped properly.";
       }
-      this.elements.forEach(function(e, i) {
+      this.elements.forEach(function (e, i) {
         e.innerHTML = originals[i].html;
         e.setAttribute("style", originals[i].style);
       });
@@ -7389,18 +7389,24 @@
       start: "top bottom",
       end: "bottom top",
       onEnter: () => {
+        SOLAIS_ABOUT_FLOW_ACTIVE = true;
         const intervalTime = window.innerWidth < 770 ? 450 : 150;
         spawnInterval = setInterval(createFloatingDiv, intervalTime);
       },
       onLeave: () => {
         clearInterval(spawnInterval);
+        SOLAIS_ABOUT_FLOW_ACTIVE = false;
+        clearFloatingElements({ immediate: true });
       },
       onEnterBack: () => {
+        SOLAIS_ABOUT_FLOW_ACTIVE = true;
         const intervalTime = window.innerWidth < 770 ? 450 : 150;
         spawnInterval = setInterval(createFloatingDiv, intervalTime);
       },
       onLeaveBack: () => {
         clearInterval(spawnInterval);
+        SOLAIS_ABOUT_FLOW_ACTIVE = false;
+        clearFloatingElements({ immediate: true });
       }
     });
     const swiper = document.querySelectorAll(".swiper-container");
@@ -7441,12 +7447,41 @@
       });
     });
   }
+  function clearFloatingElements(options = {}) {
+    const { immediate = false, duration = 0.35 } = options;
+    const overlay = document.querySelector(".bg-overlay");
+    if (!overlay)
+      return;
+    overlay.querySelectorAll(".floating-element").forEach((element) => {
+      gsapWithCSS.killTweensOf(element);
+      if (immediate) {
+        element.remove();
+        return;
+      }
+      if (element.dataset.exiting === "1")
+        return;
+      element.dataset.exiting = "1";
+      gsapWithCSS.to(element, {
+        opacity: 0,
+        scale: 0.82,
+        duration,
+        ease: "power2.out",
+        overwrite: true,
+        onComplete: () => element.remove()
+      });
+    });
+  }
   function createFloatingDiv() {
     const overlay = document.querySelector(".bg-overlay");
     if (!overlay)
       return;
+    if (!SOLAIS_ABOUT_FLOW_ACTIVE) {
+      clearFloatingElements();
+      return;
+    }
     const div = document.createElement("div");
     div.className = "floating-element";
+    div.dataset.exiting = "0";
     div.textContent = "0" + Math.floor(Math.random() * 9);
     const gridSize = 6;
     const overlayWidth = overlay.offsetWidth;
@@ -7571,7 +7606,7 @@
   };
   function debounce(callback, delay) {
     let timer;
-    return function(...args) {
+    return function (...args) {
       let context3 = this;
       clearTimeout(timer);
       timer = setTimeout(() => {
@@ -8272,9 +8307,28 @@
   // js/utils/smoothScroll.js
   gsapWithCSS.registerPlugin(ScrollTrigger2);
   function initSmoothScroll() {
+    const shouldBypassSmoothScroll = (node) => {
+      if (!(node instanceof Element)) {
+        return false;
+      }
+      return Boolean(
+        node.closest(
+          "#solais-creative-lab, #solais-builder-stage, [data-lenis-prevent], [data-lenis-prevent-wheel]"
+        )
+      );
+    };
     const lenis = new Lenis({
-      overscroll: false
+      overscroll: false,
+      allowNestedScroll: true,
+      prevent: (node) => shouldBypassSmoothScroll(node),
+      virtualScroll: ({ event: sourceEvent }) => {
+        if (shouldBypassSmoothScroll(sourceEvent?.target)) {
+          return false;
+        }
+        return true;
+      }
     });
+    window.__solaisLenis = lenis;
     lenis.on("scroll", ScrollTrigger2.update);
     gsapWithCSS.ticker.add((time) => {
       lenis.raf(time * 1e3);
@@ -9425,7 +9479,7 @@
     console.warn(message);
   }
   function probeAsync(gl, sync, interval) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       function probe() {
         switch (gl.clientWaitSync(sync, gl.SYNC_FLUSH_COMMANDS_BIT, 0)) {
           case gl.WAIT_FAILED:
@@ -9486,7 +9540,7 @@
       enabled: true,
       workingColorSpace: LinearSRGBColorSpace,
       spaces: {},
-      convert: function(color, sourceColorSpace, targetColorSpace) {
+      convert: function (color, sourceColorSpace, targetColorSpace) {
         if (this.enabled === false || sourceColorSpace === targetColorSpace || !sourceColorSpace || !targetColorSpace) {
           return color;
         }
@@ -9506,33 +9560,33 @@
         }
         return color;
       },
-      fromWorkingColorSpace: function(color, targetColorSpace) {
+      fromWorkingColorSpace: function (color, targetColorSpace) {
         return this.convert(color, this.workingColorSpace, targetColorSpace);
       },
-      toWorkingColorSpace: function(color, sourceColorSpace) {
+      toWorkingColorSpace: function (color, sourceColorSpace) {
         return this.convert(color, sourceColorSpace, this.workingColorSpace);
       },
-      getPrimaries: function(colorSpace) {
+      getPrimaries: function (colorSpace) {
         return this.spaces[colorSpace].primaries;
       },
-      getTransfer: function(colorSpace) {
+      getTransfer: function (colorSpace) {
         if (colorSpace === NoColorSpace)
           return LinearTransfer;
         return this.spaces[colorSpace].transfer;
       },
-      getLuminanceCoefficients: function(target, colorSpace = this.workingColorSpace) {
+      getLuminanceCoefficients: function (target, colorSpace = this.workingColorSpace) {
         return target.fromArray(this.spaces[colorSpace].luminanceCoefficients);
       },
-      define: function(colorSpaces) {
+      define: function (colorSpaces) {
         Object.assign(this.spaces, colorSpaces);
       },
-      _getMatrix: function(targetMatrix, sourceColorSpace, targetColorSpace) {
+      _getMatrix: function (targetMatrix, sourceColorSpace, targetColorSpace) {
         return targetMatrix.copy(this.spaces[sourceColorSpace].toXYZ).multiply(this.spaces[targetColorSpace].fromXYZ);
       },
-      _getDrawingBufferColorSpace: function(colorSpace) {
+      _getDrawingBufferColorSpace: function (colorSpace) {
         return this.spaces[colorSpace].outputColorSpaceConfig.drawingBufferColorSpace;
       },
-      _getUnpackColorSpace: function(colorSpace = this.workingColorSpace) {
+      _getUnpackColorSpace: function (colorSpace = this.workingColorSpace) {
         return this.spaces[colorSpace].workingColorSpaceConfig.unpackColorSpace;
       }
     };
@@ -18322,10 +18376,10 @@
       this.clearcoatNormalMap = null;
       this.ior = 1.5;
       Object.defineProperty(this, "reflectivity", {
-        get: function() {
+        get: function () {
           return clamp4(2.5 * (this.ior - 1) / (this.ior + 1), 0, 1);
         },
-        set: function(reflectivity) {
+        set: function (reflectivity) {
           this.ior = (1 + 0.4 * reflectivity) / (1 - 0.4 * reflectivity);
         }
       });
@@ -18588,33 +18642,33 @@
           let right;
           linear_scan: {
             forward_scan:
-              if (!(t < t1)) {
-                for (let giveUpAt = i1 + 2; ; ) {
-                  if (t1 === void 0) {
-                    if (t < t0)
-                      break forward_scan;
-                    i1 = pp.length;
-                    this._cachedIndex = i1;
-                    return this.copySampleValue_(i1 - 1);
-                  }
-                  if (i1 === giveUpAt)
-                    break;
-                  t0 = t1;
-                  t1 = pp[++i1];
-                  if (t < t1) {
-                    break seek;
-                  }
+            if (!(t < t1)) {
+              for (let giveUpAt = i1 + 2; ;) {
+                if (t1 === void 0) {
+                  if (t < t0)
+                    break forward_scan;
+                  i1 = pp.length;
+                  this._cachedIndex = i1;
+                  return this.copySampleValue_(i1 - 1);
                 }
-                right = pp.length;
-                break linear_scan;
+                if (i1 === giveUpAt)
+                  break;
+                t0 = t1;
+                t1 = pp[++i1];
+                if (t < t1) {
+                  break seek;
+                }
               }
+              right = pp.length;
+              break linear_scan;
+            }
             if (!(t >= t0)) {
               const t1global = pp[1];
               if (t < t1global) {
                 i1 = 2;
                 t0 = t1global;
               }
-              for (let giveUpAt = i1 - 2; ; ) {
+              for (let giveUpAt = i1 - 2; ;) {
                 if (t0 === void 0) {
                   this._cachedIndex = 0;
                   return this.copySampleValue_(0);
@@ -19128,7 +19182,7 @@
         console.error("THREE.AnimationClip: No animation in JSONLoader data.");
         return null;
       }
-      const addNonemptyTrack = function(trackType, trackName, animationKeys, propertyName, destTracks) {
+      const addNonemptyTrack = function (trackType, trackName, animationKeys, propertyName, destTracks) {
         if (animationKeys.length !== 0) {
           const times = [];
           const values = [];
@@ -19285,20 +19339,20 @@
   var Cache = {
     enabled: false,
     files: {},
-    add: function(key, file) {
+    add: function (key, file) {
       if (this.enabled === false)
         return;
       this.files[key] = file;
     },
-    get: function(key) {
+    get: function (key) {
       if (this.enabled === false)
         return;
       return this.files[key];
     },
-    remove: function(key) {
+    remove: function (key) {
       delete this.files[key];
     },
-    clear: function() {
+    clear: function () {
       this.files = {};
     }
   };
@@ -19314,7 +19368,7 @@
       this.onLoad = onLoad2;
       this.onProgress = onProgress;
       this.onError = onError;
-      this.itemStart = function(url) {
+      this.itemStart = function (url) {
         itemsTotal++;
         if (isLoading === false) {
           if (scope.onStart !== void 0) {
@@ -19323,7 +19377,7 @@
         }
         isLoading = true;
       };
-      this.itemEnd = function(url) {
+      this.itemEnd = function (url) {
         itemsLoaded++;
         if (scope.onProgress !== void 0) {
           scope.onProgress(url, itemsLoaded, itemsTotal);
@@ -19335,33 +19389,33 @@
           }
         }
       };
-      this.itemError = function(url) {
+      this.itemError = function (url) {
         if (scope.onError !== void 0) {
           scope.onError(url);
         }
       };
-      this.resolveURL = function(url) {
+      this.resolveURL = function (url) {
         if (urlModifier) {
           return urlModifier(url);
         }
         return url;
       };
-      this.setURLModifier = function(transform) {
+      this.setURLModifier = function (transform) {
         urlModifier = transform;
         return this;
       };
-      this.addHandler = function(regex, loader) {
+      this.addHandler = function (regex, loader) {
         handlers.push(regex, loader);
         return this;
       };
-      this.removeHandler = function(regex) {
+      this.removeHandler = function (regex) {
         const index = handlers.indexOf(regex);
         if (index !== -1) {
           handlers.splice(index, 2);
         }
         return this;
       };
-      this.getHandler = function(file) {
+      this.getHandler = function (file) {
         for (let i = 0, l = handlers.length; i < l; i += 2) {
           const regex = handlers[i];
           const loader = handlers[i + 1];
@@ -19389,7 +19443,7 @@
     }
     loadAsync(url, onProgress) {
       const scope = this;
-      return new Promise(function(resolve, reject) {
+      return new Promise(function (resolve, reject) {
         scope.load(url, resolve, onProgress, reject);
       });
     }
@@ -19578,7 +19632,7 @@
       const cached = Cache.get(url);
       if (cached !== void 0) {
         scope.manager.itemStart(url);
-        setTimeout(function() {
+        setTimeout(function () {
           if (onLoad2)
             onLoad2(cached);
           scope.manager.itemEnd(url);
@@ -19627,7 +19681,7 @@
       loader.setRequestHeader(this.requestHeader);
       loader.setPath(this.path);
       loader.setWithCredentials(scope.withCredentials);
-      loader.load(url, function(buffer) {
+      loader.load(url, function (buffer) {
         let texData;
         try {
           texData = scope.parse(buffer);
@@ -19689,7 +19743,7 @@
       const loader = new ImageLoader(this.manager);
       loader.setCrossOrigin(this.crossOrigin);
       loader.setPath(this.path);
-      loader.load(url, function(image) {
+      loader.load(url, function (image) {
         texture.image = image;
         texture.needsUpdate = true;
         if (onLoad2 !== void 0) {
@@ -20192,7 +20246,7 @@
           });
           return;
         }
-        setTimeout(function() {
+        setTimeout(function () {
           if (onLoad2)
             onLoad2(cached);
           scope.manager.itemEnd(url);
@@ -20202,17 +20256,17 @@
       const fetchOptions = {};
       fetchOptions.credentials = this.crossOrigin === "anonymous" ? "same-origin" : "include";
       fetchOptions.headers = this.requestHeader;
-      const promise = fetch(url, fetchOptions).then(function(res) {
+      const promise = fetch(url, fetchOptions).then(function (res) {
         return res.blob();
-      }).then(function(blob) {
+      }).then(function (blob) {
         return createImageBitmap(blob, Object.assign(scope.options, { colorSpaceConversion: "none" }));
-      }).then(function(imageBitmap) {
+      }).then(function (imageBitmap) {
         Cache.add(url, imageBitmap);
         if (onLoad2)
           onLoad2(imageBitmap);
         scope.manager.itemEnd(url);
         return imageBitmap;
-      }).catch(function(e) {
+      }).catch(function (e) {
         if (onError)
           onError(e);
         Cache.remove(url);
@@ -20370,7 +20424,7 @@
         }
       }
       if (root.children) {
-        const searchNodeSubtree = function(children) {
+        const searchNodeSubtree = function (children) {
           for (let i = 0; i < children.length; i++) {
             const childNode = children[i];
             if (childNode.name === nodeName || childNode.uuid === nodeName) {
@@ -20887,9 +20941,11 @@
     throw new Error(`Unknown texture type ${type}.`);
   }
   if (typeof __THREE_DEVTOOLS__ !== "undefined") {
-    __THREE_DEVTOOLS__.dispatchEvent(new CustomEvent("register", { detail: {
-      revision: REVISION
-    } }));
+    __THREE_DEVTOOLS__.dispatchEvent(new CustomEvent("register", {
+      detail: {
+        revision: REVISION
+      }
+    }));
   }
   if (typeof window !== "undefined") {
     if (window.__THREE__) {
@@ -20910,7 +20966,7 @@
       requestId = context3.requestAnimationFrame(onAnimationFrame);
     }
     return {
-      start: function() {
+      start: function () {
         if (isAnimating === true)
           return;
         if (animationLoop === null)
@@ -20918,14 +20974,14 @@
         requestId = context3.requestAnimationFrame(onAnimationFrame);
         isAnimating = true;
       },
-      stop: function() {
+      stop: function () {
         context3.cancelAnimationFrame(requestId);
         isAnimating = false;
       },
-      setAnimationLoop: function(callback) {
+      setAnimationLoop: function (callback) {
         animationLoop = callback;
       },
-      setContext: function(value) {
+      setContext: function (value) {
         context3 = value;
       }
     };
@@ -21411,66 +21467,82 @@
     lights: {
       ambientLightColor: { value: [] },
       lightProbe: { value: [] },
-      directionalLights: { value: [], properties: {
-        direction: {},
-        color: {}
-      } },
-      directionalLightShadows: { value: [], properties: {
-        shadowIntensity: 1,
-        shadowBias: {},
-        shadowNormalBias: {},
-        shadowRadius: {},
-        shadowMapSize: {}
-      } },
+      directionalLights: {
+        value: [], properties: {
+          direction: {},
+          color: {}
+        }
+      },
+      directionalLightShadows: {
+        value: [], properties: {
+          shadowIntensity: 1,
+          shadowBias: {},
+          shadowNormalBias: {},
+          shadowRadius: {},
+          shadowMapSize: {}
+        }
+      },
       directionalShadowMap: { value: [] },
       directionalShadowMatrix: { value: [] },
-      spotLights: { value: [], properties: {
-        color: {},
-        position: {},
-        direction: {},
-        distance: {},
-        coneCos: {},
-        penumbraCos: {},
-        decay: {}
-      } },
-      spotLightShadows: { value: [], properties: {
-        shadowIntensity: 1,
-        shadowBias: {},
-        shadowNormalBias: {},
-        shadowRadius: {},
-        shadowMapSize: {}
-      } },
+      spotLights: {
+        value: [], properties: {
+          color: {},
+          position: {},
+          direction: {},
+          distance: {},
+          coneCos: {},
+          penumbraCos: {},
+          decay: {}
+        }
+      },
+      spotLightShadows: {
+        value: [], properties: {
+          shadowIntensity: 1,
+          shadowBias: {},
+          shadowNormalBias: {},
+          shadowRadius: {},
+          shadowMapSize: {}
+        }
+      },
       spotLightMap: { value: [] },
       spotShadowMap: { value: [] },
       spotLightMatrix: { value: [] },
-      pointLights: { value: [], properties: {
-        color: {},
-        position: {},
-        decay: {},
-        distance: {}
-      } },
-      pointLightShadows: { value: [], properties: {
-        shadowIntensity: 1,
-        shadowBias: {},
-        shadowNormalBias: {},
-        shadowRadius: {},
-        shadowMapSize: {},
-        shadowCameraNear: {},
-        shadowCameraFar: {}
-      } },
+      pointLights: {
+        value: [], properties: {
+          color: {},
+          position: {},
+          decay: {},
+          distance: {}
+        }
+      },
+      pointLightShadows: {
+        value: [], properties: {
+          shadowIntensity: 1,
+          shadowBias: {},
+          shadowNormalBias: {},
+          shadowRadius: {},
+          shadowMapSize: {},
+          shadowCameraNear: {},
+          shadowCameraFar: {}
+        }
+      },
       pointShadowMap: { value: [] },
       pointShadowMatrix: { value: [] },
-      hemisphereLights: { value: [], properties: {
-        direction: {},
-        skyColor: {},
-        groundColor: {}
-      } },
-      rectAreaLights: { value: [], properties: {
-        color: {},
-        position: {},
-        width: {},
-        height: {}
-      } },
+      hemisphereLights: {
+        value: [], properties: {
+          direction: {},
+          skyColor: {},
+          groundColor: {}
+        }
+      },
+      rectAreaLights: {
+        value: [], properties: {
+          color: {},
+          position: {},
+          width: {},
+          height: {}
+        }
+      },
       ltc_1: { value: null },
       ltc_2: { value: null }
     },
@@ -21834,11 +21906,11 @@
           );
           boxMesh.geometry.deleteAttribute("normal");
           boxMesh.geometry.deleteAttribute("uv");
-          boxMesh.onBeforeRender = function(renderer2, scene2, camera) {
+          boxMesh.onBeforeRender = function (renderer2, scene2, camera) {
             this.matrixWorld.copyPosition(camera.matrixWorld);
           };
           Object.defineProperty(boxMesh.material, "envMap", {
-            get: function() {
+            get: function () {
               return this.uniforms.envMap.value;
             }
           });
@@ -21883,7 +21955,7 @@
           );
           planeMesh.geometry.deleteAttribute("normal");
           Object.defineProperty(planeMesh.material, "map", {
-            get: function() {
+            get: function () {
               return this.uniforms.t2D.value;
             }
           });
@@ -21923,18 +21995,18 @@
       }
     }
     return {
-      getClearColor: function() {
+      getClearColor: function () {
         return clearColor;
       },
-      setClearColor: function(color, alpha2 = 1) {
+      setClearColor: function (color, alpha2 = 1) {
         clearColor.set(color);
         clearAlpha = alpha2;
         setClear(clearColor, clearAlpha);
       },
-      getClearAlpha: function() {
+      getClearAlpha: function () {
         return clearAlpha;
       },
-      setClearAlpha: function(alpha2) {
+      setClearAlpha: function (alpha2) {
         clearAlpha = alpha2;
         setClear(clearColor, clearAlpha);
       },
@@ -22421,23 +22493,23 @@
     this.uniform = uniform;
     this.numPlanes = 0;
     this.numIntersection = 0;
-    this.init = function(planes, enableLocalClipping) {
+    this.init = function (planes, enableLocalClipping) {
       const enabled = planes.length !== 0 || enableLocalClipping || numGlobalPlanes !== 0 || localClippingEnabled;
       localClippingEnabled = enableLocalClipping;
       numGlobalPlanes = planes.length;
       return enabled;
     };
-    this.beginShadows = function() {
+    this.beginShadows = function () {
       renderingShadows = true;
       projectPlanes(null);
     };
-    this.endShadows = function() {
+    this.endShadows = function () {
       renderingShadows = false;
     };
-    this.setGlobalState = function(planes, camera) {
+    this.setGlobalState = function (planes, camera) {
       globalState = projectPlanes(planes, camera, 0);
     };
-    this.setState = function(material, camera, useCache) {
+    this.setState = function (material, camera, useCache) {
       const planes = material.clippingPlanes, clipIntersection = material.clipIntersection, clipShadows = material.clipShadows;
       const materialProperties = properties.get(material);
       if (!localClippingEnabled || planes === null || planes.length === 0 || renderingShadows && !clipShadows) {
@@ -23231,10 +23303,10 @@
       return extension;
     }
     return {
-      has: function(name) {
+      has: function (name) {
         return getExtension(name) !== null;
       },
-      init: function() {
+      init: function () {
         getExtension("EXT_color_buffer_float");
         getExtension("WEBGL_clip_cull_distance");
         getExtension("OES_texture_float_linear");
@@ -23242,7 +23314,7 @@
         getExtension("WEBGL_multisampled_render_to_texture");
         getExtension("WEBGL_render_shared_exponent");
       },
-      get: function(name) {
+      get: function (name) {
         const extension = getExtension(name);
         if (extension === null) {
           warnOnce("THREE.WebGLRenderer: " + name + " extension not supported.");
@@ -23456,7 +23528,7 @@
       const morphTargetsCount = morphAttribute !== void 0 ? morphAttribute.length : 0;
       let entry = morphTextures.get(geometry);
       if (entry === void 0 || entry.count !== morphTargetsCount) {
-        let disposeTexture = function() {
+        let disposeTexture = function () {
           texture.dispose();
           morphTextures.delete(geometry);
           geometry.removeEventListener("dispose", disposeTexture);
@@ -24818,27 +24890,27 @@
       cachedAttributes = fetchAttributeLocations(gl, program);
     }
     let cachedUniforms;
-    this.getUniforms = function() {
+    this.getUniforms = function () {
       if (cachedUniforms === void 0) {
         onFirstUse(this);
       }
       return cachedUniforms;
     };
     let cachedAttributes;
-    this.getAttributes = function() {
+    this.getAttributes = function () {
       if (cachedAttributes === void 0) {
         onFirstUse(this);
       }
       return cachedAttributes;
     };
     let programReady = parameters.rendererExtensionParallelShaderCompile === false;
-    this.isReady = function() {
+    this.isReady = function () {
       if (programReady === false) {
         programReady = gl.getProgramParameter(program, COMPLETION_STATUS_KHR);
       }
       return programReady;
     };
-    this.destroy = function() {
+    this.destroy = function () {
       bindingStates.releaseStatesOfProgram(this);
       gl.deleteProgram(program);
       this.program = void 0;
@@ -25559,7 +25631,7 @@
   function UniformsCache() {
     const lights = {};
     return {
-      get: function(light) {
+      get: function (light) {
         if (lights[light.id] !== void 0) {
           return lights[light.id];
         }
@@ -25614,7 +25686,7 @@
   function ShadowUniformsCache() {
     const lights = {};
     return {
-      get: function(light) {
+      get: function (light) {
         if (lights[light.id] !== void 0) {
           return lights[light.id];
         }
@@ -26018,7 +26090,7 @@
     this.needsUpdate = false;
     this.type = PCFShadowMap;
     let _previousType = this.type;
-    this.render = function(lights, scene, camera) {
+    this.render = function (lights, scene, camera) {
       if (scope.enabled === false)
         return;
       if (scope.autoUpdate === false && scope.needsUpdate === false)
@@ -26230,16 +26302,16 @@
       let currentColorMask = null;
       const currentColorClear = new Vector4(0, 0, 0, 0);
       return {
-        setMask: function(colorMask) {
+        setMask: function (colorMask) {
           if (currentColorMask !== colorMask && !locked) {
             gl.colorMask(colorMask, colorMask, colorMask, colorMask);
             currentColorMask = colorMask;
           }
         },
-        setLocked: function(lock) {
+        setLocked: function (lock) {
           locked = lock;
         },
-        setClear: function(r, g, b, a, premultipliedAlpha) {
+        setClear: function (r, g, b, a, premultipliedAlpha) {
           if (premultipliedAlpha === true) {
             r *= a;
             g *= a;
@@ -26251,7 +26323,7 @@
             currentColorClear.copy(color);
           }
         },
-        reset: function() {
+        reset: function () {
           locked = false;
           currentColorMask = null;
           currentColorClear.set(-1, 0, 0, 0);
@@ -26265,7 +26337,7 @@
       let currentDepthFunc = null;
       let currentDepthClear = null;
       return {
-        setReversed: function(value) {
+        setReversed: function (value) {
           if (reversed !== value) {
             const ext = extensions.get("EXT_clip_control");
             if (reversed) {
@@ -26279,23 +26351,23 @@
           }
           reversed = value;
         },
-        getReversed: function() {
+        getReversed: function () {
           return reversed;
         },
-        setTest: function(depthTest) {
+        setTest: function (depthTest) {
           if (depthTest) {
             enable(gl.DEPTH_TEST);
           } else {
             disable(gl.DEPTH_TEST);
           }
         },
-        setMask: function(depthMask) {
+        setMask: function (depthMask) {
           if (currentDepthMask !== depthMask && !locked) {
             gl.depthMask(depthMask);
             currentDepthMask = depthMask;
           }
         },
-        setFunc: function(depthFunc) {
+        setFunc: function (depthFunc) {
           if (reversed)
             depthFunc = reversedFuncs[depthFunc];
           if (currentDepthFunc !== depthFunc) {
@@ -26330,10 +26402,10 @@
             currentDepthFunc = depthFunc;
           }
         },
-        setLocked: function(lock) {
+        setLocked: function (lock) {
           locked = lock;
         },
-        setClear: function(depth) {
+        setClear: function (depth) {
           if (currentDepthClear !== depth) {
             if (reversed) {
               depth = 1 - depth;
@@ -26342,7 +26414,7 @@
             currentDepthClear = depth;
           }
         },
-        reset: function() {
+        reset: function () {
           locked = false;
           currentDepthMask = null;
           currentDepthFunc = null;
@@ -26362,7 +26434,7 @@
       let currentStencilZPass = null;
       let currentStencilClear = null;
       return {
-        setTest: function(stencilTest) {
+        setTest: function (stencilTest) {
           if (!locked) {
             if (stencilTest) {
               enable(gl.STENCIL_TEST);
@@ -26371,13 +26443,13 @@
             }
           }
         },
-        setMask: function(stencilMask) {
+        setMask: function (stencilMask) {
           if (currentStencilMask !== stencilMask && !locked) {
             gl.stencilMask(stencilMask);
             currentStencilMask = stencilMask;
           }
         },
-        setFunc: function(stencilFunc, stencilRef, stencilMask) {
+        setFunc: function (stencilFunc, stencilRef, stencilMask) {
           if (currentStencilFunc !== stencilFunc || currentStencilRef !== stencilRef || currentStencilFuncMask !== stencilMask) {
             gl.stencilFunc(stencilFunc, stencilRef, stencilMask);
             currentStencilFunc = stencilFunc;
@@ -26385,7 +26457,7 @@
             currentStencilFuncMask = stencilMask;
           }
         },
-        setOp: function(stencilFail, stencilZFail, stencilZPass) {
+        setOp: function (stencilFail, stencilZFail, stencilZPass) {
           if (currentStencilFail !== stencilFail || currentStencilZFail !== stencilZFail || currentStencilZPass !== stencilZPass) {
             gl.stencilOp(stencilFail, stencilZFail, stencilZPass);
             currentStencilFail = stencilFail;
@@ -26393,16 +26465,16 @@
             currentStencilZPass = stencilZPass;
           }
         },
-        setLocked: function(lock) {
+        setLocked: function (lock) {
           locked = lock;
         },
-        setClear: function(stencil) {
+        setClear: function (stencil) {
           if (currentStencilClear !== stencil) {
             gl.clearStencil(stencil);
             currentStencilClear = stencil;
           }
         },
-        reset: function() {
+        reset: function () {
           locked = false;
           currentStencilMask = null;
           currentStencilFunc = null;
@@ -28456,7 +28528,7 @@ void main() {
       this.cameraAutoUpdate = true;
       this.enabled = false;
       this.isPresenting = false;
-      this.getController = function(index) {
+      this.getController = function (index) {
         let controller = controllers[index];
         if (controller === void 0) {
           controller = new WebXRController();
@@ -28464,7 +28536,7 @@ void main() {
         }
         return controller.getTargetRaySpace();
       };
-      this.getControllerGrip = function(index) {
+      this.getControllerGrip = function (index) {
         let controller = controllers[index];
         if (controller === void 0) {
           controller = new WebXRController();
@@ -28472,7 +28544,7 @@ void main() {
         }
         return controller.getGripSpace();
       };
-      this.getHand = function(index) {
+      this.getHand = function (index) {
         let controller = controllers[index];
         if (controller === void 0) {
           controller = new WebXRController();
@@ -28522,37 +28594,37 @@ void main() {
         renderer.setSize(currentSize.width, currentSize.height, false);
         scope.dispatchEvent({ type: "sessionend" });
       }
-      this.setFramebufferScaleFactor = function(value) {
+      this.setFramebufferScaleFactor = function (value) {
         framebufferScaleFactor = value;
         if (scope.isPresenting === true) {
           console.warn("THREE.WebXRManager: Cannot change framebuffer scale while presenting.");
         }
       };
-      this.setReferenceSpaceType = function(value) {
+      this.setReferenceSpaceType = function (value) {
         referenceSpaceType = value;
         if (scope.isPresenting === true) {
           console.warn("THREE.WebXRManager: Cannot change reference space type while presenting.");
         }
       };
-      this.getReferenceSpace = function() {
+      this.getReferenceSpace = function () {
         return customReferenceSpace || referenceSpace;
       };
-      this.setReferenceSpace = function(space) {
+      this.setReferenceSpace = function (space) {
         customReferenceSpace = space;
       };
-      this.getBaseLayer = function() {
+      this.getBaseLayer = function () {
         return glProjLayer !== null ? glProjLayer : glBaseLayer;
       };
-      this.getBinding = function() {
+      this.getBinding = function () {
         return glBinding;
       };
-      this.getFrame = function() {
+      this.getFrame = function () {
         return xrFrame;
       };
-      this.getSession = function() {
+      this.getSession = function () {
         return session;
       };
-      this.setSession = async function(value) {
+      this.setSession = async function (value) {
         session = value;
         if (session !== null) {
           initialRenderTarget = renderer.getRenderTarget();
@@ -28635,12 +28707,12 @@ void main() {
           scope.dispatchEvent({ type: "sessionstart" });
         }
       };
-      this.getEnvironmentBlendMode = function() {
+      this.getEnvironmentBlendMode = function () {
         if (session !== null) {
           return session.environmentBlendMode;
         }
       };
-      this.getDepthTexture = function() {
+      this.getDepthTexture = function () {
         return depthSensing.getDepthTexture();
       };
       function onInputSourcesChange(event2) {
@@ -28721,7 +28793,7 @@ void main() {
         }
         camera.matrixWorldInverse.copy(camera.matrixWorld).invert();
       }
-      this.updateCamera = function(camera) {
+      this.updateCamera = function (camera) {
         if (session === null)
           return;
         let depthNear = camera.near;
@@ -28775,16 +28847,16 @@ void main() {
           camera.zoom = 1;
         }
       }
-      this.getCamera = function() {
+      this.getCamera = function () {
         return cameraXR;
       };
-      this.getFoveation = function() {
+      this.getFoveation = function () {
         if (glProjLayer === null && glBaseLayer === null) {
           return void 0;
         }
         return foveation;
       };
-      this.setFoveation = function(value) {
+      this.setFoveation = function (value) {
         foveation = value;
         if (glProjLayer !== null) {
           glProjLayer.fixedFoveation = value;
@@ -28793,10 +28865,10 @@ void main() {
           glBaseLayer.fixedFoveation = value;
         }
       };
-      this.hasDepthSensing = function() {
+      this.hasDepthSensing = function () {
         return depthSensing.texture !== null;
       };
-      this.getDepthSensingMesh = function() {
+      this.getDepthSensingMesh = function () {
         return depthSensing.getMesh(cameraXR);
       };
       let onAnimationFrameCallback = null;
@@ -28876,10 +28948,10 @@ void main() {
       }
       const animation = new WebGLAnimation();
       animation.setAnimationLoop(onAnimationFrame);
-      this.setAnimationLoop = function(callback) {
+      this.setAnimationLoop = function (callback) {
         onAnimationFrameCallback = callback;
       };
-      this.dispose = function() {
+      this.dispose = function () {
       };
     }
   };
@@ -29555,35 +29627,35 @@ void main() {
       initGLContext();
       const xr = new WebXRManager(_this, _gl);
       this.xr = xr;
-      this.getContext = function() {
+      this.getContext = function () {
         return _gl;
       };
-      this.getContextAttributes = function() {
+      this.getContextAttributes = function () {
         return _gl.getContextAttributes();
       };
-      this.forceContextLoss = function() {
+      this.forceContextLoss = function () {
         const extension = extensions.get("WEBGL_lose_context");
         if (extension)
           extension.loseContext();
       };
-      this.forceContextRestore = function() {
+      this.forceContextRestore = function () {
         const extension = extensions.get("WEBGL_lose_context");
         if (extension)
           extension.restoreContext();
       };
-      this.getPixelRatio = function() {
+      this.getPixelRatio = function () {
         return _pixelRatio;
       };
-      this.setPixelRatio = function(value) {
+      this.setPixelRatio = function (value) {
         if (value === void 0)
           return;
         _pixelRatio = value;
         this.setSize(_width2, _height2, false);
       };
-      this.getSize = function(target) {
+      this.getSize = function (target) {
         return target.set(_width2, _height2);
       };
-      this.setSize = function(width, height, updateStyle = true) {
+      this.setSize = function (width, height, updateStyle = true) {
         if (xr.isPresenting) {
           console.warn("THREE.WebGLRenderer: Can't change size while VR device is presenting.");
           return;
@@ -29598,10 +29670,10 @@ void main() {
         }
         this.setViewport(0, 0, width, height);
       };
-      this.getDrawingBufferSize = function(target) {
+      this.getDrawingBufferSize = function (target) {
         return target.set(_width2 * _pixelRatio, _height2 * _pixelRatio).floor();
       };
-      this.setDrawingBufferSize = function(width, height, pixelRatio) {
+      this.setDrawingBufferSize = function (width, height, pixelRatio) {
         _width2 = width;
         _height2 = height;
         _pixelRatio = pixelRatio;
@@ -29609,13 +29681,13 @@ void main() {
         canvas.height = Math.floor(height * pixelRatio);
         this.setViewport(0, 0, width, height);
       };
-      this.getCurrentViewport = function(target) {
+      this.getCurrentViewport = function (target) {
         return target.copy(_currentViewport);
       };
-      this.getViewport = function(target) {
+      this.getViewport = function (target) {
         return target.copy(_viewport2);
       };
-      this.setViewport = function(x, y, width, height) {
+      this.setViewport = function (x, y, width, height) {
         if (x.isVector4) {
           _viewport2.set(x.x, x.y, x.z, x.w);
         } else {
@@ -29623,10 +29695,10 @@ void main() {
         }
         state.viewport(_currentViewport.copy(_viewport2).multiplyScalar(_pixelRatio).round());
       };
-      this.getScissor = function(target) {
+      this.getScissor = function (target) {
         return target.copy(_scissor);
       };
-      this.setScissor = function(x, y, width, height) {
+      this.setScissor = function (x, y, width, height) {
         if (x.isVector4) {
           _scissor.set(x.x, x.y, x.z, x.w);
         } else {
@@ -29634,31 +29706,31 @@ void main() {
         }
         state.scissor(_currentScissor.copy(_scissor).multiplyScalar(_pixelRatio).round());
       };
-      this.getScissorTest = function() {
+      this.getScissorTest = function () {
         return _scissorTest;
       };
-      this.setScissorTest = function(boolean) {
+      this.setScissorTest = function (boolean) {
         state.setScissorTest(_scissorTest = boolean);
       };
-      this.setOpaqueSort = function(method) {
+      this.setOpaqueSort = function (method) {
         _opaqueSort = method;
       };
-      this.setTransparentSort = function(method) {
+      this.setTransparentSort = function (method) {
         _transparentSort = method;
       };
-      this.getClearColor = function(target) {
+      this.getClearColor = function (target) {
         return target.copy(background.getClearColor());
       };
-      this.setClearColor = function() {
+      this.setClearColor = function () {
         background.setClearColor.apply(background, arguments);
       };
-      this.getClearAlpha = function() {
+      this.getClearAlpha = function () {
         return background.getClearAlpha();
       };
-      this.setClearAlpha = function() {
+      this.setClearAlpha = function () {
         background.setClearAlpha.apply(background, arguments);
       };
-      this.clear = function(color = true, depth2 = true, stencil2 = true) {
+      this.clear = function (color = true, depth2 = true, stencil2 = true) {
         let bits2 = 0;
         if (color) {
           let isIntegerFormat = false;
@@ -29700,16 +29772,16 @@ void main() {
         }
         _gl.clear(bits2);
       };
-      this.clearColor = function() {
+      this.clearColor = function () {
         this.clear(true, false, false);
       };
-      this.clearDepth = function() {
+      this.clearDepth = function () {
         this.clear(false, true, false);
       };
-      this.clearStencil = function() {
+      this.clearStencil = function () {
         this.clear(false, false, true);
       };
-      this.dispose = function() {
+      this.dispose = function () {
         canvas.removeEventListener("webglcontextlost", onContextLost, false);
         canvas.removeEventListener("webglcontextrestored", onContextRestore, false);
         canvas.removeEventListener("webglcontextcreationerror", onContextCreationError, false);
@@ -29763,7 +29835,7 @@ void main() {
       function releaseMaterialProgramReferences(material) {
         const programs = properties.get(material).programs;
         if (programs !== void 0) {
-          programs.forEach(function(program) {
+          programs.forEach(function (program) {
             programCache.releaseProgram(program);
           });
           if (material.isShaderMaterial) {
@@ -29771,7 +29843,7 @@ void main() {
           }
         }
       }
-      this.renderBufferDirect = function(camera, scene, geometry, material, object, group) {
+      this.renderBufferDirect = function (camera, scene, geometry, material, object, group) {
         if (scene === null)
           scene = _emptyScene;
         const frontFaceCW = object.isMesh && object.matrixWorld.determinant() < 0;
@@ -29876,13 +29948,13 @@ void main() {
           getProgram(material, scene, object);
         }
       }
-      this.compile = function(scene, camera, targetScene = null) {
+      this.compile = function (scene, camera, targetScene = null) {
         if (targetScene === null)
           targetScene = scene;
         currentRenderState = renderStates.get(targetScene);
         currentRenderState.init(camera);
         renderStateStack.push(currentRenderState);
-        targetScene.traverseVisible(function(object) {
+        targetScene.traverseVisible(function (object) {
           if (object.isLight && object.layers.test(camera.layers)) {
             currentRenderState.pushLight(object);
             if (object.castShadow) {
@@ -29891,7 +29963,7 @@ void main() {
           }
         });
         if (scene !== targetScene) {
-          scene.traverseVisible(function(object) {
+          scene.traverseVisible(function (object) {
             if (object.isLight && object.layers.test(camera.layers)) {
               currentRenderState.pushLight(object);
               if (object.castShadow) {
@@ -29902,7 +29974,7 @@ void main() {
         }
         currentRenderState.setupLights();
         const materials2 = /* @__PURE__ */ new Set();
-        scene.traverse(function(object) {
+        scene.traverse(function (object) {
           if (!(object.isMesh || object.isPoints || object.isLine || object.isSprite)) {
             return;
           }
@@ -29924,11 +29996,11 @@ void main() {
         currentRenderState = null;
         return materials2;
       };
-      this.compileAsync = function(scene, camera, targetScene = null) {
+      this.compileAsync = function (scene, camera, targetScene = null) {
         const materials2 = this.compile(scene, camera, targetScene);
         return new Promise((resolve) => {
           function checkMaterialsReady() {
-            materials2.forEach(function(material) {
+            materials2.forEach(function (material) {
               const materialProperties = properties.get(material);
               const program = materialProperties.currentProgram;
               if (program.isReady()) {
@@ -29963,14 +30035,14 @@ void main() {
       animation.setAnimationLoop(onAnimationFrame);
       if (typeof self !== "undefined")
         animation.setContext(self);
-      this.setAnimationLoop = function(callback) {
+      this.setAnimationLoop = function (callback) {
         onAnimationFrameCallback = callback;
         xr.setAnimationLoop(callback);
         callback === null ? animation.stop() : animation.start();
       };
       xr.addEventListener("sessionstart", onXRSessionStart);
       xr.addEventListener("sessionend", onXRSessionEnd);
-      this.render = function(scene, camera) {
+      this.render = function (scene, camera) {
         if (camera !== void 0 && camera.isCamera !== true) {
           console.error("THREE.WebGLRenderer.render: camera is not an instance of THREE.Camera.");
           return;
@@ -30555,16 +30627,16 @@ void main() {
       function materialNeedsLights(material) {
         return material.isMeshLambertMaterial || material.isMeshToonMaterial || material.isMeshPhongMaterial || material.isMeshStandardMaterial || material.isShadowMaterial || material.isShaderMaterial && material.lights === true;
       }
-      this.getActiveCubeFace = function() {
+      this.getActiveCubeFace = function () {
         return _currentActiveCubeFace;
       };
-      this.getActiveMipmapLevel = function() {
+      this.getActiveMipmapLevel = function () {
         return _currentActiveMipmapLevel;
       };
-      this.getRenderTarget = function() {
+      this.getRenderTarget = function () {
         return _currentRenderTarget;
       };
-      this.setRenderTargetTextures = function(renderTarget, colorTexture, depthTexture) {
+      this.setRenderTargetTextures = function (renderTarget, colorTexture, depthTexture) {
         properties.get(renderTarget.texture).__webglTexture = colorTexture;
         properties.get(renderTarget.depthTexture).__webglTexture = depthTexture;
         const renderTargetProperties = properties.get(renderTarget);
@@ -30577,13 +30649,13 @@ void main() {
           }
         }
       };
-      this.setRenderTargetFramebuffer = function(renderTarget, defaultFramebuffer) {
+      this.setRenderTargetFramebuffer = function (renderTarget, defaultFramebuffer) {
         const renderTargetProperties = properties.get(renderTarget);
         renderTargetProperties.__webglFramebuffer = defaultFramebuffer;
         renderTargetProperties.__useDefaultFramebuffer = defaultFramebuffer === void 0;
       };
       const _scratchFrameBuffer = _gl.createFramebuffer();
-      this.setRenderTarget = function(renderTarget, activeCubeFace = 0, activeMipmapLevel = 0) {
+      this.setRenderTarget = function (renderTarget, activeCubeFace = 0, activeMipmapLevel = 0) {
         _currentRenderTarget = renderTarget;
         _currentActiveCubeFace = activeCubeFace;
         _currentActiveMipmapLevel = activeMipmapLevel;
@@ -30661,7 +30733,7 @@ void main() {
         }
         _currentMaterialId = -1;
       };
-      this.readRenderTargetPixels = function(renderTarget, x, y, width, height, buffer, activeCubeFaceIndex) {
+      this.readRenderTargetPixels = function (renderTarget, x, y, width, height, buffer, activeCubeFaceIndex) {
         if (!(renderTarget && renderTarget.isWebGLRenderTarget)) {
           console.error("THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not THREE.WebGLRenderTarget.");
           return;
@@ -30693,7 +30765,7 @@ void main() {
           }
         }
       };
-      this.readRenderTargetPixelsAsync = async function(renderTarget, x, y, width, height, buffer, activeCubeFaceIndex) {
+      this.readRenderTargetPixelsAsync = async function (renderTarget, x, y, width, height, buffer, activeCubeFaceIndex) {
         if (!(renderTarget && renderTarget.isWebGLRenderTarget)) {
           throw new Error("THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not THREE.WebGLRenderTarget.");
         }
@@ -30732,7 +30804,7 @@ void main() {
           }
         }
       };
-      this.copyFramebufferToTexture = function(texture, position = null, level = 0) {
+      this.copyFramebufferToTexture = function (texture, position = null, level = 0) {
         if (texture.isTexture !== true) {
           warnOnce("WebGLRenderer: copyFramebufferToTexture function signature has changed.");
           position = arguments[0] || null;
@@ -30749,7 +30821,7 @@ void main() {
       };
       const _srcFramebuffer = _gl.createFramebuffer();
       const _dstFramebuffer = _gl.createFramebuffer();
-      this.copyTextureToTexture = function(srcTexture, dstTexture, srcRegion = null, dstPosition = null, srcLevel = 0, dstLevel = null) {
+      this.copyTextureToTexture = function (srcTexture, dstTexture, srcRegion = null, dstPosition = null, srcLevel = 0, dstLevel = null) {
         if (srcTexture.isTexture !== true) {
           warnOnce("WebGLRenderer: copyTextureToTexture function signature has changed.");
           dstPosition = arguments[0] || null;
@@ -30900,7 +30972,7 @@ void main() {
         }
         state.unbindTexture();
       };
-      this.copyTextureToTexture3D = function(srcTexture, dstTexture, srcRegion = null, dstPosition = null, level = 0) {
+      this.copyTextureToTexture3D = function (srcTexture, dstTexture, srcRegion = null, dstPosition = null, level = 0) {
         if (srcTexture.isTexture !== true) {
           warnOnce("WebGLRenderer: copyTextureToTexture3D function signature has changed.");
           srcRegion = arguments[0] || null;
@@ -30912,12 +30984,12 @@ void main() {
         warnOnce('WebGLRenderer: copyTextureToTexture3D function has been deprecated. Use "copyTextureToTexture" instead.');
         return this.copyTextureToTexture(srcTexture, dstTexture, srcRegion, dstPosition, level);
       };
-      this.initRenderTarget = function(target) {
+      this.initRenderTarget = function (target) {
         if (properties.get(target).__webglFramebuffer === void 0) {
           textures.setupRenderTarget(target);
         }
       };
-      this.initTexture = function(texture) {
+      this.initTexture = function (texture) {
         if (texture.isCubeTexture) {
           textures.setTextureCube(texture, 0);
         } else if (texture.isData3DTexture) {
@@ -30929,7 +31001,7 @@ void main() {
         }
         state.unbindTexture();
       };
-      this.resetState = function() {
+      this.resetState = function () {
         _currentActiveCubeFace = 0;
         _currentActiveMipmapLevel = 0;
         _currentRenderTarget = null;
@@ -31018,55 +31090,55 @@ void main() {
       this.ktx2Loader = null;
       this.meshoptDecoder = null;
       this.pluginCallbacks = [];
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsClearcoatExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsDispersionExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFTextureBasisUExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFTextureWebPExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFTextureAVIFExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsSheenExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsTransmissionExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsVolumeExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsIorExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsEmissiveStrengthExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsSpecularExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsIridescenceExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsAnisotropyExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMaterialsBumpExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFLightsExtension(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMeshoptCompression(parser);
       });
-      this.register(function(parser) {
+      this.register(function (parser) {
         return new GLTFMeshGpuInstancing(parser);
       });
     }
@@ -31082,7 +31154,7 @@ void main() {
         resourcePath = LoaderUtils.extractUrlBase(url);
       }
       this.manager.itemStart(url);
-      const _onError = function(e) {
+      const _onError = function (e) {
         if (onError) {
           onError(e);
         } else {
@@ -31096,9 +31168,9 @@ void main() {
       loader.setResponseType("arraybuffer");
       loader.setRequestHeader(this.requestHeader);
       loader.setWithCredentials(this.withCredentials);
-      loader.load(url, function(data) {
+      loader.load(url, function (data) {
         try {
-          scope.parse(data, resourcePath, function(gltf) {
+          scope.parse(data, resourcePath, function (gltf) {
             onLoad2(gltf);
             scope.manager.itemEnd(url);
           }, _onError);
@@ -31206,7 +31278,7 @@ void main() {
     }
     parseAsync(data, path) {
       const scope = this;
-      return new Promise(function(resolve, reject) {
+      return new Promise(function (resolve, reject) {
         scope.parse(data, path, resolve, reject);
       });
     }
@@ -31214,16 +31286,16 @@ void main() {
   function GLTFRegistry() {
     let objects = {};
     return {
-      get: function(key) {
+      get: function (key) {
         return objects[key];
       },
-      add: function(key, object) {
+      add: function (key, object) {
         objects[key] = object;
       },
-      remove: function(key) {
+      remove: function (key) {
         delete objects[key];
       },
-      removeAll: function() {
+      removeAll: function () {
         objects = {};
       }
     };
@@ -31330,7 +31402,7 @@ void main() {
       const lightIndex = lightDef.light;
       if (lightIndex === void 0)
         return null;
-      return this._loadLight(lightIndex).then(function(light) {
+      return this._loadLight(lightIndex).then(function (light) {
         return parser._getNodeRef(self2.cache, lightIndex, light);
       });
     }
@@ -31745,7 +31817,7 @@ void main() {
         if (handler !== null)
           loader = handler;
       }
-      return this.detectSupport().then(function(isSupported) {
+      return this.detectSupport().then(function (isSupported) {
         if (isSupported)
           return parser.loadTextureImage(textureIndex, extension.source, loader);
         if (json.extensionsRequired && json.extensionsRequired.indexOf(name) >= 0) {
@@ -31756,10 +31828,10 @@ void main() {
     }
     detectSupport() {
       if (!this.isSupported) {
-        this.isSupported = new Promise(function(resolve) {
+        this.isSupported = new Promise(function (resolve) {
           const image = new Image();
           image.src = "data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA";
-          image.onload = image.onerror = function() {
+          image.onload = image.onerror = function () {
             resolve(image.height === 1);
           };
         });
@@ -31789,7 +31861,7 @@ void main() {
         if (handler !== null)
           loader = handler;
       }
-      return this.detectSupport().then(function(isSupported) {
+      return this.detectSupport().then(function (isSupported) {
         if (isSupported)
           return parser.loadTextureImage(textureIndex, extension.source, loader);
         if (json.extensionsRequired && json.extensionsRequired.indexOf(name) >= 0) {
@@ -31800,10 +31872,10 @@ void main() {
     }
     detectSupport() {
       if (!this.isSupported) {
-        this.isSupported = new Promise(function(resolve) {
+        this.isSupported = new Promise(function (resolve) {
           const image = new Image();
           image.src = "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAABcAAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAEAAAABAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQAMAAAAABNjb2xybmNseAACAAIABoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAAB9tZGF0EgAKCBgABogQEDQgMgkQAAAAB8dSLfI=";
-          image.onload = image.onerror = function() {
+          image.onload = image.onerror = function () {
             resolve(image.height === 1);
           };
         });
@@ -31830,18 +31902,18 @@ void main() {
             return null;
           }
         }
-        return buffer.then(function(res) {
+        return buffer.then(function (res) {
           const byteOffset = extensionDef.byteOffset || 0;
           const byteLength = extensionDef.byteLength || 0;
           const count = extensionDef.count;
           const stride = extensionDef.byteStride;
           const source = new Uint8Array(res, byteOffset, byteLength);
           if (decoder.decodeGltfBufferAsync) {
-            return decoder.decodeGltfBufferAsync(count, stride, source, extensionDef.mode, extensionDef.filter).then(function(res2) {
+            return decoder.decodeGltfBufferAsync(count, stride, source, extensionDef.mode, extensionDef.filter).then(function (res2) {
               return res2.buffer;
             });
           } else {
-            return decoder.ready.then(function() {
+            return decoder.ready.then(function () {
               const result = new ArrayBuffer(count * stride);
               decoder.decodeGltfBuffer(new Uint8Array(result), count, stride, source, extensionDef.mode, extensionDef.filter);
               return result;
@@ -32001,9 +32073,9 @@ void main() {
           attributeNormalizedMap[threeAttributeName] = accessorDef.normalized === true;
         }
       }
-      return parser.getDependency("bufferView", bufferViewIndex).then(function(bufferView) {
-        return new Promise(function(resolve, reject) {
-          dracoLoader.decodeDracoFile(bufferView, function(geometry) {
+      return parser.getDependency("bufferView", bufferViewIndex).then(function (bufferView) {
+        return new Promise(function (resolve, reject) {
+          dracoLoader.decodeDracoFile(bufferView, function (geometry) {
             for (const attributeName in geometry.attributes) {
               const attribute = geometry.attributes[attributeName];
               const normalized = attributeNormalizedMap[attributeName];
@@ -32239,7 +32311,7 @@ void main() {
       Promise.all(pendingPositionAccessors),
       Promise.all(pendingNormalAccessors),
       Promise.all(pendingColorAccessors)
-    ]).then(function(accessors) {
+    ]).then(function (accessors) {
       const morphPositions = accessors[0];
       const morphNormals = accessors[1];
       const morphColors = accessors[2];
@@ -32372,18 +32444,18 @@ void main() {
       const extensions = this.extensions;
       this.cache.removeAll();
       this.nodeCache = {};
-      this._invokeAll(function(ext) {
+      this._invokeAll(function (ext) {
         return ext._markDefs && ext._markDefs();
       });
-      Promise.all(this._invokeAll(function(ext) {
+      Promise.all(this._invokeAll(function (ext) {
         return ext.beforeRoot && ext.beforeRoot();
-      })).then(function() {
+      })).then(function () {
         return Promise.all([
           parser.getDependencies("scene"),
           parser.getDependencies("animation"),
           parser.getDependencies("camera")
         ]);
-      }).then(function(dependencies) {
+      }).then(function (dependencies) {
         const result = {
           scene: dependencies[0][json.scene || 0],
           scenes: dependencies[0],
@@ -32395,9 +32467,9 @@ void main() {
         };
         addUnknownExtensionsToUserData(extensions, result, json);
         assignExtrasToUserData(result, json);
-        return Promise.all(parser._invokeAll(function(ext) {
+        return Promise.all(parser._invokeAll(function (ext) {
           return ext.afterRoot && ext.afterRoot(result);
-        })).then(function() {
+        })).then(function () {
           for (const scene of result.scenes) {
             scene.updateMatrixWorld();
           }
@@ -32483,12 +32555,12 @@ void main() {
             dependency = this.loadScene(index);
             break;
           case "node":
-            dependency = this._invokeOne(function(ext) {
+            dependency = this._invokeOne(function (ext) {
               return ext.loadNode && ext.loadNode(index);
             });
             break;
           case "mesh":
-            dependency = this._invokeOne(function(ext) {
+            dependency = this._invokeOne(function (ext) {
               return ext.loadMesh && ext.loadMesh(index);
             });
             break;
@@ -32496,7 +32568,7 @@ void main() {
             dependency = this.loadAccessor(index);
             break;
           case "bufferView":
-            dependency = this._invokeOne(function(ext) {
+            dependency = this._invokeOne(function (ext) {
               return ext.loadBufferView && ext.loadBufferView(index);
             });
             break;
@@ -32504,12 +32576,12 @@ void main() {
             dependency = this.loadBuffer(index);
             break;
           case "material":
-            dependency = this._invokeOne(function(ext) {
+            dependency = this._invokeOne(function (ext) {
               return ext.loadMaterial && ext.loadMaterial(index);
             });
             break;
           case "texture":
-            dependency = this._invokeOne(function(ext) {
+            dependency = this._invokeOne(function (ext) {
               return ext.loadTexture && ext.loadTexture(index);
             });
             break;
@@ -32517,7 +32589,7 @@ void main() {
             dependency = this.loadSkin(index);
             break;
           case "animation":
-            dependency = this._invokeOne(function(ext) {
+            dependency = this._invokeOne(function (ext) {
               return ext.loadAnimation && ext.loadAnimation(index);
             });
             break;
@@ -32525,7 +32597,7 @@ void main() {
             dependency = this.loadCamera(index);
             break;
           default:
-            dependency = this._invokeOne(function(ext) {
+            dependency = this._invokeOne(function (ext) {
               return ext != this && ext.getDependency && ext.getDependency(type, index);
             });
             if (!dependency) {
@@ -32542,7 +32614,7 @@ void main() {
       if (!dependencies) {
         const parser = this;
         const defs = this.json[type + (type === "mesh" ? "es" : "s")] || [];
-        dependencies = Promise.all(defs.map(function(def, index) {
+        dependencies = Promise.all(defs.map(function (def, index) {
           return parser.getDependency(type, index);
         }));
         this.cache.add(type, dependencies);
@@ -32559,15 +32631,15 @@ void main() {
         return Promise.resolve(this.extensions[EXTENSIONS.KHR_BINARY_GLTF].body);
       }
       const options = this.options;
-      return new Promise(function(resolve, reject) {
-        loader.load(LoaderUtils.resolveURL(bufferDef.uri, options.path), resolve, void 0, function() {
+      return new Promise(function (resolve, reject) {
+        loader.load(LoaderUtils.resolveURL(bufferDef.uri, options.path), resolve, void 0, function () {
           reject(new Error('THREE.GLTFLoader: Failed to load buffer "' + bufferDef.uri + '".'));
         });
       });
     }
     loadBufferView(bufferViewIndex) {
       const bufferViewDef = this.json.bufferViews[bufferViewIndex];
-      return this.getDependency("buffer", bufferViewDef.buffer).then(function(buffer) {
+      return this.getDependency("buffer", bufferViewDef.buffer).then(function (buffer) {
         const byteLength = bufferViewDef.byteLength || 0;
         const byteOffset = bufferViewDef.byteOffset || 0;
         return buffer.slice(byteOffset, byteOffset + byteLength);
@@ -32594,7 +32666,7 @@ void main() {
         pendingBufferViews.push(this.getDependency("bufferView", accessorDef.sparse.indices.bufferView));
         pendingBufferViews.push(this.getDependency("bufferView", accessorDef.sparse.values.bufferView));
       }
-      return Promise.all(pendingBufferViews).then(function(bufferViews) {
+      return Promise.all(pendingBufferViews).then(function (bufferViews) {
         const bufferView = bufferViews[0];
         const itemSize = WEBGL_TYPE_SIZES[accessorDef.type];
         const TypedArray = WEBGL_COMPONENT_TYPES[accessorDef.componentType];
@@ -32673,7 +32745,7 @@ void main() {
       if (this.textureCache[cacheKey]) {
         return this.textureCache[cacheKey];
       }
-      const promise = this.loadImageSource(sourceIndex, loader).then(function(texture) {
+      const promise = this.loadImageSource(sourceIndex, loader).then(function (texture) {
         texture.flipY = false;
         texture.name = textureDef.name || sourceDef.name || "";
         if (texture.name === "" && typeof sourceDef.uri === "string" && sourceDef.uri.startsWith("data:image/") === false) {
@@ -32688,7 +32760,7 @@ void main() {
         texture.generateMipmaps = !texture.isCompressedTexture && texture.minFilter !== NearestFilter && texture.minFilter !== LinearFilter;
         parser.associations.set(texture, { textures: textureIndex });
         return texture;
-      }).catch(function() {
+      }).catch(function () {
         return null;
       });
       this.textureCache[cacheKey] = promise;
@@ -32706,7 +32778,7 @@ void main() {
       let sourceURI = sourceDef.uri || "";
       let isObjectURL = false;
       if (sourceDef.bufferView !== void 0) {
-        sourceURI = parser.getDependency("bufferView", sourceDef.bufferView).then(function(bufferView) {
+        sourceURI = parser.getDependency("bufferView", sourceDef.bufferView).then(function (bufferView) {
           isObjectURL = true;
           const blob = new Blob([bufferView], { type: sourceDef.mimeType });
           sourceURI = URL2.createObjectURL(blob);
@@ -32715,11 +32787,11 @@ void main() {
       } else if (sourceDef.uri === void 0) {
         throw new Error("THREE.GLTFLoader: Image " + sourceIndex + " is missing URI and bufferView");
       }
-      const promise = Promise.resolve(sourceURI).then(function(sourceURI2) {
-        return new Promise(function(resolve, reject) {
+      const promise = Promise.resolve(sourceURI).then(function (sourceURI2) {
+        return new Promise(function (resolve, reject) {
           let onLoad2 = resolve;
           if (loader.isImageBitmapLoader === true) {
-            onLoad2 = function(imageBitmap) {
+            onLoad2 = function (imageBitmap) {
               const texture = new Texture(imageBitmap);
               texture.needsUpdate = true;
               resolve(texture);
@@ -32727,14 +32799,14 @@ void main() {
           }
           loader.load(LoaderUtils.resolveURL(sourceURI2, options.path), onLoad2, void 0, reject);
         });
-      }).then(function(texture) {
+      }).then(function (texture) {
         if (isObjectURL === true) {
           URL2.revokeObjectURL(sourceURI);
         }
         assignExtrasToUserData(texture, sourceDef);
         texture.userData.mimeType = sourceDef.mimeType || getImageURIMimeType(sourceDef.uri);
         return texture;
-      }).catch(function(error) {
+      }).catch(function (error) {
         console.error("THREE.GLTFLoader: Couldn't load texture", sourceURI);
         throw error;
       });
@@ -32743,7 +32815,7 @@ void main() {
     }
     assignTexture(materialParams, mapName, mapDef, colorSpace) {
       const parser = this;
-      return this.getDependency("texture", mapDef.index).then(function(texture) {
+      return this.getDependency("texture", mapDef.index).then(function (texture) {
         if (!texture)
           return null;
         if (mapDef.texCoord !== void 0 && mapDef.texCoord > 0) {
@@ -32857,10 +32929,10 @@ void main() {
           pending.push(parser.assignTexture(materialParams, "metalnessMap", metallicRoughness.metallicRoughnessTexture));
           pending.push(parser.assignTexture(materialParams, "roughnessMap", metallicRoughness.metallicRoughnessTexture));
         }
-        materialType = this._invokeOne(function(ext) {
+        materialType = this._invokeOne(function (ext) {
           return ext.getMaterialType && ext.getMaterialType(materialIndex);
         });
-        pending.push(Promise.all(this._invokeAll(function(ext) {
+        pending.push(Promise.all(this._invokeAll(function (ext) {
           return ext.extendMaterialParams && ext.extendMaterialParams(materialIndex, materialParams);
         })));
       }
@@ -32898,7 +32970,7 @@ void main() {
       if (materialDef.emissiveTexture !== void 0 && materialType !== MeshBasicMaterial) {
         pending.push(parser.assignTexture(materialParams, "emissiveMap", materialDef.emissiveTexture, SRGBColorSpace));
       }
-      return Promise.all(pending).then(function() {
+      return Promise.all(pending).then(function () {
         const material = new materialType(materialParams);
         if (materialDef.name)
           material.name = materialDef.name;
@@ -32923,7 +32995,7 @@ void main() {
       const extensions = this.extensions;
       const cache = this.primitiveCache;
       function createDracoPrimitive(primitive) {
-        return extensions[EXTENSIONS.KHR_DRACO_MESH_COMPRESSION].decodePrimitive(primitive, parser).then(function(geometry) {
+        return extensions[EXTENSIONS.KHR_DRACO_MESH_COMPRESSION].decodePrimitive(primitive, parser).then(function (geometry) {
           return addPrimitiveAttributes(geometry, primitive, parser);
         });
       }
@@ -32959,7 +33031,7 @@ void main() {
         pending.push(material);
       }
       pending.push(parser.loadGeometries(primitives));
-      return Promise.all(pending).then(function(results) {
+      return Promise.all(pending).then(function (results) {
         const materials = results.slice(0, results.length - 1);
         const geometries = results[results.length - 1];
         const meshes = [];
@@ -33049,7 +33121,7 @@ void main() {
       } else {
         pending.push(null);
       }
-      return Promise.all(pending).then(function(results) {
+      return Promise.all(pending).then(function (results) {
         const inverseBindMatrices = results.pop();
         const jointNodes = results;
         const bones = [];
@@ -33101,7 +33173,7 @@ void main() {
         Promise.all(pendingOutputAccessors),
         Promise.all(pendingSamplers),
         Promise.all(pendingTargets)
-      ]).then(function(dependencies) {
+      ]).then(function (dependencies) {
         const nodes = dependencies[0];
         const inputAccessors = dependencies[1];
         const outputAccessors = dependencies[2];
@@ -33135,10 +33207,10 @@ void main() {
       const nodeDef = json.nodes[nodeIndex];
       if (nodeDef.mesh === void 0)
         return null;
-      return parser.getDependency("mesh", nodeDef.mesh).then(function(mesh) {
+      return parser.getDependency("mesh", nodeDef.mesh).then(function (mesh) {
         const node = parser._getNodeRef(parser.meshCache, nodeDef.mesh, mesh);
         if (nodeDef.weights !== void 0) {
-          node.traverse(function(o) {
+          node.traverse(function (o) {
             if (!o.isMesh)
               return;
             for (let i = 0, il = nodeDef.weights.length; i < il; i++) {
@@ -33164,12 +33236,12 @@ void main() {
         nodePending,
         Promise.all(childPending),
         skeletonPending
-      ]).then(function(results) {
+      ]).then(function (results) {
         const node = results[0];
         const children = results[1];
         const skeleton = results[2];
         if (skeleton !== null) {
-          node.traverse(function(mesh) {
+          node.traverse(function (mesh) {
             if (!mesh.isSkinnedMesh)
               return;
             mesh.bind(skeleton, _identityMatrix2);
@@ -33191,23 +33263,23 @@ void main() {
       const nodeDef = json.nodes[nodeIndex];
       const nodeName = nodeDef.name ? parser.createUniqueName(nodeDef.name) : "";
       const pending = [];
-      const meshPromise = parser._invokeOne(function(ext) {
+      const meshPromise = parser._invokeOne(function (ext) {
         return ext.createNodeMesh && ext.createNodeMesh(nodeIndex);
       });
       if (meshPromise) {
         pending.push(meshPromise);
       }
       if (nodeDef.camera !== void 0) {
-        pending.push(parser.getDependency("camera", nodeDef.camera).then(function(camera) {
+        pending.push(parser.getDependency("camera", nodeDef.camera).then(function (camera) {
           return parser._getNodeRef(parser.cameraCache, nodeDef.camera, camera);
         }));
       }
-      parser._invokeAll(function(ext) {
+      parser._invokeAll(function (ext) {
         return ext.createNodeAttachment && ext.createNodeAttachment(nodeIndex);
-      }).forEach(function(promise) {
+      }).forEach(function (promise) {
         pending.push(promise);
       });
-      this.nodeCache[nodeIndex] = Promise.all(pending).then(function(objects) {
+      this.nodeCache[nodeIndex] = Promise.all(pending).then(function (objects) {
         let node;
         if (nodeDef.isBone === true) {
           node = new Bone();
@@ -33268,7 +33340,7 @@ void main() {
       for (let i = 0, il = nodeIds.length; i < il; i++) {
         pending.push(parser.getDependency("node", nodeIds[i]));
       }
-      return Promise.all(pending).then(function(nodes) {
+      return Promise.all(pending).then(function (nodes) {
         for (let i = 0, il = nodes.length; i < il; i++) {
           scene.add(nodes[i]);
         }
@@ -33296,7 +33368,7 @@ void main() {
       const targetName = node.name ? node.name : node.uuid;
       const targetNames = [];
       if (PATH_PROPERTIES[target.path] === PATH_PROPERTIES.weights) {
-        node.traverse(function(object) {
+        node.traverse(function (object) {
           if (object.morphTargetInfluences) {
             targetNames.push(object.name ? object.name : object.uuid);
           }
@@ -33425,7 +33497,7 @@ void main() {
     const attributes = primitiveDef.attributes;
     const pending = [];
     function assignAttributeAccessor(accessorIndex, attributeName) {
-      return parser.getDependency("accessor", accessorIndex).then(function(accessor) {
+      return parser.getDependency("accessor", accessorIndex).then(function (accessor) {
         geometry.setAttribute(attributeName, accessor);
       });
     }
@@ -33436,7 +33508,7 @@ void main() {
       pending.push(assignAttributeAccessor(attributes[gltfAttributeName], threeAttributeName));
     }
     if (primitiveDef.indices !== void 0 && !geometry.index) {
-      const accessor = parser.getDependency("accessor", primitiveDef.indices).then(function(accessor2) {
+      const accessor = parser.getDependency("accessor", primitiveDef.indices).then(function (accessor2) {
         geometry.setIndex(accessor2);
       });
       pending.push(accessor);
@@ -33446,7 +33518,7 @@ void main() {
     }
     assignExtrasToUserData(geometry, primitiveDef);
     computeBounds(geometry, primitiveDef, parser);
-    return Promise.all(pending).then(function() {
+    return Promise.all(pending).then(function () {
       return primitiveDef.targets !== void 0 ? addMorphTargets(geometry, primitiveDef.targets, parser) : geometry;
     });
   }
@@ -33624,7 +33696,7 @@ void main() {
           worker2._taskCosts = {};
           worker2._taskLoad = 0;
           worker2.postMessage({ type: "init", decoderConfig: this.decoderConfig });
-          worker2.onmessage = function(e) {
+          worker2.onmessage = function (e) {
             const message = e.data;
             switch (message.type) {
               case "decode":
@@ -33639,7 +33711,7 @@ void main() {
           };
           this.workerPool.push(worker2);
         } else {
-          this.workerPool.sort(function(a, b) {
+          this.workerPool.sort(function (a, b) {
             return a._taskLoad > b._taskLoad ? -1 : 1;
           });
         }
@@ -33671,13 +33743,13 @@ void main() {
   function DRACOWorker() {
     let decoderConfig;
     let decoderPending;
-    onmessage = function(e) {
+    onmessage = function (e) {
       const message = e.data;
       switch (message.type) {
         case "init":
           decoderConfig = message.decoderConfig;
-          decoderPending = new Promise(function(resolve) {
-            decoderConfig.onModuleLoaded = function(draco) {
+          decoderPending = new Promise(function (resolve) {
+            decoderConfig.onModuleLoaded = function (draco) {
               resolve({ draco });
             };
             DracoDecoderModule(decoderConfig);
@@ -33894,7 +33966,7 @@ void main() {
   var fleb = new u8([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 0, 0, 0]);
   var fdeb = new u8([0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 0, 0]);
   var clim = new u8([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
-  var freb = function(eb, start) {
+  var freb = function (eb, start) {
     var b = new u16(31);
     for (var i = 0; i < 31; ++i) {
       b[i] = start += 1 << eb[i - 1];
@@ -33923,7 +33995,7 @@ void main() {
   }
   var x;
   var i;
-  var hMap = function(cd, mb, r) {
+  var hMap = function (cd, mb, r) {
     var s = cd.length;
     var i = 0;
     var l = new u16(mb);
@@ -33978,7 +34050,7 @@ void main() {
   var i;
   var flrm = /* @__PURE__ */ hMap(flt, 9, 1);
   var fdrm = /* @__PURE__ */ hMap(fdt, 5, 1);
-  var max = function(a) {
+  var max = function (a) {
     var m = a[0];
     for (var i = 1; i < a.length; ++i) {
       if (a[i] > m)
@@ -33986,18 +34058,18 @@ void main() {
     }
     return m;
   };
-  var bits = function(d, p, m) {
+  var bits = function (d, p, m) {
     var o = p / 8 | 0;
     return (d[o] | d[o + 1] << 8) >> (p & 7) & m;
   };
-  var bits16 = function(d, p) {
+  var bits16 = function (d, p) {
     var o = p / 8 | 0;
     return (d[o] | d[o + 1] << 8 | d[o + 2] << 16) >> (p & 7);
   };
-  var shft = function(p) {
+  var shft = function (p) {
     return (p + 7) / 8 | 0;
   };
-  var slc = function(v, s, e) {
+  var slc = function (v, s, e) {
     if (s == null || s < 0)
       s = 0;
     if (e == null || e > v.length)
@@ -34020,7 +34092,7 @@ void main() {
     "stream finishing",
     "invalid zip data"
   ];
-  var err = function(ind, msg, nt) {
+  var err = function (ind, msg, nt) {
     var e = new Error(msg || ec[ind]);
     e.code = ind;
     if (Error.captureStackTrace)
@@ -34029,7 +34101,7 @@ void main() {
       throw e;
     return e;
   };
-  var inflt = function(dat, st, buf, dict) {
+  var inflt = function (dat, st, buf, dict) {
     var sl = dat.length, dl = dict ? dict.length : 0;
     if (!sl || st.f && !st.l)
       return buf || new u8(0);
@@ -34038,7 +34110,7 @@ void main() {
     var noSt = st.i;
     if (noBuf)
       buf = new u8(sl * 3);
-    var cbuf = function(l2) {
+    var cbuf = function (l2) {
       var bl = buf.length;
       if (l2 > bl) {
         var nbuf = new u8(Math.max(bl * 2, l2));
@@ -34079,7 +34151,7 @@ void main() {
           pos += hcLen * 3;
           var clb = max(clt), clbmsk = (1 << clb) - 1;
           var clm = hMap(clt, clb, 1);
-          for (var i = 0; i < tl; ) {
+          for (var i = 0; i < tl;) {
             var r = clm[bits(dat, pos, clbmsk)];
             pos += r & 15;
             var s = r >> 4;
@@ -34171,7 +34243,7 @@ void main() {
     return bt != buf.length && noBuf ? slc(buf, 0, bt) : buf.subarray(0, bt);
   };
   var et = /* @__PURE__ */ new u8(0);
-  var zls = function(d, dict) {
+  var zls = function (d, dict) {
     if ((d[0] & 15) != 8 || d[0] >> 4 > 7 || (d[0] << 8 | d[1]) % 31)
       err(6, "invalid zlib data");
     if ((d[1] >> 5 & 1) == +!dict)
@@ -35190,7 +35262,7 @@ void main() {
         offset2.value = offset2.value + INT8_SIZE;
         return Uint8;
       }
-      const parseInt64 = function(dataView, offset2) {
+      const parseInt64 = function (dataView, offset2) {
         let int;
         if ("getBigInt64" in DataView.prototype) {
           int = Number(dataView.getBigInt64(offset2.value, true));
@@ -35721,7 +35793,7 @@ void main() {
         e = _docEl3[p] != null ? _docEl3 : _body3;
       }
     }
-    return function() {
+    return function () {
       return e[p];
     };
   };
@@ -37677,16 +37749,688 @@ void main() {
     SplitText,
     ScrambleTextPlugin
   );
+  var SOLAIS_THEME_STORAGE_KEY = "solais-theme-customizer-v2";
+  var SOLAIS_SCENE_STORAGE_KEY = "solais-scene-customizer-v2";
+  var SOLAIS_ELEMENT_STORAGE_KEY = "solais-element-customizer-v2";
+  var SOLAIS_REMOTE_STATE_ENDPOINT = "/__theme-lab-state";
+  var SOLAIS_REMOTE_STATE_CACHE = {};
+  var SOLAIS_REMOTE_STATE_READY = false;
+  var SOLAIS_REMOTE_STATE_AVAILABLE = false;
+  var SOLAIS_REMOTE_STATE_PENDING_PATCH = null;
+  var SOLAIS_REMOTE_STATE_FLUSH_TIMER = 0;
+  var SOLAIS_REMOTE_STATE_IN_FLIGHT = Promise.resolve();
+  var SOLAIS_LOCAL_PREVIEW_RESET_PARAM = "resetSolaisLab";
+  var SOLAIS_ABOUT_FLOW_ACTIVE = true;
+  var SOLAIS_ELEMENT_ORIGINALS = /* @__PURE__ */ new WeakMap();
+  var SOLAIS_TRACKED_ELEMENTS = /* @__PURE__ */ new Set();
+  function shouldResetSolaisLocalPreviewState() {
+    if (typeof window === "undefined" || !window.location)
+      return false;
+    const host = window.location.hostname;
+    if (host !== "127.0.0.1" && host !== "localhost")
+      return false;
+    try {
+      return new URLSearchParams(window.location.search).has(SOLAIS_LOCAL_PREVIEW_RESET_PARAM);
+    } catch (error) {
+      return false;
+    }
+  }
+  function createDefaultSolaisThemeConfig() {
+    return {
+      baseFirst: "#C60000",
+      baseSecond: "#E3E3E3",
+      baseThird: "#8C0012",
+      accent: "#C60000",
+      siteBrown: "#C60000",
+      gridLineColor: "#FFFFFF",
+      gridOpacity: 0.4,
+      plusOpacity: 0.8,
+      clearColor: "#EEEEEE"
+    };
+  }
+  function normalizeSolaisHexColor(value, fallback) {
+    const rawValue = typeof value === "string" ? value.trim() : "";
+    if (!rawValue)
+      return fallback;
+    const prefixedValue = rawValue.startsWith("#") ? rawValue : `#${rawValue}`;
+    if (/^#[0-9a-fA-F]{3}$/.test(prefixedValue)) {
+      return `#${prefixedValue.slice(1).split("").map((char) => `${char}${char}`).join("")}`.toUpperCase();
+    }
+    if (/^#[0-9a-fA-F]{6}$/.test(prefixedValue)) {
+      return prefixedValue.toUpperCase();
+    }
+    return fallback;
+  }
+  function convertSolaisCssColorToHex(value, fallback = "#FFFFFF") {
+    try {
+      return `#${new Color(value).getHexString()}`.toUpperCase();
+    } catch (error) {
+      return fallback;
+    }
+  }
+  function cloneSolaisPersistedValue(value) {
+    if (value === void 0) {
+      return void 0;
+    }
+    return JSON.parse(JSON.stringify(value));
+  }
+  function readSolaisLocalJson(key, warningLabel) {
+    try {
+      const storedValue = window.localStorage.getItem(key);
+      if (!storedValue)
+        return null;
+      return JSON.parse(storedValue);
+    } catch (error) {
+      console.warn(`Unable to read stored ${warningLabel}:`, error);
+      return null;
+    }
+  }
+  function writeSolaisLocalJson(key, value, warningLabel) {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.warn(`Unable to store ${warningLabel}:`, error);
+    }
+  }
+  function clearSolaisLocalJson(key, warningLabel) {
+    try {
+      window.localStorage.removeItem(key);
+    } catch (error) {
+      console.warn(`Unable to clear ${warningLabel}:`, error);
+    }
+  }
+  function readRemoteSolaisSection(section) {
+    if (!SOLAIS_REMOTE_STATE_READY || !SOLAIS_REMOTE_STATE_CACHE || !Object.prototype.hasOwnProperty.call(SOLAIS_REMOTE_STATE_CACHE, section)) {
+      return void 0;
+    }
+    return cloneSolaisPersistedValue(SOLAIS_REMOTE_STATE_CACHE[section]);
+  }
+  function syncSolaisLocalSection(key, value, warningLabel) {
+    if (value === null || value === void 0) {
+      clearSolaisLocalJson(key, warningLabel);
+      return;
+    }
+    writeSolaisLocalJson(key, value, warningLabel);
+  }
+  function mergeSolaisRemotePatch(patch) {
+    const normalizedPatch = cloneSolaisPersistedValue(patch);
+    if (!normalizedPatch || typeof normalizedPatch !== "object") {
+      return;
+    }
+    SOLAIS_REMOTE_STATE_CACHE = {
+      ...SOLAIS_REMOTE_STATE_CACHE,
+      ...normalizedPatch
+    };
+    SOLAIS_REMOTE_STATE_PENDING_PATCH = {
+      ...(SOLAIS_REMOTE_STATE_PENDING_PATCH || {}),
+      ...normalizedPatch
+    };
+  }
+  function flushSolaisRemoteState(useBeacon = false) {
+    if (!SOLAIS_REMOTE_STATE_AVAILABLE || !SOLAIS_REMOTE_STATE_READY || !SOLAIS_REMOTE_STATE_PENDING_PATCH) {
+      return Promise.resolve(false);
+    }
+    const patch = SOLAIS_REMOTE_STATE_PENDING_PATCH;
+    SOLAIS_REMOTE_STATE_PENDING_PATCH = null;
+    if (useBeacon && navigator.sendBeacon) {
+      const beaconQueued = navigator.sendBeacon(
+        SOLAIS_REMOTE_STATE_ENDPOINT,
+        new Blob([JSON.stringify(patch)], { type: "application/json" })
+      );
+      if (beaconQueued) {
+        return Promise.resolve(true);
+      }
+    }
+    SOLAIS_REMOTE_STATE_IN_FLIGHT = SOLAIS_REMOTE_STATE_IN_FLIGHT.catch(() => {
+    }).then(async () => {
+      const response = await fetch(SOLAIS_REMOTE_STATE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(patch),
+        keepalive: true
+      });
+      if (!response.ok) {
+        throw new Error(`Request failed with ${response.status}`);
+      }
+      return response.json().catch(() => null);
+    }).catch((error) => {
+      SOLAIS_REMOTE_STATE_AVAILABLE = false;
+      SOLAIS_REMOTE_STATE_PENDING_PATCH = {
+        ...(SOLAIS_REMOTE_STATE_PENDING_PATCH || {}),
+        ...patch
+      };
+      console.warn("Unable to persist Solais state file:", error);
+      return null;
+    });
+    return SOLAIS_REMOTE_STATE_IN_FLIGHT.then(() => true);
+  }
+  function scheduleSolaisRemoteStateFlush() {
+    if (!SOLAIS_REMOTE_STATE_AVAILABLE || !SOLAIS_REMOTE_STATE_READY) {
+      return;
+    }
+    if (SOLAIS_REMOTE_STATE_FLUSH_TIMER) {
+      window.clearTimeout(SOLAIS_REMOTE_STATE_FLUSH_TIMER);
+    }
+    SOLAIS_REMOTE_STATE_FLUSH_TIMER = window.setTimeout(() => {
+      SOLAIS_REMOTE_STATE_FLUSH_TIMER = 0;
+      void flushSolaisRemoteState();
+    }, 200);
+  }
+  async function hydrateSolaisRemoteState() {
+    const localThemeConfig = readSolaisLocalJson(SOLAIS_THEME_STORAGE_KEY, "Solais theme config");
+    const localSceneConfig = readSolaisLocalJson(SOLAIS_SCENE_STORAGE_KEY, "Solais scene config");
+    const localElementState = readSolaisLocalJson(SOLAIS_ELEMENT_STORAGE_KEY, "Solais element state");
+    let remoteState = {};
+    try {
+      const response = await fetch(SOLAIS_REMOTE_STATE_ENDPOINT, {
+        cache: "no-store"
+      });
+      if (!response.ok) {
+        throw new Error(`Request failed with ${response.status}`);
+      }
+      const payload = await response.json();
+      remoteState = payload && typeof payload.state === "object" && payload.state ? payload.state : {};
+      SOLAIS_REMOTE_STATE_AVAILABLE = true;
+    } catch (error) {
+      SOLAIS_REMOTE_STATE_AVAILABLE = false;
+      remoteState = {};
+      console.warn("Unable to hydrate Solais state file, falling back to localStorage:", error);
+    }
+    SOLAIS_REMOTE_STATE_CACHE = remoteState && typeof remoteState === "object" ? remoteState : {};
+    const seedPatch = {};
+    if (Object.prototype.hasOwnProperty.call(SOLAIS_REMOTE_STATE_CACHE, "themeConfig")) {
+      syncSolaisLocalSection(SOLAIS_THEME_STORAGE_KEY, SOLAIS_REMOTE_STATE_CACHE.themeConfig, "Solais theme config");
+    } else if (localThemeConfig !== null) {
+      SOLAIS_REMOTE_STATE_CACHE.themeConfig = cloneSolaisPersistedValue(localThemeConfig);
+      seedPatch.themeConfig = cloneSolaisPersistedValue(localThemeConfig);
+    }
+    if (Object.prototype.hasOwnProperty.call(SOLAIS_REMOTE_STATE_CACHE, "sceneConfig")) {
+      syncSolaisLocalSection(SOLAIS_SCENE_STORAGE_KEY, SOLAIS_REMOTE_STATE_CACHE.sceneConfig, "Solais scene config");
+    } else if (localSceneConfig !== null) {
+      SOLAIS_REMOTE_STATE_CACHE.sceneConfig = cloneSolaisPersistedValue(localSceneConfig);
+      seedPatch.sceneConfig = cloneSolaisPersistedValue(localSceneConfig);
+    }
+    if (Object.prototype.hasOwnProperty.call(SOLAIS_REMOTE_STATE_CACHE, "elementState")) {
+      syncSolaisLocalSection(SOLAIS_ELEMENT_STORAGE_KEY, SOLAIS_REMOTE_STATE_CACHE.elementState, "Solais element state");
+    } else if (localElementState !== null) {
+      SOLAIS_REMOTE_STATE_CACHE.elementState = cloneSolaisPersistedValue(localElementState);
+      seedPatch.elementState = cloneSolaisPersistedValue(localElementState);
+    }
+    SOLAIS_REMOTE_STATE_READY = true;
+    if (SOLAIS_REMOTE_STATE_AVAILABLE && Object.keys(seedPatch).length) {
+      mergeSolaisRemotePatch(seedPatch);
+      await flushSolaisRemoteState();
+    }
+  }
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "hidden") {
+      return;
+    }
+    if (SOLAIS_REMOTE_STATE_FLUSH_TIMER) {
+      window.clearTimeout(SOLAIS_REMOTE_STATE_FLUSH_TIMER);
+      SOLAIS_REMOTE_STATE_FLUSH_TIMER = 0;
+    }
+    void flushSolaisRemoteState(true);
+  });
+  window.addEventListener("beforeunload", () => {
+    if (SOLAIS_REMOTE_STATE_FLUSH_TIMER) {
+      window.clearTimeout(SOLAIS_REMOTE_STATE_FLUSH_TIMER);
+      SOLAIS_REMOTE_STATE_FLUSH_TIMER = 0;
+    }
+    void flushSolaisRemoteState(true);
+  });
+  function normalizeSolaisThemeNumber(value, fallback, min = 0, max = 1) {
+    const parsedValue = typeof value === "number" ? value : Number.parseFloat(value);
+    if (!Number.isFinite(parsedValue))
+      return fallback;
+    return Math.min(max, Math.max(min, parsedValue));
+  }
+  function normalizeSolaisThemeConfig(overrides = {}, baseConfig = createDefaultSolaisThemeConfig()) {
+    return {
+      baseFirst: normalizeSolaisHexColor(overrides.baseFirst, baseConfig.baseFirst),
+      baseSecond: normalizeSolaisHexColor(overrides.baseSecond, baseConfig.baseSecond),
+      baseThird: normalizeSolaisHexColor(overrides.baseThird, baseConfig.baseThird),
+      accent: normalizeSolaisHexColor(overrides.accent, baseConfig.accent),
+      siteBrown: normalizeSolaisHexColor(overrides.siteBrown, baseConfig.siteBrown),
+      gridLineColor: normalizeSolaisHexColor(overrides.gridLineColor, baseConfig.gridLineColor),
+      gridOpacity: normalizeSolaisThemeNumber(overrides.gridOpacity, baseConfig.gridOpacity),
+      plusOpacity: normalizeSolaisThemeNumber(overrides.plusOpacity, baseConfig.plusOpacity),
+      clearColor: normalizeSolaisHexColor(overrides.clearColor, baseConfig.clearColor)
+    };
+  }
+  function readStoredSolaisThemeConfig() {
+    const remoteValue = readRemoteSolaisSection("themeConfig");
+    if (remoteValue !== void 0) {
+      return remoteValue;
+    }
+    return readSolaisLocalJson(SOLAIS_THEME_STORAGE_KEY, "Solais theme config");
+  }
+  function writeStoredSolaisThemeConfig(themeConfig) {
+    writeSolaisLocalJson(
+      SOLAIS_THEME_STORAGE_KEY,
+      themeConfig,
+      "Solais theme config"
+    );
+    mergeSolaisRemotePatch({ themeConfig });
+    scheduleSolaisRemoteStateFlush();
+  }
+  function clearStoredSolaisThemeConfig() {
+    clearSolaisLocalJson(SOLAIS_THEME_STORAGE_KEY, "Solais theme config");
+    mergeSolaisRemotePatch({ themeConfig: null });
+    scheduleSolaisRemoteStateFlush();
+  }
+  function applySolaisCssThemeConfig(themeConfig) {
+    const root = document.documentElement;
+    if (!root)
+      return;
+    root.style.setProperty("--color-brown", themeConfig.siteBrown);
+    root.style.setProperty(
+      "--color-brownTransparent",
+      `${themeConfig.siteBrown}00`
+    );
+  }
+  function buildSolaisThemeCode(themeConfig) {
+    return [
+      "// style.css",
+      `--color-brown: ${themeConfig.siteBrown};`,
+      `--color-brownTransparent: ${themeConfig.siteBrown}00;`,
+      "",
+      "// site.js",
+      `this.renderer.setClearColor("${themeConfig.clearColor}", 1);`,
+      `this.baseFirst = new Color("${themeConfig.baseFirst}");`,
+      `this.baseSecond = new Color("${themeConfig.baseSecond}");`,
+      `this.baseThird = new Color("${themeConfig.baseThird}");`,
+      `this.accent = new Color("${themeConfig.accent}");`,
+      `lineColor: { value: new Color("${themeConfig.gridLineColor}") },`,
+      `gridOpacity: { value: ${themeConfig.gridOpacity.toFixed(2)} },`,
+      `plusOpacity: { value: ${themeConfig.plusOpacity.toFixed(2)} },`
+    ].join("\n");
+  }
+  function copySolaisThemeText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise((resolve, reject) => {
+      try {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        textarea.style.pointerEvents = "none";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        textarea.remove();
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+  function degreesToRadians(degrees) {
+    return degrees * Math.PI / 180;
+  }
+  function normalizeSolaisTokenHighlightOrder(value, fallback = "1,3,5") {
+    const rawValue = Array.isArray(value) ? value.join(",") : typeof value === "string" ? value : "";
+    const parsedValues = rawValue.split(",").map((part) => Number.parseInt(part.trim(), 10)).filter((part) => Number.isFinite(part) && part >= 0);
+    if (!parsedValues.length)
+      return fallback;
+    return Array.from(new Set(parsedValues)).slice(0, 6).join(",");
+  }
+  function parseSolaisTokenHighlightOrder(value, fallback = [1, 3, 5]) {
+    const normalizedValue = normalizeSolaisTokenHighlightOrder(value, fallback.join(","));
+    const parsedValues = normalizedValue.split(",").map((part) => Number.parseInt(part.trim(), 10)).filter((part) => Number.isFinite(part) && part >= 0);
+    return parsedValues.length ? parsedValues : fallback;
+  }
+  function createDefaultSolaisSceneConfig() {
+    return {
+      cameraX: 0,
+      cameraY: 0.2,
+      cameraZ: 1.3,
+      cameraRotXDeg: 0,
+      cameraRotYDeg: 0,
+      cameraRotZDeg: 0,
+      lightIntensity: 5,
+      modelScale: 0.65,
+      modelPosY: 0.25,
+      modelRotXDeg: -11.25,
+      modelRotYDeg: -102.86,
+      modelRotZDeg: 11.25,
+      buttonScale: 1,
+      buttonPosX: 0,
+      buttonPosY: -24,
+      buttonPosZ: -1,
+      buttonRotXDeg: 0,
+      buttonRotYDeg: -90,
+      buttonRotZDeg: 0,
+      tokenBaseScale: 3,
+      tokenActiveScale: 3,
+      orbitSpeed: 5,
+      tokenOrbitRadiusScale: 1,
+      tokenOrbitSpread: 0.6,
+      tokenLandingOffsetY: 0,
+      tokenCycleDuration: 4,
+      tokenRevealDuration: 0.9,
+      tokenRevealStagger: 0.02,
+      tokenOrbitBlendDuration: 0.55,
+      tokenDropStartY: 6,
+      tokenLineWidth: 1.25,
+      tokenLineColor: "#FFFFFF",
+      tokenHighlightOrder: "1,3,5",
+      tokenBoostFactor: 40,
+      tokenActiveBoost: 3,
+      speedLineBaseSpeed: 1,
+      floatingRotationAmount: 0.2,
+      floatingPositionAmount: 0.05,
+      floatingSpeed: 1
+    };
+  }
+  function normalizeSolaisSceneConfig(overrides = {}, baseConfig = createDefaultSolaisSceneConfig()) {
+    return {
+      cameraX: normalizeSolaisThemeNumber(overrides.cameraX, baseConfig.cameraX, -20, 20),
+      cameraY: normalizeSolaisThemeNumber(overrides.cameraY, baseConfig.cameraY, -40, 20),
+      cameraZ: normalizeSolaisThemeNumber(overrides.cameraZ, baseConfig.cameraZ, -20, 20),
+      cameraRotXDeg: normalizeSolaisThemeNumber(overrides.cameraRotXDeg, baseConfig.cameraRotXDeg, -180, 180),
+      cameraRotYDeg: normalizeSolaisThemeNumber(overrides.cameraRotYDeg, baseConfig.cameraRotYDeg, -180, 180),
+      cameraRotZDeg: normalizeSolaisThemeNumber(overrides.cameraRotZDeg, baseConfig.cameraRotZDeg, -180, 180),
+      lightIntensity: normalizeSolaisThemeNumber(overrides.lightIntensity, baseConfig.lightIntensity, 0, 20),
+      modelScale: normalizeSolaisThemeNumber(overrides.modelScale, baseConfig.modelScale, 0.05, 8),
+      modelPosY: normalizeSolaisThemeNumber(overrides.modelPosY, baseConfig.modelPosY, -10, 10),
+      modelRotXDeg: normalizeSolaisThemeNumber(overrides.modelRotXDeg, baseConfig.modelRotXDeg, -180, 180),
+      modelRotYDeg: normalizeSolaisThemeNumber(overrides.modelRotYDeg, baseConfig.modelRotYDeg, -180, 180),
+      modelRotZDeg: normalizeSolaisThemeNumber(overrides.modelRotZDeg, baseConfig.modelRotZDeg, -180, 180),
+      buttonScale: normalizeSolaisThemeNumber(overrides.buttonScale, baseConfig.buttonScale, 0.05, 10),
+      buttonPosX: normalizeSolaisThemeNumber(overrides.buttonPosX, baseConfig.buttonPosX, -20, 20),
+      buttonPosY: normalizeSolaisThemeNumber(overrides.buttonPosY, baseConfig.buttonPosY, -40, 20),
+      buttonPosZ: normalizeSolaisThemeNumber(overrides.buttonPosZ, baseConfig.buttonPosZ, -20, 20),
+      buttonRotXDeg: normalizeSolaisThemeNumber(overrides.buttonRotXDeg, baseConfig.buttonRotXDeg, -180, 180),
+      buttonRotYDeg: normalizeSolaisThemeNumber(overrides.buttonRotYDeg, baseConfig.buttonRotYDeg, -180, 180),
+      buttonRotZDeg: normalizeSolaisThemeNumber(overrides.buttonRotZDeg, baseConfig.buttonRotZDeg, -180, 180),
+      tokenBaseScale: normalizeSolaisThemeNumber(overrides.tokenBaseScale, baseConfig.tokenBaseScale, 0.1, 8),
+      tokenActiveScale: normalizeSolaisThemeNumber(overrides.tokenActiveScale, baseConfig.tokenActiveScale, 0.1, 12),
+      orbitSpeed: normalizeSolaisThemeNumber(overrides.orbitSpeed, baseConfig.orbitSpeed, 0, 8),
+      tokenOrbitRadiusScale: normalizeSolaisThemeNumber(overrides.tokenOrbitRadiusScale, baseConfig.tokenOrbitRadiusScale, 0.2, 4),
+      tokenOrbitSpread: normalizeSolaisThemeNumber(overrides.tokenOrbitSpread, baseConfig.tokenOrbitSpread, 0, 6),
+      tokenLandingOffsetY: normalizeSolaisThemeNumber(overrides.tokenLandingOffsetY, baseConfig.tokenLandingOffsetY, -10, 10),
+      tokenCycleDuration: normalizeSolaisThemeNumber(overrides.tokenCycleDuration, baseConfig.tokenCycleDuration, 0.5, 20),
+      tokenRevealDuration: normalizeSolaisThemeNumber(overrides.tokenRevealDuration, baseConfig.tokenRevealDuration, 0.1, 5),
+      tokenRevealStagger: normalizeSolaisThemeNumber(overrides.tokenRevealStagger, baseConfig.tokenRevealStagger, 0, 1),
+      tokenOrbitBlendDuration: normalizeSolaisThemeNumber(overrides.tokenOrbitBlendDuration, baseConfig.tokenOrbitBlendDuration, 0.1, 5),
+      tokenDropStartY: normalizeSolaisThemeNumber(overrides.tokenDropStartY, baseConfig.tokenDropStartY, 0, 20),
+      tokenLineWidth: normalizeSolaisThemeNumber(overrides.tokenLineWidth, baseConfig.tokenLineWidth, 0.1, 8),
+      tokenLineColor: normalizeSolaisHexColor(overrides.tokenLineColor, baseConfig.tokenLineColor),
+      tokenHighlightOrder: normalizeSolaisTokenHighlightOrder(overrides.tokenHighlightOrder, baseConfig.tokenHighlightOrder),
+      tokenBoostFactor: normalizeSolaisThemeNumber(overrides.tokenBoostFactor, baseConfig.tokenBoostFactor, 0, 100),
+      tokenActiveBoost: normalizeSolaisThemeNumber(overrides.tokenActiveBoost, baseConfig.tokenActiveBoost, 0, 100),
+      speedLineBaseSpeed: normalizeSolaisThemeNumber(overrides.speedLineBaseSpeed, baseConfig.speedLineBaseSpeed, 0, 6),
+      floatingRotationAmount: normalizeSolaisThemeNumber(overrides.floatingRotationAmount, baseConfig.floatingRotationAmount, 0, 2),
+      floatingPositionAmount: normalizeSolaisThemeNumber(overrides.floatingPositionAmount, baseConfig.floatingPositionAmount, 0, 2),
+      floatingSpeed: normalizeSolaisThemeNumber(overrides.floatingSpeed, baseConfig.floatingSpeed, 0.1, 6)
+    };
+  }
+  function readStoredSolaisSceneConfig() {
+    const remoteValue = readRemoteSolaisSection("sceneConfig");
+    if (remoteValue !== void 0) {
+      return remoteValue;
+    }
+    return readSolaisLocalJson(SOLAIS_SCENE_STORAGE_KEY, "Solais scene config");
+  }
+  function writeStoredSolaisSceneConfig(sceneConfig) {
+    writeSolaisLocalJson(
+      SOLAIS_SCENE_STORAGE_KEY,
+      sceneConfig,
+      "Solais scene config"
+    );
+    mergeSolaisRemotePatch({ sceneConfig });
+    scheduleSolaisRemoteStateFlush();
+  }
+  function clearStoredSolaisSceneConfig() {
+    clearSolaisLocalJson(SOLAIS_SCENE_STORAGE_KEY, "Solais scene config");
+    mergeSolaisRemotePatch({ sceneConfig: null });
+    scheduleSolaisRemoteStateFlush();
+  }
+  function normalizeOptionalSolaisNumber(value, min = -1e4, max = 1e4) {
+    if (value === null || value === void 0 || value === "")
+      return null;
+    const parsedValue = typeof value === "number" ? value : Number.parseFloat(value);
+    if (!Number.isFinite(parsedValue))
+      return null;
+    return Math.min(max, Math.max(min, parsedValue));
+  }
+  function normalizeOptionalSolaisString(value) {
+    if (typeof value !== "string")
+      return "";
+    return value;
+  }
+  function normalizeOptionalSolaisHexColor(value) {
+    if (!value)
+      return "";
+    return normalizeSolaisHexColor(value, "");
+  }
+  function createDefaultSolaisElementState() {
+    return {
+      selectedSelector: "",
+      items: {}
+    };
+  }
+  function normalizeSolaisElementOverride(override = {}) {
+    return {
+      textContent: normalizeOptionalSolaisString(override.textContent),
+      color: normalizeOptionalSolaisHexColor(override.color),
+      backgroundColor: normalizeOptionalSolaisHexColor(override.backgroundColor),
+      fontSize: normalizeOptionalSolaisNumber(override.fontSize, 8, 320),
+      fontWeight: normalizeOptionalSolaisNumber(override.fontWeight, 100, 900),
+      letterSpacing: normalizeOptionalSolaisNumber(override.letterSpacing, -20, 40),
+      lineHeight: normalizeOptionalSolaisNumber(override.lineHeight, 0.6, 4),
+      opacity: normalizeOptionalSolaisNumber(override.opacity, 0, 1),
+      borderRadius: normalizeOptionalSolaisNumber(override.borderRadius, 0, 240),
+      translateX: normalizeOptionalSolaisNumber(override.translateX, -2e3, 2e3),
+      translateY: normalizeOptionalSolaisNumber(override.translateY, -2e3, 2e3),
+      scale: normalizeOptionalSolaisNumber(override.scale, 0.1, 10)
+    };
+  }
+  function normalizeSolaisElementState(rawState = {}) {
+    const nextState = createDefaultSolaisElementState();
+    if (typeof rawState.selectedSelector === "string") {
+      nextState.selectedSelector = rawState.selectedSelector;
+    }
+    if (rawState.items && typeof rawState.items === "object") {
+      Object.entries(rawState.items).forEach(([selector, override]) => {
+        if (typeof selector === "string" && selector.trim()) {
+          nextState.items[selector] = normalizeSolaisElementOverride(override);
+        }
+      });
+    }
+    return nextState;
+  }
+  function readStoredSolaisElementState() {
+    const remoteValue = readRemoteSolaisSection("elementState");
+    if (remoteValue !== void 0) {
+      return remoteValue;
+    }
+    return readSolaisLocalJson(SOLAIS_ELEMENT_STORAGE_KEY, "Solais element state");
+  }
+  function writeStoredSolaisElementState(elementState) {
+    writeSolaisLocalJson(
+      SOLAIS_ELEMENT_STORAGE_KEY,
+      elementState,
+      "Solais element state"
+    );
+    mergeSolaisRemotePatch({ elementState });
+    scheduleSolaisRemoteStateFlush();
+  }
+  function clearStoredSolaisElementState() {
+    clearSolaisLocalJson(SOLAIS_ELEMENT_STORAGE_KEY, "Solais element state");
+    mergeSolaisRemotePatch({ elementState: null });
+    scheduleSolaisRemoteStateFlush();
+  }
+  function resetSolaisStoredStateForLocalPreview() {
+    if (!shouldResetSolaisLocalPreviewState())
+      return;
+    clearStoredSolaisThemeConfig();
+    clearStoredSolaisSceneConfig();
+    clearStoredSolaisElementState();
+  }
+  function getSolaisElementStyleSnapshot(element) {
+    return {
+      color: element.style.color || "",
+      backgroundColor: element.style.backgroundColor || "",
+      fontSize: element.style.fontSize || "",
+      fontWeight: element.style.fontWeight || "",
+      letterSpacing: element.style.letterSpacing || "",
+      lineHeight: element.style.lineHeight || "",
+      opacity: element.style.opacity || "",
+      borderRadius: element.style.borderRadius || "",
+      transform: element.style.transform || ""
+    };
+  }
+  function ensureSolaisElementOriginal(element) {
+    if (!element || SOLAIS_ELEMENT_ORIGINALS.has(element))
+      return SOLAIS_ELEMENT_ORIGINALS.get(element);
+    const originalState = {
+      innerHTML: element.innerHTML,
+      inlineStyle: getSolaisElementStyleSnapshot(element),
+      computedTransform: window.getComputedStyle(element).transform
+    };
+    SOLAIS_TRACKED_ELEMENTS.add(element);
+    SOLAIS_ELEMENT_ORIGINALS.set(element, originalState);
+    return originalState;
+  }
+  function restoreSolaisElementOriginal(element) {
+    const originalState = SOLAIS_ELEMENT_ORIGINALS.get(element);
+    if (!originalState)
+      return;
+    element.innerHTML = originalState.innerHTML;
+    Object.assign(element.style, originalState.inlineStyle);
+  }
+  function hasSolaisElementTransformOverride(override) {
+    return [override.translateX, override.translateY, override.scale].some((value) => value !== null) || override.scale !== null;
+  }
+  function buildSolaisElementTransform(override, originalState) {
+    const transforms = [];
+    if (originalState?.computedTransform && originalState.computedTransform !== "none") {
+      transforms.push(originalState.computedTransform);
+    }
+    if (override.translateX !== null) {
+      transforms.push(`translateX(${override.translateX}px)`);
+    }
+    if (override.translateY !== null) {
+      transforms.push(`translateY(${override.translateY}px)`);
+    }
+    if (override.scale !== null) {
+      transforms.push(`scale(${override.scale})`);
+    }
+    return transforms.join(" ").trim();
+  }
+  function applySolaisElementOverride(element, override) {
+    if (!element)
+      return;
+    const originalState = ensureSolaisElementOriginal(element);
+    restoreSolaisElementOriginal(element);
+    if (override.textContent) {
+      element.textContent = override.textContent;
+    }
+    if (override.color) {
+      element.style.color = override.color;
+    }
+    if (override.backgroundColor) {
+      element.style.backgroundColor = override.backgroundColor;
+    }
+    if (override.fontSize !== null) {
+      element.style.fontSize = `${override.fontSize}px`;
+    }
+    if (override.fontWeight !== null) {
+      element.style.fontWeight = `${override.fontWeight}`;
+    }
+    if (override.letterSpacing !== null) {
+      element.style.letterSpacing = `${override.letterSpacing}px`;
+    }
+    if (override.lineHeight !== null) {
+      element.style.lineHeight = `${override.lineHeight}`;
+    }
+    if (override.opacity !== null) {
+      element.style.opacity = `${override.opacity}`;
+    }
+    if (override.borderRadius !== null) {
+      element.style.borderRadius = `${override.borderRadius}px`;
+    }
+    const transformValue = buildSolaisElementTransform(override, originalState);
+    if (transformValue) {
+      element.style.transform = transformValue;
+    }
+  }
+  function applySolaisElementStateToDocument(elementState) {
+    Object.entries(elementState.items || {}).forEach(([selector, override]) => {
+      document.querySelectorAll(selector).forEach((element) => {
+        applySolaisElementOverride(element, override);
+      });
+    });
+  }
+  function restoreAllSolaisTrackedElements() {
+    SOLAIS_TRACKED_ELEMENTS.forEach((element) => {
+      restoreSolaisElementOriginal(element);
+    });
+  }
+  function buildSolaisElementSelector(element) {
+    if (!element || element === document.body || element === document.documentElement) {
+      return "";
+    }
+    if (element.id) {
+      return `#${CSS.escape(element.id)}`;
+    }
+    const parts = [];
+    let current = element;
+    while (current && current.nodeType === 1 && current !== document.body) {
+      const tagName = current.tagName.toLowerCase();
+      const siblings = current.parentElement ? Array.from(current.parentElement.children).filter((child) => child.tagName === current.tagName) : [];
+      const siblingIndex = siblings.length > 1 ? `:nth-of-type(${siblings.indexOf(current) + 1})` : "";
+      parts.unshift(`${tagName}${siblingIndex}`);
+      if (current.parentElement?.id) {
+        parts.unshift(`#${CSS.escape(current.parentElement.id)}`);
+        break;
+      }
+      current = current.parentElement;
+      if (parts.length >= 6) {
+        break;
+      }
+    }
+    return parts.join(" > ");
+  }
+  function buildSolaisCreativeExport(themeConfig, sceneConfig, elementState) {
+    return JSON.stringify(
+      {
+        theme: themeConfig,
+        scene: sceneConfig,
+        elements: elementState
+      },
+      null,
+      2
+    );
+  }
   var GradientThree = class {
     constructor(options) {
       this.scene = new Scene();
       this.container = options.dom;
       this.width = this.container.offsetWidth;
       this.height = this.container.offsetHeight;
+      this.defaultThemeConfig = createDefaultSolaisThemeConfig();
+      this.defaultSceneConfig = createDefaultSolaisSceneConfig();
+      resetSolaisStoredStateForLocalPreview();
+      this.themeConfig = normalizeSolaisThemeConfig(
+        readStoredSolaisThemeConfig() || {},
+        this.defaultThemeConfig
+      );
+      this.sceneConfig = normalizeSolaisSceneConfig(
+        readStoredSolaisSceneConfig() || {},
+        this.defaultSceneConfig
+      );
       this.renderer = new WebGLRenderer();
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       this.renderer.setSize(this.width, this.height);
-      this.renderer.setClearColor(15658734, 1);
+      this.renderer.setClearColor(this.themeConfig.clearColor, 1);
       this.renderer.physicallyCorrectLights = true;
       this.renderer.outputEncoding = void 0;
       this.container.appendChild(this.renderer.domElement);
@@ -37711,7 +38455,20 @@ void main() {
       this.hasAnimationInit = false;
       this.tokenAnimationEnabled = false;
       this.tokenAnimationInterval = null;
+      this.previewLockActive = false;
+      this.previewLockResumeTokenAnimation = false;
       this.currentTokenIndex = 0;
+      this.tokenBaseScale = 2;
+      this.tokenActiveScale = 2.3;
+      this.tokenOrbitConfig = {
+        center: new Vector3(0, 0, 0),
+        orbitRadius: 1.6,
+        preOrbitRadius: 2.1,
+        landingY: 0,
+        speed: 0.85,
+        transitionDuration: 0.35
+      };
+      this.tokenOrbitBlend = 0;
       this.raycaster = new Raycaster();
       this.mouse = new Vector2();
       this.light = new AmbientLight(16777215, 5);
@@ -37724,10 +38481,12 @@ void main() {
       }
       this.createParticles();
       this.createSpeedLines();
+      this.applyThemeConfig(this.themeConfig, { persist: false });
       this.init().then(() => {
         this.initializeLabels();
         this.animateModels();
         this.createFloatingAnimation();
+        this.applySceneConfig(this.sceneConfig, { persist: false });
         this.setUpScrollVelocity();
         this.clock = new Clock();
         this.render();
@@ -37795,8 +38554,9 @@ void main() {
         this.outlinePass.resolution.set(this.width, this.height);
       }
       if (this.connectionLines) {
-        this.connectionLines.forEach((line) => {
-          if (line.material?.resolution) {
+        this.connectionLines.forEach((group) => {
+          const line = group?.userData?.line;
+          if (line?.material?.resolution) {
             line.material.resolution.set(this.width, this.height);
           }
         });
@@ -37817,10 +38577,10 @@ void main() {
       ScrollTrigger2.refresh();
     }
     addObjects() {
-      this.baseFirst = new Color(0.843, 0.235, 0.09);
-      this.baseSecond = new Color(0.89, 0.89, 0.89);
-      this.baseThird = new Color(0.235, 0.035, 0.117);
-      this.accent = new Color(0.8, 0.26, 0.18);
+      this.baseFirst = new Color(this.themeConfig.baseFirst);
+      this.baseSecond = new Color(this.themeConfig.baseSecond);
+      this.baseThird = new Color(this.themeConfig.baseThird);
+      this.accent = new Color(this.themeConfig.accent);
       this.material = new ShaderMaterial({
         extensions: {
           derivatives: "#extension GL_OES_standard_derivatives : enable"
@@ -37844,6 +38604,154 @@ void main() {
       }
       this.scene.add(this.gradientPlane);
       this.createWavyGrid();
+    }
+    getThemeConfig() {
+      return { ...this.themeConfig };
+    }
+    applyThemeConfig(nextThemeConfig = {}, options = {}) {
+      const persist = options.persist !== false;
+      this.themeConfig = normalizeSolaisThemeConfig(nextThemeConfig, this.themeConfig);
+      this.baseFirst.set(this.themeConfig.baseFirst);
+      this.baseSecond.set(this.themeConfig.baseSecond);
+      this.baseThird.set(this.themeConfig.baseThird);
+      this.accent.set(this.themeConfig.accent);
+      if (this.material?.uniforms) {
+        this.material.uniforms.baseFirst.value.set(this.themeConfig.baseFirst);
+        this.material.uniforms.baseSecond.value.set(this.themeConfig.baseSecond);
+        this.material.uniforms.baseThird.value.set(this.themeConfig.baseThird);
+        this.material.uniforms.accent.value.set(this.themeConfig.accent);
+        this.material.uniforms.baseFirst.needsUpdate = true;
+        this.material.uniforms.baseSecond.needsUpdate = true;
+        this.material.uniforms.baseThird.needsUpdate = true;
+        this.material.uniforms.accent.needsUpdate = true;
+      }
+      if (this.gridPlane?.material?.uniforms) {
+        this.gridPlane.material.uniforms.lineColor.value.set(
+          this.themeConfig.gridLineColor
+        );
+        this.gridPlane.material.uniforms.gridOpacity.value = this.themeConfig.gridOpacity;
+        this.gridPlane.material.uniforms.plusOpacity.value = this.themeConfig.plusOpacity;
+        this.gridPlane.material.uniforms.lineColor.needsUpdate = true;
+        this.gridPlane.material.uniforms.gridOpacity.needsUpdate = true;
+        this.gridPlane.material.uniforms.plusOpacity.needsUpdate = true;
+      }
+      this.renderer.setClearColor(this.themeConfig.clearColor, 1);
+      applySolaisCssThemeConfig(this.themeConfig);
+      if (persist) {
+        writeStoredSolaisThemeConfig(this.themeConfig);
+      }
+      return this.getThemeConfig();
+    }
+    resetThemeConfig() {
+      clearStoredSolaisThemeConfig();
+      return this.applyThemeConfig(this.defaultThemeConfig, { persist: false });
+    }
+    getSceneConfig() {
+      return { ...this.sceneConfig };
+    }
+    updateTokenOrbitGeometry() {
+      if (!this.tokenOrbitConfig || !this.baseTokenOrbitMetrics)
+        return;
+      const orbitRadiusScale = this.sceneConfig?.tokenOrbitRadiusScale ?? 1;
+      const orbitSpread = this.sceneConfig?.tokenOrbitSpread ?? 0.6;
+      const landingOffsetY = this.sceneConfig?.tokenLandingOffsetY ?? 0;
+      this.tokenOrbitConfig.center.copy(this.baseTokenOrbitMetrics.center);
+      this.tokenOrbitConfig.orbitRadius = this.baseTokenOrbitMetrics.orbitRadius * orbitRadiusScale;
+      this.tokenOrbitConfig.preOrbitRadius = this.tokenOrbitConfig.orbitRadius + orbitSpread;
+      this.tokenOrbitConfig.landingY = this.baseTokenOrbitMetrics.landingY + landingOffsetY;
+    }
+    applySceneConfig(nextSceneConfig = {}, options = {}) {
+      const persist = options.persist !== false;
+      const preserveSceneTransforms = options.preserveSceneTransforms === true;
+      const previousSceneConfig = this.sceneConfig || this.defaultSceneConfig;
+      this.sceneConfig = normalizeSolaisSceneConfig(
+        nextSceneConfig,
+        previousSceneConfig
+      );
+      this.tokenHighlightOrder = parseSolaisTokenHighlightOrder(this.sceneConfig.tokenHighlightOrder);
+      this.tokenBoostFactor = this.sceneConfig.tokenBoostFactor;
+      this.tokenActiveBoostAmount = this.sceneConfig.tokenActiveBoost;
+      this.baseModelRotation.x = degreesToRadians(this.sceneConfig.modelRotXDeg);
+      this.baseModelRotation.y = degreesToRadians(this.sceneConfig.modelRotYDeg);
+      this.baseModelRotation.z = degreesToRadians(this.sceneConfig.modelRotZDeg);
+      this.tokenBaseScale = this.sceneConfig.tokenBaseScale;
+      this.tokenActiveScale = this.sceneConfig.tokenActiveScale;
+      if (this.tokenOrbitConfig) {
+        this.tokenOrbitConfig.speed = this.sceneConfig.orbitSpeed;
+      }
+      this.updateTokenOrbitGeometry();
+      if (this.tokenMeshes?.length) {
+        this.tokenMeshes.forEach((mesh) => {
+          mesh.userData.dropStartY = this.sceneConfig.tokenDropStartY;
+        });
+      }
+      if (this.light) {
+        this.light.intensity = this.sceneConfig.lightIntensity;
+      }
+      if (this.camera && !preserveSceneTransforms) {
+        this.camera.position.set(
+          this.sceneConfig.cameraX,
+          this.sceneConfig.cameraY,
+          this.sceneConfig.cameraZ
+        );
+        this.camera.rotation.set(
+          degreesToRadians(this.sceneConfig.cameraRotXDeg),
+          degreesToRadians(this.sceneConfig.cameraRotYDeg),
+          degreesToRadians(this.sceneConfig.cameraRotZDeg)
+        );
+      }
+      if (this.model) {
+        if (!preserveSceneTransforms) {
+          this.model.rotation.set(
+            this.baseModelRotation.x,
+            this.baseModelRotation.y,
+            this.baseModelRotation.z
+          );
+          this.model.position.y = this.sceneConfig.modelPosY;
+        }
+        this.model.scale.setScalar(this.sceneConfig.modelScale);
+      }
+      if (this.buttonModel) {
+        if (!preserveSceneTransforms) {
+          this.buttonModel.position.set(
+            this.sceneConfig.buttonPosX,
+            this.sceneConfig.buttonPosY,
+            this.sceneConfig.buttonPosZ
+          );
+        }
+        this.buttonModel.scale.setScalar(this.sceneConfig.buttonScale);
+        if (!preserveSceneTransforms) {
+          this.buttonModel.rotation.set(
+            degreesToRadians(this.sceneConfig.buttonRotXDeg),
+            degreesToRadians(this.sceneConfig.buttonRotYDeg),
+            degreesToRadians(this.sceneConfig.buttonRotZDeg)
+          );
+        }
+      }
+      if (this.speedLines?.material?.uniforms?.uBaseSpeed) {
+        this.speedLines.material.uniforms.uBaseSpeed.value = this.sceneConfig.speedLineBaseSpeed;
+      }
+      if (this.floatingTl || this.floatingPositionTl) {
+        const floatingValuesChanged = previousSceneConfig.floatingRotationAmount !== this.sceneConfig.floatingRotationAmount || previousSceneConfig.floatingPositionAmount !== this.sceneConfig.floatingPositionAmount;
+        if (floatingValuesChanged && this.model) {
+          this.createFloatingAnimation();
+        }
+        if (this.floatingTl) {
+          this.floatingTl.timeScale(this.sceneConfig.floatingSpeed);
+        }
+        if (this.floatingPositionTl) {
+          this.floatingPositionTl.timeScale(this.sceneConfig.floatingSpeed);
+        }
+      }
+      this.updateConnectionLineStyles();
+      if (persist) {
+        writeStoredSolaisSceneConfig(this.sceneConfig);
+      }
+      return this.getSceneConfig();
+    }
+    resetSceneConfig() {
+      clearStoredSolaisSceneConfig();
+      return this.applySceneConfig(this.defaultSceneConfig, { persist: false });
     }
     createParticles() {
       const particleCount = 150;
@@ -38037,10 +38945,10 @@ void main() {
       );
       const gridMaterial = new ShaderMaterial({
         uniforms: {
-          lineColor: { value: new Color("#ffffff") },
+          lineColor: { value: new Color(this.themeConfig.gridLineColor) },
           gridSize: { value: 20 },
-          gridOpacity: { value: 0.4 },
-          plusOpacity: { value: 0.8 },
+          gridOpacity: { value: this.themeConfig.gridOpacity },
+          plusOpacity: { value: this.themeConfig.plusOpacity },
           opacity: { value: 0 },
           time: { value: 0 }
         },
@@ -38218,20 +39126,18 @@ void main() {
         });
       }
       this.deltaTime = this.clock.getDelta();
-      if (this.tokenMeshes) {
-        const deltaTime = this.deltaTime || 1 / 60;
+      if (this.tokenMeshes && !this.previewLockActive) {
+        const deltaTime = Math.min(this.deltaTime || 1 / 60, 1 / 30);
         this.scrollVelocity = MathUtils.lerp(
           this.scrollVelocity,
           Math.abs(this.targetVelocity),
           0.1
         );
         this.targetVelocity = Math.abs(this.targetVelocity) * 0.98;
-        const boostFactor = 40;
-        this.tokenMeshes.forEach((mesh) => {
-          const index = parseInt(
-            mesh.userData.name.charAt(mesh.userData.name.length - 1)
-          );
-          const baseSpeed = 0.5 + (this.tokenMeshes.length - index) * 0.15;
+        const boostFactor = this.sceneConfig?.tokenBoostFactor ?? 40;
+        this.tokenMeshes.forEach((mesh, index) => {
+          const tokenIndex = Number.isFinite(mesh.userData.tokenIndex) ? mesh.userData.tokenIndex : index;
+          const baseSpeed = 0.5 + (this.tokenMeshes.length - tokenIndex) * 0.15;
           mesh.userData.boost = mesh.userData.boost || 0;
           mesh.userData.boost = MathUtils.lerp(
             mesh.userData.boost,
@@ -38244,9 +39150,45 @@ void main() {
           mesh.userData.rotationAccum = mesh.userData.rotationAccum || mesh.rotation.y;
           mesh.userData.rotationAccum += effectiveSpeed * deltaTime;
           mesh.userData.rotationAccum %= Math.PI * 2;
-          const phase = index * Math.PI / 8;
+          const phase = Number.isFinite(mesh.userData.orbitPhase) ? mesh.userData.orbitPhase : index / Math.max(this.tokenMeshes.length, 1) * Math.PI * 2;
           mesh.rotation.y = mesh.userData.rotationAccum + phase;
-          if (!this.tokenScrollComplete && mesh.userData.scrollOffset && mesh.userData.originalPosition) {
+          if (this.tokenOrbitConfig) {
+            const offset = mesh.userData.scrollOffset || { x: 0, y: 0, z: 0 };
+            const dropStartY = mesh.userData.dropStartY || 10;
+            const dropProgress = MathUtils.clamp(1 - offset.y / Math.max(dropStartY, 1e-3), 0, 1);
+            const orbitBlend = MathUtils.clamp(
+              Number.isFinite(this.tokenOrbitBlend) ? this.tokenOrbitBlend : this.tokenScrollComplete ? 1 : 0,
+              0,
+              1
+            );
+            const landingAngle = phase + dropProgress * Math.PI * 2;
+            const landingRadius = MathUtils.lerp(
+              this.tokenOrbitConfig.preOrbitRadius,
+              this.tokenOrbitConfig.orbitRadius,
+              dropProgress
+            );
+            const landingY = this.tokenOrbitConfig.landingY + offset.y;
+            const orbitAngle = phase + this.time * this.tokenOrbitConfig.speed;
+            const shortestAngleDelta = Math.atan2(
+              Math.sin(orbitAngle - landingAngle),
+              Math.cos(orbitAngle - landingAngle)
+            );
+            const orbitRadius = MathUtils.lerp(
+              landingRadius,
+              this.tokenOrbitConfig.orbitRadius,
+              orbitBlend
+            );
+            const orbitY = MathUtils.lerp(landingY, this.tokenOrbitConfig.landingY, orbitBlend);
+            const blendedAngle = landingAngle + shortestAngleDelta * orbitBlend;
+            mesh.position.set(
+              this.tokenOrbitConfig.center.x + Math.cos(blendedAngle) * orbitRadius,
+              orbitY,
+              this.tokenOrbitConfig.center.z + Math.sin(blendedAngle) * orbitRadius
+            );
+            mesh.userData.lastLandingAngle = landingAngle;
+            mesh.userData.lastLandingRadius = landingRadius;
+            mesh.userData.lastLandingY = landingY;
+          } else if (!this.tokenScrollComplete && mesh.userData.scrollOffset && mesh.userData.originalPosition) {
             const offset = mesh.userData.scrollOffset;
             const original = mesh.userData.originalPosition;
             mesh.position.set(
@@ -38288,7 +39230,7 @@ void main() {
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
       const textureLoader = new TextureLoader();
-      const basePath = "/solais-local/wp-content/themes/startdigital/static/scratched-metal-bl/";
+      const basePath = "/wp-content/themes/startdigital/static/scratched-metal-bl/";
       const roughnessMap = textureLoader.load(
         basePath + "scratched-metal_roughness.webp"
       );
@@ -38305,7 +39247,7 @@ void main() {
         color: 11493991
       });
       loader.load(
-        "/solais-local/wp-content/themes/startdigital/static/models/solias.glb",
+        "/wp-content/themes/startdigital/static/models/solias.glb",
         (gltf) => {
           this.model = gltf.scene;
           this.model.traverse((child) => {
@@ -38334,10 +39276,13 @@ void main() {
         }
       );
       loader.load(
-        "/solais-local/wp-content/themes/startdigital/static/models/solias_button_2.glb",
+        "/wp-content/themes/startdigital/static/models/solias_button_2.glb",
         (gltf) => {
           this.buttonModel = gltf.scene;
           this.tokenMeshes = [];
+          this.buttonTokenMaterial = null;
+          this.buttonShinyOpacityUniform = null;
+          this.buttonWhiteModel = null;
           const shinyMaterial = new ShaderMaterial({
             uniforms: {
               uColor: { value: new Color(15066597) },
@@ -38417,31 +39362,91 @@ void main() {
             transparent: true,
             color: 11493991
           });
-          let meshIndex = 0;
+          const baseMeshes = [];
+          const meshList = [];
           this.buttonModel.traverse((child) => {
             if (child.isMesh) {
-              meshIndex++;
-              if (meshIndex > 4) {
-                child.material = shinyMaterial;
-              } else {
-                child.material = tokenMaterial;
-                child.userData.isToken = true;
-                child.userData.tokenIndex = child.userData.name.charAt(
-                  child.userData.name.length - 1
-                );
-                this.tokenMeshes.push(child);
-              }
+              meshList.push(child);
             }
           });
+          const hasNamedIcons = meshList.some((mesh) => {
+            const meshName = (mesh.userData?.name || mesh.name || "").toLowerCase();
+            return meshName.includes("icon");
+          });
+          meshList.forEach((child, index) => {
+            const tokenName = child.userData?.name || child.name || "";
+            const isTokenMesh = hasNamedIcons ? /icon/i.test(tokenName) : index < 4;
+            if (isTokenMesh) {
+              child.material = tokenMaterial;
+              child.userData.isToken = true;
+              const tokenMatch = tokenName.match(/(\d+)\s*$/);
+              child.userData.tokenIndex = tokenMatch ? parseInt(tokenMatch[1], 10) : this.tokenMeshes.length;
+              child.userData.tokenBaseScale = this.tokenBaseScale * 1.5;
+              child.userData.tokenActiveScale = this.tokenActiveScale * 1.5;
+              child.scale.set(
+                child.userData.tokenBaseScale,
+                child.userData.tokenBaseScale,
+                child.userData.tokenBaseScale
+              );
+              child.frustumCulled = false;
+              this.tokenMeshes.push(child);
+            } else {
+              child.material = shinyMaterial;
+              baseMeshes.push(child);
+            }
+          });
+          this.buttonTokenMaterial = tokenMaterial;
+          this.buttonShinyOpacityUniform = shinyMaterial.uniforms.uOpacity;
           this.tokenMeshes.sort(
             (a, b) => a.userData.tokenIndex - b.userData.tokenIndex
           );
+          const baseBounds = new Box3();
+          if (baseMeshes.length > 0) {
+            baseMeshes.forEach((mesh, index) => {
+              mesh.updateMatrixWorld(true);
+              const meshBounds = new Box3().setFromObject(mesh);
+              if (index === 0) {
+                baseBounds.copy(meshBounds);
+              } else {
+                baseBounds.union(meshBounds);
+              }
+            });
+          } else {
+            baseBounds.setFromObject(this.buttonModel);
+          }
+          const orbitCenter = baseBounds.getCenter(new Vector3());
+          const orbitBaseSize = baseBounds.getSize(new Vector3());
+          let maxTokenSize = 0.2;
+          this.tokenMeshes.forEach((mesh) => {
+            mesh.updateMatrixWorld(true);
+            const tokenBounds = new Box3().setFromObject(mesh);
+            const tokenSize = tokenBounds.getSize(new Vector3());
+            maxTokenSize = Math.max(maxTokenSize, tokenSize.length() * 0.3);
+          });
+          const baseOrbitRadius = Math.max(orbitBaseSize.x, orbitBaseSize.z) * 0.7 + maxTokenSize + 0.5;
+          const baseLandingY = orbitCenter.y + orbitBaseSize.y * 0.12 + maxTokenSize * 0.1;
+          this.baseTokenOrbitMetrics = {
+            center: orbitCenter.clone(),
+            orbitRadius: baseOrbitRadius,
+            landingY: baseLandingY
+          };
+          this.tokenOrbitConfig = {
+            center: orbitCenter.clone(),
+            orbitRadius: baseOrbitRadius,
+            preOrbitRadius: baseOrbitRadius + 0.6,
+            landingY: baseLandingY,
+            speed: 0.85,
+            transitionDuration: 0.35
+          };
+          this.tokenOrbitBlend = 0;
           this.tokenMeshes.forEach((mesh, index) => {
             mesh.userData.originalPosition = mesh.position.clone();
-            const angle = Math.random() * Math.PI * 2;
+            mesh.userData.orbitPhase = index / Math.max(this.tokenMeshes.length, 1) * Math.PI * 2;
+            mesh.userData.dropStartY = this.sceneConfig?.tokenDropStartY ?? 6;
+            mesh.userData.orbitMode = "landing";
             const randomX = 0;
             const randomZ = 0;
-            const randomY = 10;
+            const randomY = mesh.userData.dropStartY;
             mesh.userData.scrollOffset = {
               x: randomX,
               y: randomY,
@@ -38569,8 +39574,47 @@ void main() {
           this.buttonPlane.rotation.z = -Math.PI / 2;
           this.buttonPlane.position.set(0, -24, -1);
           this.buttonPlane.scale.set(0.25, 0.25, 0.25);
-          this.scene.add(this.buttonModel, this.buttonPlane);
-          checkComplete();
+          const finalizeButtonSetup = () => {
+            this.buttonModel.position.set(0, -24, -1);
+            this.buttonModel.scale.set(1, 1, 1);
+            this.buttonModel.rotation.y = -Math.PI / 2;
+            this.scene.add(this.buttonModel, this.buttonPlane);
+            checkComplete();
+          };
+          loader.load(
+            "/wp-content/themes/startdigital/static/models/MEOMEO.glb",
+            (whiteGltf) => {
+              const whiteModel = whiteGltf.scene;
+              if (whiteModel) {
+                this.buttonWhiteModel = whiteModel;
+                whiteModel.traverse((child) => {
+                  if (child.isMesh) {
+                    child.material = shinyMaterial;
+                  }
+                });
+                const whiteBounds = new Box3().setFromObject(whiteModel);
+                const whiteCenter = whiteBounds.getCenter(new Vector3());
+                const whiteSize = whiteBounds.getSize(new Vector3());
+                const baseCenter = baseBounds.getCenter(new Vector3());
+                const baseSize = baseBounds.getSize(new Vector3());
+                const maxWhite = Math.max(whiteSize.x, whiteSize.y, whiteSize.z) || 1;
+                const maxBase = Math.max(baseSize.x, baseSize.y, baseSize.z) || 1;
+                whiteModel.position.sub(whiteCenter);
+                whiteModel.scale.setScalar(maxBase / maxWhite);
+                whiteModel.position.add(baseCenter);
+                baseMeshes.forEach((mesh) => {
+                  mesh.visible = false;
+                });
+                this.buttonModel.add(whiteModel);
+              }
+              finalizeButtonSetup();
+            },
+            void 0,
+            (error) => {
+              console.warn("Error loading white replacement model (MEOMEO):", error);
+              finalizeButtonSetup();
+            }
+          );
         },
         (xhr) => {
         },
@@ -38607,10 +39651,11 @@ void main() {
               this.tokenAnimationInterval = null;
             }
             this.tokenMeshes.forEach((token) => {
+              const baseScale = token.userData.tokenBaseScale || this.tokenBaseScale || 1;
               gsapWithCSS.to(token.scale, {
-                x: 1,
-                y: 1,
-                z: 1,
+                x: baseScale,
+                y: baseScale,
+                z: baseScale,
                 duration: 0.4,
                 ease: "power2.out"
               });
@@ -38644,16 +39689,17 @@ void main() {
             this.currentTokenIndex = (this.currentTokenIndex + 1) % this.tokenMeshes.length;
             this.tokenAnimationInterval = setTimeout(() => {
               this.showTokenContent(this.currentTokenIndex, cycleInfoElements);
-            }, 4e3);
+            }, (this.sceneConfig?.tokenCycleDuration ?? 4) * 1e3);
           }
         }
       });
       const activeToken = this.tokenMeshes[index];
-      activeToken.userData.activeBoost = 30;
+      const activeScale = activeToken.userData.tokenActiveScale || this.tokenActiveScale || 2.3;
+      activeToken.userData.activeBoost = this.sceneConfig?.tokenActiveBoost ?? 30;
       tl.to(activeToken.scale, {
-        x: 1.15,
-        y: 1.15,
-        z: 1.15,
+        x: activeScale,
+        y: activeScale,
+        z: activeScale,
         duration: 0.8,
         ease: "elastic.out(1, 0.75)"
       });
@@ -38676,9 +39722,9 @@ void main() {
           ).to(
             this.tokenMeshes[i].scale,
             {
-              x: 1,
-              y: 1,
-              z: 1,
+              x: this.tokenMeshes[i].userData.tokenBaseScale || this.tokenBaseScale || 1,
+              y: this.tokenMeshes[i].userData.tokenBaseScale || this.tokenBaseScale || 1,
+              z: this.tokenMeshes[i].userData.tokenBaseScale || this.tokenBaseScale || 1,
               duration: 0.4,
               ease: "power2.out"
             },
@@ -38686,16 +39732,11 @@ void main() {
           );
         }
       });
-      tl.to(
-        this.outlinePass.selectedObjects,
-        {
-          duration: 0.1,
-          onStart: () => {
-            this.outlinePass.selectedObjects = [this.tokenMeshes[index]];
-          }
-        },
-        "<="
-      );
+      tl.add(() => {
+        if (this.tokenMeshes[index]) {
+          this.outlinePass.selectedObjects = [this.tokenMeshes[index]];
+        }
+      }, "<=");
       const currentElement = cycleInfoElements[index];
       tl.add(() => {
         currentElement.style.display = "flex";
@@ -38718,23 +39759,63 @@ void main() {
         0.6
       );
     }
+    queueTokenAnimationResume() {
+      if (!this.tokenMeshes?.length)
+        return;
+      if (this.tokenAnimationInterval) {
+        clearTimeout(this.tokenAnimationInterval);
+        this.tokenAnimationInterval = null;
+      }
+      const cycleInfoElements = document.querySelectorAll(".cycle-through > div");
+      this.tokenAnimationInterval = setTimeout(() => {
+        if (!this.tokenAnimationEnabled || this.previewLockActive)
+          return;
+        this.currentTokenIndex = (this.currentTokenIndex + 1) % this.tokenMeshes.length;
+        this.showTokenContent(this.currentTokenIndex, cycleInfoElements);
+      }, (this.sceneConfig?.tokenCycleDuration ?? 4) * 1e3);
+    }
+    setEditorPreviewLocked(isLocked = true) {
+      if (this.previewLockActive === isLocked)
+        return;
+      this.previewLockActive = isLocked;
+      if (isLocked) {
+        this.previewLockResumeTokenAnimation = this.tokenAnimationEnabled;
+        this.stopTokenAnimation({ resetScales: false });
+        this.floatingTl?.pause();
+        this.floatingPositionTl?.pause();
+        this.floatingTokenTimelines?.forEach((tl2) => tl2.pause());
+        return;
+      }
+      this.floatingTl?.play();
+      this.floatingPositionTl?.play();
+      this.floatingTokenTimelines?.forEach((tl2) => tl2.play());
+      if (this.previewLockResumeTokenAnimation) {
+        this.tokenAnimationEnabled = true;
+        this.queueTokenAnimationResume();
+      }
+      this.previewLockResumeTokenAnimation = false;
+    }
     startTokenAnimation() {
       if (!this.tokenAnimationEnabled) {
         this.tokenAnimationEnabled = true;
         this.cycleThroughTokens();
       }
     }
-    stopTokenAnimation() {
+    stopTokenAnimation(options = {}) {
+      const resetScales = options.resetScales !== false;
       this.tokenAnimationEnabled = false;
       if (this.tokenAnimationInterval) {
         clearTimeout(this.tokenAnimationInterval);
         this.tokenAnimationInterval = null;
       }
-      this.tokenMeshes.forEach((token) => {
+      if (!resetScales)
+        return;
+      this.tokenMeshes?.forEach((token) => {
+        const baseScale = token.userData.tokenBaseScale || this.tokenBaseScale || 1;
         gsapWithCSS.to(token.scale, {
-          x: 1,
-          y: 1,
-          z: 1,
+          x: baseScale,
+          y: baseScale,
+          z: baseScale,
           duration: 0.4,
           ease: "power2.out"
         });
@@ -38742,8 +39823,8 @@ void main() {
     }
     addCubeInstancing(callback) {
       this.cubeInstanceGroup = new Group();
-      const repetitions = 9;
-      const spacing = 1;
+      const repetitions = 16;
+      const spacing = 1.4;
       this.cubeInstances = [];
       this.traceryElements = [];
       const dracoLoader = new DRACOLoader();
@@ -38751,23 +39832,27 @@ void main() {
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
       loader.load(
-        "/solais-local/wp-content/themes/startdigital/static/models/tile.glb",
+        "/wp-content/themes/startdigital/static/models/tile.glb",
         (gltf) => {
           const model = gltf.scene.children[0];
           const geometry = model.geometry.clone();
-          const cubeMaterial = new MeshStandardMaterial({
+          const cubeMaterialTemplate = new MeshStandardMaterial({
             color: 15066597,
             metalness: 0.65,
             roughness: 1,
-            opacity: 1
+            transparent: true,
+            opacity: 0
           });
           for (let j = 0; j < repetitions; j++) {
+            const cubeMaterial = cubeMaterialTemplate.clone();
+            cubeMaterial.opacity = 0;
             const cubeInstance = new InstancedMesh(
               geometry,
               cubeMaterial,
               8
             );
-            cubeInstance.scale.set(1, 1, 1);
+            cubeInstance.frustumCulled = false;
+            cubeInstance.scale.set(0, 0, 0);
             const initialTransforms = [];
             const dummy = new Object3D();
             const positions = [
@@ -38806,6 +39891,7 @@ void main() {
           this.scene.add(this.cubeInstanceGroup);
           if (!this.isTouch)
             this.createTraceryOverlays();
+          this.setCubeFlowVisibility(false);
           if (callback)
             callback();
         },
@@ -38840,6 +39926,14 @@ void main() {
         this.cubeInstanceGroup.add(traceryGroup);
       });
     }
+    setCubeFlowVisibility(isVisible = true) {
+      this.cubeInstances?.forEach((instance) => {
+        instance.mesh.visible = isVisible;
+      });
+      this.traceryElements?.forEach((group) => {
+        group.visible = isVisible;
+      });
+    }
     createCoordinateLabel(position, groupIndex, cubeIndex) {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
@@ -38864,7 +39958,8 @@ void main() {
       const spriteMaterial = new SpriteMaterial({
         map: texture,
         transparent: true,
-        depthWrite: false
+        depthWrite: false,
+        opacity: 0
       });
       const sprite = new Sprite(spriteMaterial);
       sprite.scale.set(1, 0.125, 1);
@@ -38916,6 +40011,13 @@ void main() {
       return sprite;
     }
     createFloatingAnimation() {
+      if (!this.model)
+        return;
+      this.floatingTl?.kill();
+      this.floatingPositionTl?.kill();
+      const rotationAmount = this.sceneConfig?.floatingRotationAmount ?? 0.2;
+      const positionAmount = this.sceneConfig?.floatingPositionAmount ?? 0.05;
+      const floatingSpeed = this.sceneConfig?.floatingSpeed ?? 1;
       this.floatingTl = gsapWithCSS.timeline({
         repeat: -1,
         defaults: {
@@ -38924,9 +40026,9 @@ void main() {
         }
       });
       this.floatingTl.to(this.model.rotation, {
-        x: "+=0.2"
+        x: `+=${rotationAmount}`
       }).to(this.model.rotation, {
-        x: "-=0.2"
+        x: `-=${rotationAmount}`
       });
       this.floatingPositionTl = gsapWithCSS.timeline({
         repeat: -1,
@@ -38936,38 +40038,20 @@ void main() {
         }
       });
       this.floatingPositionTl.to(this.model.position, {
-        y: "+=0.05"
+        y: `+=${positionAmount}`
       }).to(this.model.position, {
-        y: "-=0.05"
+        y: `-=${positionAmount}`
       });
+      this.floatingTl.timeScale(floatingSpeed);
+      this.floatingPositionTl.timeScale(floatingSpeed);
+      if (this.previewLockActive) {
+        this.floatingTl.pause();
+        this.floatingPositionTl.pause();
+      }
       this.floatingTokenTimelines = [];
-      this.tokenMeshes.forEach((mesh, index) => {
-        const randomDelay = Math.random() * 0.5;
-        const randomDuration = 1.5 + Math.random();
-        const randomHeight = 0.03 + Math.random() * 0.02;
-        let floatingTokenTl = gsapWithCSS.timeline({
-          repeat: -1,
-          paused: true,
-          defaults: {
-            duration: randomDuration,
-            ease: "sine.inOut"
-          },
-          delay: randomDelay
-        });
-        floatingTokenTl.to(
-          mesh.position,
-          {
-            y: `+=${randomHeight}`
-          },
-          index * 0.2
-        ).to(mesh.position, {
-          y: `-=${randomHeight}`
-        });
-        this.floatingTokenTimelines.push(floatingTokenTl);
-      });
     }
     loadEnv() {
-      const hdrPath = "/solais-local/wp-content/themes/startdigital/static/models/environment.exr";
+      const hdrPath = "/wp-content/themes/startdigital/static/models/environment.exr";
       new EXRLoader().load(hdrPath, (texture) => {
         texture.mapping = EquirectangularReflectionMapping;
         texture.minFilter = LinearFilter;
@@ -38978,11 +40062,17 @@ void main() {
     updateOutlineSelection(progress) {
       if (!this.model)
         return;
-      const highlights = [
-        { index: 1, start: 0.01, end: 0.33 },
-        { index: 3, start: 0.34, end: 0.65 },
-        { index: 5, start: 0.66, end: 0.99 }
-      ];
+      const highlightOrder = this.tokenHighlightOrder || parseSolaisTokenHighlightOrder(this.sceneConfig?.tokenHighlightOrder);
+      const segmentSize = 1 / Math.max(highlightOrder.length, 1);
+      const highlights = highlightOrder.map((highlightIndex, orderIndex) => {
+        const start = orderIndex === 0 ? 0.01 : orderIndex * segmentSize + 0.01;
+        const end = orderIndex === highlightOrder.length - 1 ? 0.99 : (orderIndex + 1) * segmentSize;
+        return {
+          index: highlightIndex,
+          start,
+          end
+        };
+      });
       const selectedObjects = [];
       let activeHighlight = null;
       for (const highlight of highlights) {
@@ -39009,15 +40099,36 @@ void main() {
       this.scene.add(this.linesGroup);
       this.connectionLines = /* @__PURE__ */ new Map();
     }
+    updateConnectionLineStyles() {
+      if (!this.connectionLines)
+        return;
+      const lineColor = new Color(this.sceneConfig?.tokenLineColor || "#FFFFFF");
+      const lineWidth = this.sceneConfig?.tokenLineWidth ?? 1.25;
+      this.connectionLines.forEach((group) => {
+        const { line, diamondMarker } = group.userData;
+        if (line?.material) {
+          line.material.color.set(lineColor);
+          line.material.linewidth = lineWidth;
+          line.material.needsUpdate = true;
+        }
+        if (diamondMarker?.material?.uniforms?.color?.value) {
+          diamondMarker.material.uniforms.color.value.set(lineColor);
+          diamondMarker.material.needsUpdate = true;
+        }
+        this.applyConnectionLineOpacity(group, group.userData?.currentOpacity ?? 0);
+      });
+    }
     createConnectionLine(index) {
       if (this.width < 1024)
         return;
       const group = new Group();
+      const lineColor = new Color(this.sceneConfig?.tokenLineColor || "#FFFFFF");
+      const lineWidth = this.sceneConfig?.tokenLineWidth ?? 1.25;
       const lineMaterial = new LineMaterial({
-        color: 16777215,
-        linewidth: 1.25,
-        transparent: false,
-        opacity: 1,
+        color: lineColor.getHex(),
+        linewidth: lineWidth,
+        transparent: true,
+        opacity: 0,
         resolution: new Vector2(window.innerWidth, window.innerHeight)
       });
       const lineGeometry = new LineGeometry();
@@ -39029,13 +40140,14 @@ void main() {
       const markerGeometry = new PlaneGeometry(markerSize, markerSize);
       const markerMaterial = new ShaderMaterial({
         uniforms: {
-          color: { value: new Color(16777215) },
+          color: { value: lineColor.clone() },
           fillColor: { value: new Color(3934494) },
           innerSize: { value: 0.2 },
           outlineSize: { value: 1 },
           outlineThickness: { value: 0.04 },
           fillOpacity: { value: 0.3 },
-          outlineOpacity: { value: 0.4 }
+          outlineOpacity: { value: 0.4 },
+          uOpacity: { value: 0 }
         },
         vertexShader: `
 				varying vec2 vUv;
@@ -39052,6 +40164,7 @@ void main() {
 				uniform float outlineThickness;
 				uniform float fillOpacity;
 				uniform float outlineOpacity;
+				uniform float uOpacity;
 				varying vec2 vUv;
 
 				void main() {
@@ -39076,9 +40189,9 @@ void main() {
 
 					// Determine final color and alpha
 					vec3 finalColor = inner * color + outline * color + fill * fillColor;
-					float alpha = inner * 1.0 + outline * outlineOpacity + fill * fillOpacity;
+					float alpha = (inner * 1.0 + outline * outlineOpacity + fill * fillOpacity) * uOpacity;
 
-					gl_FragColor = vec4(finalColor, 1.0);
+					gl_FragColor = vec4(finalColor, alpha);
 				}
 			`,
         transparent: true,
@@ -39090,17 +40203,109 @@ void main() {
       group.add(diamondMarker);
       group.userData = {
         line,
-        diamondMarker
+        diamondMarker,
+        currentOpacity: 0,
+        targetOpacity: 0,
+        fadeTween: null
       };
+      group.visible = false;
       this.linesGroup.add(group);
       this.connectionLines.set(index, group);
       return group;
+    }
+    applyConnectionLineOpacity(group, opacity) {
+      if (!group)
+        return;
+      const nextOpacity = MathUtils.clamp(opacity, 0, 1);
+      const { line, diamondMarker } = group.userData;
+      group.userData.currentOpacity = nextOpacity;
+      if (line?.material) {
+        line.material.opacity = nextOpacity;
+        line.material.transparent = nextOpacity < 0.999;
+        line.material.needsUpdate = true;
+      }
+      if (diamondMarker?.material?.uniforms?.uOpacity) {
+        diamondMarker.material.uniforms.uOpacity.value = nextOpacity;
+        diamondMarker.material.needsUpdate = true;
+      }
+      group.visible = nextOpacity > 0.01 || (group.userData?.targetOpacity ?? 0) > 0.01;
+    }
+    setConnectionLineTargetOpacity(group, opacity) {
+      if (!group)
+        return;
+      const nextOpacity = MathUtils.clamp(opacity, 0, 1);
+      const currentOpacity = group.userData?.currentOpacity ?? 0;
+      if ((group.userData?.targetOpacity ?? 0) === nextOpacity && group.userData?.fadeTween)
+        return;
+      group.userData.targetOpacity = nextOpacity;
+      if (group.userData?.fadeTween) {
+        group.userData.fadeTween.kill();
+        group.userData.fadeTween = null;
+      }
+      if (nextOpacity > 0.01 || currentOpacity > 0.01)
+        group.visible = true;
+      group.userData.fadeTween = gsapWithCSS.to(group.userData, {
+        currentOpacity: nextOpacity,
+        duration: nextOpacity > currentOpacity ? 0.22 : 0.42,
+        ease: nextOpacity > currentOpacity ? "power2.out" : "power2.inOut",
+        overwrite: true,
+        onUpdate: () => {
+          this.applyConnectionLineOpacity(group, group.userData.currentOpacity);
+        },
+        onComplete: () => {
+          group.userData.fadeTween = null;
+          this.applyConnectionLineOpacity(group, nextOpacity);
+          if (nextOpacity <= 0.01)
+            group.visible = false;
+        }
+      });
+    }
+    setLabelTargetOpacity(labelElement, isActive) {
+      if (!labelElement)
+        return;
+      if (labelElement._solaisLabelTween) {
+        labelElement._solaisLabelTween.kill();
+        labelElement._solaisLabelTween = null;
+      }
+      const currentOpacity = Number.parseFloat(window.getComputedStyle(labelElement).opacity || "0");
+      gsapWithCSS.set(labelElement, {
+        autoAlpha: currentOpacity
+      });
+      if (isActive) {
+        labelElement.classList.add("is-active");
+        labelElement._solaisLabelTween = gsapWithCSS.to(labelElement, {
+          autoAlpha: 1,
+          duration: 0.22,
+          ease: "power2.out",
+          overwrite: true,
+          onComplete: () => {
+            labelElement._solaisLabelTween = null;
+          }
+        });
+        return;
+      }
+      labelElement.classList.remove("is-active");
+      labelElement._solaisLabelTween = gsapWithCSS.to(labelElement, {
+        autoAlpha: 0,
+        duration: 0.42,
+        ease: "power2.inOut",
+        overwrite: true,
+        onComplete: () => {
+          labelElement._solaisLabelTween = null;
+        }
+      });
     }
     updateLabels(mesh, index, isActive) {
       const labelElement = document.getElementById(`label-${index}`);
       if (!labelElement)
         return;
-      labelElement.classList.toggle("is-active", isActive);
+      this.setLabelTargetOpacity(labelElement, isActive);
+      let group = this.connectionLines.get(index);
+      if (!isActive) {
+        if (group)
+          this.setConnectionLineTargetOpacity(group, 0);
+        return;
+      }
       const meshPosition = new Vector3();
       mesh.getWorldPosition(meshPosition);
       const labelRect = labelElement.getBoundingClientRect();
@@ -39122,7 +40327,6 @@ void main() {
       } else {
         intersectionPoint = meshPosition.clone();
       }
-      let group = this.connectionLines.get(index);
       if (!group) {
         group = this.createConnectionLine(index);
         if (!group)
@@ -39144,11 +40348,8 @@ void main() {
         intersectionPoint.y,
         intersectionPoint.z
       );
-      group.visible = true;
       line.material.resolution.set(window.innerWidth, window.innerHeight);
-      if (!isActive) {
-        group.visible = false;
-      }
+      this.setConnectionLineTargetOpacity(group, 1);
     }
     stop() {
       this.isPlaying = false;
@@ -39314,15 +40515,18 @@ void main() {
             }
           }
         });
-        tl.to(meshes, {
-          y: (i) => `+=${positions[i].y * 1.5}`,
-          z: (i) => `+=${positions[i].z * 1.5}`,
-          duration: 0.25
-        }).to(meshes, {
-          y: (i) => `-=${positions[i].y * 1.5}`,
-          z: (i) => `-=${positions[i].z * 1.5}`,
-          duration: 0.25
-        }).to(
+        if (meshes.length) {
+          tl.to(meshes, {
+            y: (i) => `+=${positions[i].y * 1.5}`,
+            z: (i) => `+=${positions[i].z * 1.5}`,
+            duration: 0.25
+          }).to(meshes, {
+            y: (i) => `-=${positions[i].y * 1.5}`,
+            z: (i) => `-=${positions[i].z * 1.5}`,
+            duration: 0.25
+          });
+        }
+        tl.to(
           ".hero-text",
           {
             opacity: 0,
@@ -39408,7 +40612,7 @@ void main() {
           {},
           {
             duration: 0.85,
-            onUpdate: function() {
+            onUpdate: function () {
               that.updateOutlineSelection(this.progress());
             }
           },
@@ -39416,19 +40620,36 @@ void main() {
         );
         tl.addLabel("part2");
         tl.addLabel("howItWorks", "part2+=0.15");
-        document.querySelectorAll(".about-div").forEach((div, index) => {
+        const aboutDivs = Array.from(document.querySelectorAll(".about-div"));
+        aboutDivs.forEach((div, index) => {
+          const isFinalAboutStep = index === aboutDivs.length - 1;
+          const showAboutPosition = index === 0 ? "part2+=0.15" : "+=0.05";
+          if (index === 0) {
+            tl.call(() => {
+              SOLAIS_ABOUT_FLOW_ACTIVE = true;
+            }, null, showAboutPosition);
+          }
+          const showAboutDiv = {
+            opacity: 1,
+            duration: 0.075
+          };
+          if (isFinalAboutStep)
+            tl.addLabel("optimising", showAboutPosition);
           tl.to(
             div,
-            {
-              opacity: 1,
-              duration: 0.075
-            },
-            index === 0 ? "part2+=0.15" : "+=0.05"
+            showAboutDiv,
+            showAboutPosition
           ).to(
             div,
             {
               opacity: 0,
-              duration: 0.075
+              duration: 0.075,
+              onStart: () => {
+                if (isFinalAboutStep) {
+                  SOLAIS_ABOUT_FLOW_ACTIVE = false;
+                  clearFloatingElements({ duration: 0.38 });
+                }
+              }
             },
             "+=0.15"
           );
@@ -39448,15 +40669,11 @@ void main() {
           {},
           {
             duration: 0.1,
-            onUpdate: function() {
-              const originalBaseFirstColor = new Color(0.843, 0.235, 0.09);
-              const originalBaseSecondColor = new Color(0.89, 0.89, 0.89);
-              const originalBaseThirdColor = new Color(
-                0.235,
-                0.035,
-                0.117
-              );
-              const originalAccentColor = new Color(0.8, 0.26, 0.18);
+            onUpdate: function () {
+              const originalBaseFirstColor = new Color(that.themeConfig.baseFirst);
+              const originalBaseSecondColor = new Color(that.themeConfig.baseSecond);
+              const originalBaseThirdColor = new Color(that.themeConfig.baseThird);
+              const originalAccentColor = new Color(that.themeConfig.accent);
               const baseFirstColor = new Color(0.89, 0.89, 0.89);
               const baseSecondColor = new Color(0.89, 0.89, 0.89);
               const baseThirdColor = new Color(0.89, 0.89, 0.89);
@@ -39540,6 +40757,7 @@ void main() {
           this.camera.position,
           {
             y: -26,
+            z: 2.2,
             duration: 2.5
           },
           "part2+=0.5"
@@ -39568,12 +40786,48 @@ void main() {
             this.speedLines.material.uniforms.uOpacity,
             {
               value: 0,
-              duration: 0.5
+              duration: 0.35
             },
-            "part2+=1.35"
+            "advantage-=0.35"
           );
         }
+        const cubeFlowRevealGateTime = (tl.labels.part2 ?? 1) + 0.2;
+        const cubeFlowHideGateTime = (tl.labels.advantage ?? 2.5) + 0;
+        tl.to(
+          {},
+          {
+            duration: 0.01,
+            onStart: () => {
+              that.setCubeFlowVisibility(true);
+            },
+            onReverseComplete: () => {
+              that.setCubeFlowVisibility(true);
+            }
+          },
+          cubeFlowRevealGateTime
+        ).to(
+          {},
+          {
+            duration: 0.01,
+            onStart: () => {
+              that.setCubeFlowVisibility(false);
+            },
+            onReverseComplete: () => {
+              that.setCubeFlowVisibility(false);
+            }
+          },
+          cubeFlowHideGateTime
+        );
         this.cubeInstances.forEach((instance, index) => {
+          const rawCubeRevealStart = (tl.labels.part2 ?? 1) + index * 0.08 + 0.25;
+          const cubeRevealStart = Math.min(
+            rawCubeRevealStart,
+            (tl.labels.advantage ?? 2.5) - 0.3
+          );
+          const cubeExitStart = Math.max(
+            cubeRevealStart + 0.16,
+            (tl.labels.advantage ?? 2.5) - 0.3
+          );
           tl.to(
             instance.mesh.rotation,
             {
@@ -39588,9 +40842,19 @@ void main() {
               x: 1,
               y: 1,
               z: 1,
-              duration: 0.25
+              duration: 0.65,
+              ease: "back.out(1.5)"
             },
-            `part2+=${index * 0.11 + 0.25}`
+            cubeRevealStart
+          );
+          tl.to(
+            instance.mesh.material,
+            {
+              opacity: 1,
+              duration: 0.5,
+              ease: "power2.out"
+            },
+            cubeRevealStart
           );
           instance.initialTransforms.forEach((transform) => {
             let randomScale = 0.04 + Math.random() * 0.1;
@@ -39600,9 +40864,10 @@ void main() {
                 x: randomScale,
                 y: randomScale,
                 z: randomScale,
-                duration: 0.25
+                duration: 0.55,
+                ease: "back.out(1.4)"
               },
-              `part2+=${index * 0.11 + 0.25}`
+              cubeRevealStart
             ).to(
               transform.rotation,
               {
@@ -39611,55 +40876,112 @@ void main() {
               },
               "part2"
             );
+            tl.to(
+              transform.scale,
+              {
+                x: 0,
+                y: 0,
+                z: 0,
+                duration: 0.4,
+                ease: "power1.inOut"
+              },
+              cubeExitStart
+            );
           });
+          tl.to(
+            instance.mesh.material,
+            {
+              opacity: 0,
+              duration: 0.38,
+              ease: "power1.inOut"
+            },
+            cubeExitStart
+          );
+          const traceryGroup = this.traceryElements?.[index];
+          if (traceryGroup) {
+            traceryGroup.children.forEach((coordLabel) => {
+              if (!coordLabel?.material)
+                return;
+              tl.to(
+                coordLabel.material,
+                {
+                  opacity: 1,
+                  duration: 0.24,
+                  ease: "power2.out"
+                },
+                cubeRevealStart
+              );
+              tl.to(
+                coordLabel.material,
+                {
+                  opacity: 0,
+                  duration: 0.36,
+                  ease: "power1.inOut"
+                },
+                cubeExitStart
+              );
+            });
+          }
         });
         tl.addLabel("part3");
-        tl.to(
-          this.buttonModel.children.map((child) => child.material),
-          {
-            opacity: 1,
-            duration: 0.05
-          },
-          "part2+=1.5"
-        );
-        tl.to(
-          this.buttonModel.children[5].material.uniforms.uOpacity,
-          {
-            value: 1,
-            duration: 0.05
-          },
-          "part2+=1.5"
-        );
+        const tokenRevealBaseTime = "advantage-=0.08";
+        const tokenOrbitBlendTime = "advantage+=0.62";
+        if (this.buttonTokenMaterial) {
+          tl.to(
+            this.buttonTokenMaterial,
+            {
+              opacity: 1,
+              duration: 0.05
+            },
+            tokenRevealBaseTime
+          );
+        }
+        if (this.buttonShinyOpacityUniform) {
+          tl.to(
+            this.buttonShinyOpacityUniform,
+            {
+              value: 1,
+              duration: 0.05
+            },
+            tokenRevealBaseTime
+          );
+        }
         this.tokenMeshes.forEach((mesh, index) => {
-          const delay = index * 0.02;
+          const delay = index * (this.sceneConfig?.tokenRevealStagger ?? 0.02);
+          const tokenRevealOffset = -0.08 + delay;
+          const tokenRevealPosition = tokenRevealOffset < 0 ? `advantage-=${Math.abs(tokenRevealOffset)}` : `advantage+=${tokenRevealOffset}`;
           tl.to(
             mesh.userData.scrollOffset,
             {
               x: 0,
               y: 0,
               z: 0,
-              duration: 0.6,
+              duration: this.sceneConfig?.tokenRevealDuration ?? 0.9,
               ease: "power2.out"
             },
-            `part2+=${1.45 + delay}`
+            tokenRevealPosition
           );
           tl.from(
             mesh.rotation,
             {
               x: Math.PI * 2,
               z: Math.PI * 1,
-              duration: 0.5
+              duration: this.sceneConfig?.tokenRevealDuration ?? 0.9
             },
-            `part2+=${1.45 + delay}`
+            tokenRevealPosition
           );
         });
         that.startTokenAnimation();
         tl.to(
-          {},
+          that,
           {
-            duration: 0.01,
+            tokenOrbitBlend: 1,
+            duration: this.sceneConfig?.tokenOrbitBlendDuration ?? 0.55,
+            ease: "sine.inOut",
+            onUpdate: () => {
+              that.tokenScrollComplete = that.tokenOrbitBlend >= 0.995;
+            },
             onStart: () => {
-              that.tokenScrollComplete = true;
               that.floatingTokenTimelines?.forEach((tl2) => tl2.play());
             },
             onReverseComplete: () => {
@@ -39668,27 +40990,36 @@ void main() {
                 tl2.pause();
                 tl2.progress(0);
               });
-              that.tokenMeshes?.forEach((mesh) => {
-                if (mesh.userData.scrollOffset && mesh.userData.originalPosition) {
-                  const offset = mesh.userData.scrollOffset;
-                  const original = mesh.userData.originalPosition;
-                  mesh.position.set(
-                    original.x + offset.x,
-                    original.y + offset.y,
-                    original.z + offset.z
-                  );
-                }
-              });
             }
           },
-          "part2+=2.1"
+          tokenOrbitBlendTime
         );
+        const cycleThroughGradientEl = document.querySelector(".cycle-through-gradient");
+        const cycleThroughEl = document.querySelector(".cycle-through");
+        const transitionDarkenEl = document.querySelector(".transition-darken");
+        const headerLogoEl = document.querySelector(".header-logo");
+        const menuRowItems = document.querySelectorAll(".menu-row > *");
+        const headerButtonPrimarySvg = document.querySelectorAll("header .button-primary svg");
+        const headerButtonPrimaryDiv = document.querySelectorAll("header .button-primary div");
+        const headerButtonPrimary = document.querySelectorAll("header .button-primary");
+        const appendIfTarget = (target, vars, position) => {
+          if (!target)
+            return;
+          if (typeof target.length === "number" && !target.nodeType && target.length === 0)
+            return;
+          tl.to(target, vars, position);
+        };
+        const fadeCycleThrough = (opacity) => {
+          if (!cycleThroughEl)
+            return;
+          gsapWithCSS.to(cycleThroughEl, { opacity, duration: 0.5 });
+        };
         tl.to(
           this.buttonModel.scale,
           {
-            x: 6,
-            y: 6,
-            z: 6,
+            x: 4.5,
+            y: 4.5,
+            z: 4.5,
             duration: 1,
             ease: "power2.in"
           },
@@ -39696,9 +41027,9 @@ void main() {
         ).to(
           this.buttonPlane.scale,
           {
-            x: 1.25,
-            y: 1.25,
-            z: 1.25,
+            x: 1,
+            y: 1,
+            z: 1,
             duration: 1,
             ease: "power2.in"
           },
@@ -39710,20 +41041,22 @@ void main() {
             duration: 0.15
           },
           "part2+=1.5"
-        ).to(
-          ".cycle-through-gradient",
+        );
+        appendIfTarget(
+          cycleThroughGradientEl,
           {
             opacity: 1,
             duration: 0.15,
             onStart: () => {
-              gsapWithCSS.to(".cycle-through", { opacity: 1, duration: 0.5 });
+              fadeCycleThrough(1);
             },
             onReverseComplete: () => {
-              gsapWithCSS.to(".cycle-through", { opacity: 0, duration: 0.5 });
+              fadeCycleThrough(0);
             }
           },
           "part2+=1.8"
-        ).to(
+        );
+        tl.to(
           this.camera.rotation,
           {
             x: 0,
@@ -39759,58 +41092,65 @@ void main() {
             duration: 1.35
           },
           "part3-=1.5"
-        ).to(
-          ".transition-darken",
+        );
+        appendIfTarget(
+          transitionDarkenEl,
           {
             opacity: 0.8,
             duration: 0.25,
             onStart: () => {
-              gsapWithCSS.to(".cycle-through", { opacity: 0, duration: 0.5 });
+              fadeCycleThrough(0);
               that.stopTokenAnimation();
             },
             onReverseComplete: () => {
-              gsapWithCSS.to(".cycle-through", { opacity: 1, duration: 0.5 });
+              fadeCycleThrough(1);
               that.startTokenAnimation();
             }
           },
           "part3-=0.4"
-        ).to(
-          ".cycle-through-gradient",
+        );
+        appendIfTarget(
+          cycleThroughGradientEl,
           {
             opacity: 0.8,
             duration: 0.25
           },
           "part3-=0.4"
-        ).to(
-          ".header-logo",
+        );
+        appendIfTarget(
+          headerLogoEl,
           {
             color: "#ffffff",
             duration: 0.1
           },
           "part3-=0.4"
-        ).to(
-          ".menu-row > *",
+        );
+        appendIfTarget(
+          menuRowItems,
           {
             color: "#ffffff",
             duration: 0.1
           },
           "part3-=0.4"
-        ).to(
-          "header .button-primary svg",
+        );
+        appendIfTarget(
+          headerButtonPrimarySvg,
           {
             fill: "#ffffff",
             duration: 0.1
           },
           "part3-=0.4"
-        ).to(
-          "header .button-primary div",
+        );
+        appendIfTarget(
+          headerButtonPrimaryDiv,
           {
             backgroundColor: "#ffffff",
             duration: 0.1
           },
           "part3-=0.4"
-        ).to(
-          "header .button-primary",
+        );
+        appendIfTarget(
+          headerButtonPrimary,
           {
             color: "#3c091e",
             duration: 0.1
@@ -39821,11 +41161,11 @@ void main() {
           {},
           {
             duration: 0.1,
-            onUpdate: function() {
-              const originalBaseFirstColor = new Color(0.843, 0.235, 0.09);
-              const originalBaseSecondColor = new Color(0.89, 0.89, 0.89);
-              const originalBaseThirdColor = new Color(0.235, 0.035, 0.117);
-              const originalAccentColor = new Color(0.8, 0.26, 0.18);
+            onUpdate: function () {
+              const originalBaseFirstColor = new Color(that.themeConfig.baseFirst);
+              const originalBaseSecondColor = new Color(that.themeConfig.baseSecond);
+              const originalBaseThirdColor = new Color(that.themeConfig.baseThird);
+              const originalAccentColor = new Color(that.themeConfig.accent);
               const baseFirstColor = new Color(0.89, 0.89, 0.89);
               const baseSecondColor = new Color(0.89, 0.89, 0.89);
               const baseThirdColor = new Color(0.89, 0.89, 0.89);
@@ -39902,21 +41242,28 @@ void main() {
             duration: 0.1
           },
           "part3+=1"
-        ).to(
-          this.buttonModel.children.map((child) => child.material),
-          {
-            opacity: 0,
-            duration: 0.15
-          },
-          "part3-=0.1"
-        ).to(
-          this.buttonModel.children[5].material.uniforms.uOpacity,
-          {
-            value: 0,
-            duration: 0.15
-          },
-          "part3-=0.1"
-        ).to(
+        );
+        if (this.buttonTokenMaterial) {
+          tl.to(
+            this.buttonTokenMaterial,
+            {
+              opacity: 0,
+              duration: 0.15
+            },
+            "part3-=0.1"
+          );
+        }
+        if (this.buttonShinyOpacityUniform) {
+          tl.to(
+            this.buttonShinyOpacityUniform,
+            {
+              value: 0,
+              duration: 0.15
+            },
+            "part3-=0.1"
+          );
+        }
+        tl.to(
           this.buttonPlane.material.uniforms.opacity,
           {
             value: 0,
@@ -40068,10 +41415,13 @@ void main() {
       start: "50px top",
       onEnter: () => {
         clearInterval(spawnInterval);
-        gsapWithCSS.to(".binary-container", {
-          autoAlpha: 0,
-          duration: 0.5
-        });
+        const binaryContainers = heroTop.querySelectorAll(".binary-container");
+        if (binaryContainers.length) {
+          gsapWithCSS.to(binaryContainers, {
+            autoAlpha: 0,
+            duration: 0.5
+          });
+        }
       },
       onLeaveBack: () => {
         spawnInterval = setInterval(createBinaryContainer, 1e3);
@@ -40751,7 +42101,7 @@ void main() {
     } = _ref;
     const observers = [];
     const window2 = getWindow();
-    const attach = function(target, options) {
+    const attach = function (target, options) {
       if (options === void 0) {
         options = {};
       }
@@ -43357,24 +44707,24 @@ void main() {
     const suffixes = prepareClasses(["initialized", params.direction, {
       "free-mode": swiper.params.freeMode && params.freeMode.enabled
     }, {
-      "autoheight": params.autoHeight
-    }, {
-      "rtl": rtl
-    }, {
-      "grid": params.grid && params.grid.rows > 1
-    }, {
-      "grid-column": params.grid && params.grid.rows > 1 && params.grid.fill === "column"
-    }, {
-      "android": device.android
-    }, {
-      "ios": device.ios
-    }, {
-      "css-mode": params.cssMode
-    }, {
-      "centered": params.cssMode && params.centeredSlides
-    }, {
-      "watch-progress": params.watchSlidesProgress
-    }], params.containerModifierClass);
+        "autoheight": params.autoHeight
+      }, {
+        "rtl": rtl
+      }, {
+        "grid": params.grid && params.grid.rows > 1
+      }, {
+        "grid-column": params.grid && params.grid.rows > 1 && params.grid.fill === "column"
+      }, {
+        "android": device.android
+      }, {
+        "ios": device.ios
+      }, {
+        "css-mode": params.cssMode
+      }, {
+        "centered": params.cssMode && params.centeredSlides
+      }, {
+        "watch-progress": params.watchSlidesProgress
+      }], params.containerModifierClass);
     classNames.push(...suffixes);
     el.classList.add(...classNames);
     swiper.emitContainerClasses();
@@ -46033,7 +47383,7 @@ void main() {
         });
       });
     };
-    const setTransition2 = function(duration) {
+    const setTransition2 = function (duration) {
       if (duration === void 0) {
         duration = swiper.params.speed;
       }
@@ -49344,9 +50694,448 @@ void main() {
       });
     });
   }
+  function shouldEnableSolaisThemeCustomizer() {
+    const params = new URLSearchParams(window.location.search);
+    const hostname = window.location.hostname;
+    const isLocalHost = hostname === "localhost" || hostname === "127.0.0.1";
+    return isLocalHost || params.has("customizer");
+  }
+  function ensureSolaisThemeCustomizerStyles() {
+    if (document.getElementById("solais-theme-customizer-styles"))
+      return;
+    const style = document.createElement("style");
+    style.id = "solais-theme-customizer-styles";
+    style.textContent = `
+      #solais-theme-customizer {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        z-index: 100000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      }
+      #solais-theme-customizer .stc-toggle,
+      #solais-theme-customizer .stc-button,
+      #solais-theme-customizer .stc-tab {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(12, 12, 16, 0.88);
+        color: #fff;
+        cursor: pointer;
+        font-size: 12px;
+        line-height: 1;
+        padding: 12px 16px;
+        backdrop-filter: blur(16px);
+      }
+      #solais-theme-customizer .stc-toggle {
+        border-radius: 999px;
+      }
+      #solais-theme-customizer .stc-panel {
+        width: min(430px, calc(100vw - 32px));
+        max-height: min(82vh, 860px);
+        overflow: auto;
+        background: rgba(12, 12, 16, 0.92);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        padding: 16px;
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(18px);
+      }
+      #solais-theme-customizer.is-collapsed .stc-panel {
+        display: none;
+      }
+      #solais-theme-customizer .stc-header {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 14px;
+      }
+      #solais-theme-customizer .stc-title {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      #solais-theme-customizer .stc-help,
+      #solais-theme-customizer .stc-status {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 11px;
+        line-height: 1.4;
+      }
+      #solais-theme-customizer .stc-status {
+        min-height: 16px;
+      }
+      #solais-theme-customizer .stc-tab-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      #solais-theme-customizer .stc-tab {
+        border-radius: 999px;
+        padding: 9px 12px;
+      }
+      #solais-theme-customizer .stc-tab.is-active {
+        background: #ffffff;
+        color: #101014;
+      }
+      #solais-theme-customizer .stc-tab-panel[hidden] {
+        display: none !important;
+      }
+      #solais-theme-customizer .stc-section {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      #solais-theme-customizer .stc-section-title {
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.48);
+        margin-bottom: 2px;
+      }
+      #solais-theme-customizer .stc-label {
+        display: grid;
+        gap: 6px;
+      }
+      #solais-theme-customizer .stc-label-text {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.72);
+      }
+      #solais-theme-customizer .stc-color-row,
+      #solais-theme-customizer .stc-range-row,
+      #solais-theme-customizer .stc-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      #solais-theme-customizer .stc-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      #solais-theme-customizer input[type="color"] {
+        width: 44px;
+        height: 32px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: transparent;
+        padding: 2px;
+        cursor: pointer;
+      }
+      #solais-theme-customizer input[type="text"] {
+        flex: 1;
+        min-width: 0;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+      #solais-theme-customizer input[type="number"],
+      #solais-theme-customizer textarea {
+        min-width: 0;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+      #solais-theme-customizer textarea {
+        width: 100%;
+        resize: vertical;
+      }
+      #solais-theme-customizer input[type="number"] {
+        width: 92px;
+      }
+      #solais-theme-customizer input[type="range"] {
+        flex: 1;
+      }
+      #solais-theme-customizer .stc-range-value {
+        min-width: 38px;
+        text-align: right;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.88);
+      }
+      #solais-theme-customizer .stc-actions {
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      #solais-theme-customizer .stc-button {
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+      #solais-theme-customizer .stc-target {
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.05);
+        font-size: 11px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.88);
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      #solais-theme-customizer .stc-inline-note {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.4;
+      }
+      #solais-theme-customizer .stc-preview {
+        width: 100%;
+        min-height: 200px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        padding: 12px;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+      #solais-theme-customizer .stc-import {
+        min-height: 120px;
+      }
+      #solais-theme-customizer .stc-highlight {
+        position: fixed;
+        z-index: 99999;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 0 0 1px rgba(226, 0, 27, 0.8), 0 0 0 9999px rgba(5, 5, 8, 0.16);
+        pointer-events: none;
+        display: none;
+      }
+      #solais-theme-customizer .stc-highlight.is-visible {
+        display: block;
+      }
+      #solais-theme-customizer.is-picking .stc-toggle {
+        background: rgba(226, 0, 27, 0.9);
+      }
+      @media (max-width: 767px) {
+        #solais-theme-customizer .stc-panel {
+          width: min(100vw - 24px, 430px);
+          max-height: 72vh;
+        }
+        #solais-theme-customizer .stc-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  function formatSolaisRangeValue(value) {
+    return Number(value).toFixed(2);
+  }
+  function createSolaisThemeCustomizer(gradientThree) {
+    if (!gradientThree || !shouldEnableSolaisThemeCustomizer())
+      return null;
+    if (document.getElementById("solais-theme-customizer"))
+      return null;
+    ensureSolaisThemeCustomizerStyles();
+    const customizer = document.createElement("aside");
+    customizer.id = "solais-theme-customizer";
+    const shouldStartOpen = window.innerWidth >= 1024;
+    customizer.classList.toggle("is-collapsed", !shouldStartOpen);
+    const toggleButton = document.createElement("button");
+    toggleButton.type = "button";
+    toggleButton.className = "stc-toggle";
+    const panel = document.createElement("div");
+    panel.className = "stc-panel";
+    const header = document.createElement("div");
+    header.className = "stc-header";
+    const title = document.createElement("div");
+    title.className = "stc-title";
+    title.textContent = "Theme Lab";
+    const help = document.createElement("div");
+    help.className = "stc-help";
+    help.textContent = "Live edit hero gradient, grid, and global red token. Auto-saved in this browser. Shift+T toggles.";
+    const status = document.createElement("div");
+    status.className = "stc-status";
+    header.append(title, help, status);
+    const colorSection = document.createElement("div");
+    colorSection.className = "stc-section";
+    const rangeSection = document.createElement("div");
+    rangeSection.className = "stc-section";
+    const actionRow = document.createElement("div");
+    actionRow.className = "stc-actions";
+    const preview = document.createElement("textarea");
+    preview.className = "stc-preview";
+    preview.readOnly = true;
+    const controls = /* @__PURE__ */ new Map();
+    const colorFields = [
+      { key: "siteBrown", label: "Site Brown" },
+      { key: "baseFirst", label: "Hero Base 1" },
+      { key: "baseSecond", label: "Hero Base 2" },
+      { key: "baseThird", label: "Hero Base 3" },
+      { key: "accent", label: "Hero Accent" },
+      { key: "gridLineColor", label: "Grid Line" },
+      { key: "clearColor", label: "Canvas Clear" }
+    ];
+    const rangeFields = [
+      { key: "gridOpacity", label: "Grid Opacity", min: 0, max: 1, step: 0.01 },
+      { key: "plusOpacity", label: "Plus Opacity", min: 0, max: 1, step: 0.01 }
+    ];
+    const setStatus = (message) => {
+      status.textContent = message;
+    };
+    const syncControls = (themeConfig) => {
+      controls.forEach((control, key) => {
+        if ("colorInput" in control) {
+          control.colorInput.value = themeConfig[key];
+          control.textInput.value = themeConfig[key];
+        }
+        if ("rangeInput" in control) {
+          control.rangeInput.value = `${themeConfig[key]}`;
+          control.value.textContent = formatSolaisRangeValue(themeConfig[key]);
+        }
+      });
+      preview.value = buildSolaisThemeCode(themeConfig);
+    };
+    const applyPartialTheme = (partialThemeConfig) => {
+      const nextThemeConfig = gradientThree.applyThemeConfig(partialThemeConfig);
+      syncControls(nextThemeConfig);
+      setStatus("Saved locally.");
+    };
+    const setOpen = (nextOpen) => {
+      customizer.classList.toggle("is-collapsed", !nextOpen);
+      toggleButton.textContent = nextOpen ? "Hide Theme Lab" : "Open Theme Lab";
+    };
+    colorFields.forEach((field) => {
+      const label = document.createElement("label");
+      label.className = "stc-label";
+      const text = document.createElement("div");
+      text.className = "stc-label-text";
+      text.textContent = field.label;
+      const row = document.createElement("div");
+      row.className = "stc-color-row";
+      const colorInput = document.createElement("input");
+      colorInput.type = "color";
+      const textInput = document.createElement("input");
+      textInput.type = "text";
+      textInput.spellcheck = false;
+      colorInput.addEventListener("input", () => {
+        applyPartialTheme({ [field.key]: colorInput.value });
+      });
+      const commitTextColor = () => {
+        const fallback = gradientThree.getThemeConfig()[field.key];
+        applyPartialTheme({
+          [field.key]: normalizeSolaisHexColor(textInput.value, fallback)
+        });
+      };
+      textInput.addEventListener("change", commitTextColor);
+      textInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          commitTextColor();
+        }
+      });
+      row.append(colorInput, textInput);
+      label.append(text, row);
+      colorSection.appendChild(label);
+      controls.set(field.key, { colorInput, textInput });
+    });
+    rangeFields.forEach((field) => {
+      const label = document.createElement("label");
+      label.className = "stc-label";
+      const text = document.createElement("div");
+      text.className = "stc-label-text";
+      text.textContent = field.label;
+      const row = document.createElement("div");
+      row.className = "stc-range-row";
+      const rangeInput = document.createElement("input");
+      rangeInput.type = "range";
+      rangeInput.min = `${field.min}`;
+      rangeInput.max = `${field.max}`;
+      rangeInput.step = `${field.step}`;
+      const value = document.createElement("div");
+      value.className = "stc-range-value";
+      rangeInput.addEventListener("input", () => {
+        applyPartialTheme({ [field.key]: Number.parseFloat(rangeInput.value) });
+      });
+      row.append(rangeInput, value);
+      label.append(text, row);
+      rangeSection.appendChild(label);
+      controls.set(field.key, { rangeInput, value });
+    });
+    const heroButton = document.createElement("button");
+    heroButton.type = "button";
+    heroButton.className = "stc-button";
+    heroButton.textContent = "Go To Hero";
+    heroButton.addEventListener("click", () => {
+      document.getElementById("hero-top")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+    const copyButton = document.createElement("button");
+    copyButton.type = "button";
+    copyButton.className = "stc-button";
+    copyButton.textContent = "Copy Code";
+    copyButton.addEventListener("click", async () => {
+      try {
+        await copySolaisThemeText(preview.value);
+        setStatus("Code copied.");
+      } catch (error) {
+        console.warn("Unable to copy theme code:", error);
+        setStatus("Copy failed.");
+      }
+    });
+    const resetButton = document.createElement("button");
+    resetButton.type = "button";
+    resetButton.className = "stc-button";
+    resetButton.textContent = "Reset";
+    resetButton.addEventListener("click", () => {
+      const nextThemeConfig = gradientThree.resetThemeConfig();
+      syncControls(nextThemeConfig);
+      setStatus("Reset to default.");
+    });
+    actionRow.append(heroButton, copyButton, resetButton);
+    panel.append(header, colorSection, rangeSection, actionRow, preview);
+    toggleButton.addEventListener("click", () => {
+      setOpen(customizer.classList.contains("is-collapsed"));
+    });
+    window.addEventListener("keydown", (event) => {
+      const target = event.target;
+      const isTypingTarget = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement;
+      if (isTypingTarget)
+        return;
+      if (event.shiftKey && !event.ctrlKey && !event.altKey && !event.metaKey && event.key.toLowerCase() === "t") {
+        event.preventDefault();
+        setOpen(customizer.classList.contains("is-collapsed"));
+      }
+    });
+    setOpen(shouldStartOpen);
+    syncControls(gradientThree.getThemeConfig());
+    customizer.append(toggleButton, panel);
+    document.body.appendChild(customizer);
+    window.__solaisThemeLab = {
+      gradientThree,
+      customizer,
+      open: () => setOpen(true),
+      close: () => setOpen(false),
+      reset: () => {
+        const nextThemeConfig = gradientThree.resetThemeConfig();
+        syncControls(nextThemeConfig);
+        return nextThemeConfig;
+      },
+      getTheme: () => gradientThree.getThemeConfig()
+    };
+    return window.__solaisThemeLab;
+  }
 
   // js/index.js
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", async () => {
+    await hydrateSolaisRemoteState();
     mouseFollower();
     buttonAnimation();
     animateOnScroll();
@@ -49356,9 +51145,13 @@ void main() {
     initSmoothScroll();
     initAccordions();
     initSliders();
-    new GradientThree({
+    const gradientThree = new GradientThree({
       dom: document.getElementById("hero-section")
     });
+    window.__solaisGradientThree = gradientThree;
+    if (!window.__disableLegacySolaisThemeCustomizer) {
+      createSolaisThemeCustomizer(gradientThree);
+    }
     randomNumbers();
     aboutAnimation();
     footerAnimation();
@@ -49447,3 +51240,5 @@ version 0.8.2
  * Copyright 2010-2025 Three.js Authors
  * SPDX-License-Identifier: MIT
  */
+
+
