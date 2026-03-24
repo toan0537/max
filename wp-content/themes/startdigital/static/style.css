@@ -3841,6 +3841,14 @@ body,
   letter-spacing: -0.045em;
 }
 
+.footer-text .vi-word-fix {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  display: inline-block;
+  transform: translateY(-0.01em);
+}
+
 .footer-counter-kicker {
   align-items: center;
   flex-wrap: nowrap;
