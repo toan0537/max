@@ -4100,12 +4100,12 @@ body,
 }
 /* MAX layout refinement v3 */
 .site-header {
-  padding-top: clamp(0.55rem, 1.2vw, 0.85rem);
+  padding-top: clamp(0.4rem, 0.95vw, 0.68rem);
 }
 
 .site-nav-shell {
   max-width: min(1240px, calc(100% - 2.5rem));
-  padding: 0.6rem 0.85rem;
+  padding: 0.42rem 0.72rem;
   box-shadow:
     0 14px 36px rgba(24, 8, 14, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.18);
@@ -4115,8 +4115,8 @@ body,
 
 .site-header a[rel="home"] {
   gap: 0.45rem;
-  padding: 0.42rem 0.78rem;
-  font-size: clamp(1.8rem, 2vw, 2.15rem);
+  padding: 0.32rem 0.64rem;
+  font-size: clamp(1.62rem, 1.75vw, 1.96rem);
   letter-spacing: 0.24em;
 }
 
@@ -4138,16 +4138,16 @@ body,
 }
 
 .site-nav-links .nav-link {
-  padding: 0.45rem 0;
+  padding: 0.3rem 0;
 }
 
 .site-nav-cta {
-  height: 40px !important;
+  height: 35px !important;
   margin-left: clamp(0.25rem, 0.8vw, 0.75rem);
 }
 
 .site-nav-cta .btn-text {
-  padding-inline: 1.05rem;
+  padding-inline: 0.88rem;
   letter-spacing: 0.12em;
 }
 
@@ -4441,23 +4441,23 @@ body,
 
 @media (width < 48rem) {
   .site-header {
-    padding-top: 0.65rem;
+    padding-top: 0.5rem;
   }
 
   .site-nav-shell {
     max-width: calc(100% - 0.75rem);
-    padding: 0.7rem 0.78rem;
-    border-radius: 24px;
+    padding: 0.58rem 0.66rem;
+    border-radius: 22px;
   }
 
   .site-header a[rel="home"] {
-    padding: 0.42rem 0.62rem;
-    font-size: 1.18rem;
+    padding: 0.32rem 0.54rem;
+    font-size: 1.05rem;
     letter-spacing: 0.22em;
   }
 
   .site-nav-cta {
-    height: 38px !important;
+    height: 34px !important;
   }
 
   .hero-frame {
