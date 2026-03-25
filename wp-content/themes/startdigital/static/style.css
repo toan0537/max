@@ -3440,19 +3440,35 @@ body,
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
-.brand-mark {
+.brand-wordmark {
   display: block;
-  width: auto;
-  height: auto;
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask: url("./max-wordmark.svg") center / contain no-repeat;
+  mask: url("./max-wordmark.svg") center / contain no-repeat;
+}
+
+.brand-wordmark--header,
+.header-logo {
+  width: clamp(6.8rem, 12vw, 9.5rem);
+  height: clamp(1.45rem, 2.35vw, 2.05rem);
+}
+
+.brand-wordmark--footer {
+  width: clamp(6rem, 13vw, 8.3rem);
+  height: clamp(1.3rem, 2.6vw, 1.9rem);
+}
+
+.loading-brand-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(14rem, 40vw);
+  aspect-ratio: 1 / 1;
   background-color: currentColor;
   -webkit-mask: url("./max-symbol.svg") center / contain no-repeat;
   mask: url("./max-symbol.svg") center / contain no-repeat;
-  flex-shrink: 0;
-}
-
-.brand-mark--header {
-  height: clamp(2rem, 2.6vw, 2.6rem);
-  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
 }
 
 .site-nav-links {
@@ -3913,11 +3929,6 @@ body,
   box-shadow: 0 34px 80px rgba(10, 10, 14, 0.12);
 }
 
-.brand-mark--footer {
-  width: clamp(5.8rem, 13vw, 8rem);
-  aspect-ratio: 1 / 1;
-}
-
 .footer-card .nav-link {
   width: fit-content;
 }
@@ -3986,9 +3997,10 @@ body,
     letter-spacing: 0.24em;
   }
 
-  .brand-mark--header {
-    height: 2rem;
-    aspect-ratio: 1 / 1;
+  .brand-wordmark--header,
+  .header-logo {
+    width: 7rem;
+    height: 1.55rem;
   }
 
   .hero-frame {
@@ -4145,9 +4157,10 @@ body,
   letter-spacing: 0.24em;
 }
 
-.brand-mark--header {
-  height: clamp(1.8rem, 2vw, 2.2rem);
-  aspect-ratio: 1 / 1;
+.brand-wordmark--header,
+.header-logo {
+  width: clamp(6.2rem, 10vw, 8rem);
+  height: clamp(1.35rem, 2vw, 1.8rem);
 }
 
 .site-nav-links {
@@ -4486,9 +4499,10 @@ body,
     letter-spacing: 0.22em;
   }
 
-  .brand-mark--header {
-    height: 1.8rem;
-    aspect-ratio: 1 / 1;
+  .brand-wordmark--header,
+  .header-logo {
+    width: 6rem;
+    height: 1.35rem;
   }
 
   .site-nav-cta {
